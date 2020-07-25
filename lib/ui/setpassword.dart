@@ -121,7 +121,7 @@ class _SetPasswordState extends State<SetPassword> {
                     left: 60.0, right: 60, top: 10.0, bottom: 90.0),
                 child: RaisedButton(
                   padding: EdgeInsets.symmetric(vertical: 16.0),
-                  color: new Color(0xFFE97179),
+                  color: new Color(0xFFF28282),
                   onPressed: () {
                     if(passwordController.text!=confirmpasswordController.text){
                       print(passwordController.text);

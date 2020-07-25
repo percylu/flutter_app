@@ -87,6 +87,7 @@ class _DeviceScanState extends State<DeviceScan> {
                         if (items.code == 0) {
                           return deviceScanButton(items.data[index].desc, () {
                             print(items.data[index].id);
+                            Navigator.pushNamed(context, "devicelink");
                           });
                         }
                         return null;

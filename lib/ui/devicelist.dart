@@ -82,7 +82,7 @@ class _DeviceListState extends State<DeviceList> {
                 EdgeInsets.only(left: ScreenUtil().setWidth(60), right: ScreenUtil().setWidth(60), top: ScreenUtil().setHeight(10), bottom: ScreenUtil().setHeight(10)),
             child: RaisedButton(
               padding: EdgeInsets.symmetric(vertical: ScreenUtil().setHeight(20)),
-              color: new Color(0xFFE97179),
+              color: new Color(0xFFF28282),
               onPressed: () {
                 Navigator.pushNamed(context, 'devicescan');
               },

@@ -3,15 +3,17 @@ import 'package:flutter/services.dart';
 import 'package:flutter_app/ui/comming.dart';
 import 'package:flutter_app/ui/devicedata.dart';
 import 'package:flutter_app/ui/devicedetail.dart';
+import 'package:flutter_app/ui/deviceerror.dart';
+import 'package:flutter_app/ui/devicelink.dart';
 import 'package:flutter_app/ui/devicelist.dart';
 import 'package:flutter_app/ui/devicescan.dart';
 import 'package:flutter_app/ui/devicesleep.dart';
+import 'package:flutter_app/ui/devicewifi.dart';
 import 'package:flutter_app/ui/home.dart';
 import 'package:flutter_app/ui/mobileregister.dart';
 import 'package:flutter_app/ui/resetpassword.dart';
 import 'package:flutter_app/ui/setpassword.dart';
 import 'package:flutter_app/ui/startup.dart';
-import 'package:provider/provider.dart';
 
 import 'package:flutter_app/ui/mobilelogin.dart';
 
@@ -47,6 +49,9 @@ class MyApp extends StatelessWidget {
         "devicesleep":(_)=>DeviceSleep(),
         "devicedata":(_)=>DeviceData(),
         "comming":(_)=>Comming(),
+        "devicelink":(_)=>DeviceLink(),
+        "devicewifi":(_)=>DeviceWifi(),
+        "deviceerror":(_)=>DeviceError(),
       },
     );
   }

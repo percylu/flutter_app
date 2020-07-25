@@ -150,7 +150,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                   IconButton(
                     icon: Icon(
                       Icons.email,
-                      color: _canSend?Color(0xFFE97179):Colors.grey,
+                      color: _canSend?Color(0xFFF28282):Colors.grey,
                       size: 36,
                     ),
                     onPressed: (_seconds == 0)?(){
@@ -183,7 +183,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                           setState(() {
                             _isObscure =! _isObscure;
                             _eyeColor = _isObscure ? Colors.black54
-                                : Color(0xFFE97179);
+                                : Color(0xFFF28282);
 
                           });
                         },
@@ -210,7 +210,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                     left: 60.0, right: 60, top: 10.0, bottom: 90.0),
                 child: RaisedButton(
                   padding: EdgeInsets.symmetric(vertical: 16.0),
-                  color: new Color(0xFFE97179),
+                  color: new Color(0xFFF28282),
                   onPressed: () {
                     Navigator.pushNamed(context, 'setPassword');
                     _cancleTimer();

@@ -27,8 +27,7 @@ class MessageDialog extends Dialog {
         height: 1335,
         allowFontScaling: true);
     return new Container(
-      width:ScreenUtil().setWidth(399.99),
-      height: ScreenUtil().setHeight(405.99),
+
       padding: const EdgeInsets.only(top:60,left:80,right:80,bottom: 20),
       child: new Material(
         type: MaterialType.transparency,
@@ -36,6 +35,8 @@ class MessageDialog extends Dialog {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             new Container(
+              width:ScreenUtil().setWidth(399.99),
+              height: ScreenUtil().setHeight(399.99),
               padding:EdgeInsets.only(top:20,left:0,right:0,bottom: 0),
               decoration: ShapeDecoration(
                 color: Color(0xffffffff),
@@ -80,7 +81,7 @@ class MessageDialog extends Dialog {
                         child: new Text(
                           message,
                           textAlign: TextAlign.center,
-                          style: TextStyle(fontSize: 16.0,color: Color(0xffAC8C8C),fontWeight: FontWeight.w700),
+                          style: TextStyle(fontSize: 16.0,color: Color(0xff999999),fontWeight: FontWeight.w700),
                         ),
                       ),
                     ),
@@ -131,8 +132,9 @@ class MessageDialog extends Dialog {
         child: new Text(
           negativeText,
           style: TextStyle(
-            fontSize: 16.0,
-            color: Color(0xFFF28282)
+            fontSize: ScreenUtil().setSp(32),
+            color: Color(0xFFF28282),
+            fontWeight: FontWeight.w700
           ),
         ),
       ),

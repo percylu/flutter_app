@@ -112,7 +112,7 @@ class _MobileLoginState extends State<MobileLogin> {
 
                                   _isObscure =! _isObscure;
                                   _eyeColor = _isObscure ? Colors.black54
-                                      : Color(0xFFE97179);
+                                      : Color(0xFFF28282);
 
                                 });
                               },
@@ -138,7 +138,7 @@ class _MobileLoginState extends State<MobileLogin> {
                       padding: EdgeInsets.only(left:60.0,right:60,top:30.0,bottom:10.0),
                       child: RaisedButton(
                         padding: EdgeInsets.symmetric(vertical: 16.0),
-                        color: new Color(0xFFE97179),
+                        color: new Color(0xFFF28282),
                         onPressed: () {
                           Navigator.pushNamed(context, 'home');
                         },
