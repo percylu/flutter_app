@@ -9,6 +9,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_app/ui/tab/mlogintab.dart';
 
 import 'package:flutter_app/ui/tab/mhometab.dart';
+import 'package:flutter_app/ui/tab/mminetab.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -33,11 +34,12 @@ class _HomePageState extends State<HomePage> {
     ScreenUtil.init(width: 750, height: 1334, allowFontScaling: true); //flutter_screenuitl >= 1.2
     _children.add(MiaoLogin());
     _children.add(MiaoHomeTabView());
-    //_children.add(MiaoDiscoveryTabView());
+    _children.add(MiaoMine());
     //_children.add(MiaoPetTabView());
     //_children.add(MiaoProfileTabView());
     _appBars.add(_buildAppBarLogin());
     _appBars.add(null);
+    _appBars.add(_buildAppBarOne ("个人中心"));
   }
   ///状态栏样式-沉浸式状态栏
   _statusBar() {
@@ -60,7 +62,7 @@ class _HomePageState extends State<HomePage> {
         primaryColor: Colors.white,
       ),
       child: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: Color(0xFFFAFAFA),
         appBar: _appBars[_pageIndex],
         body: _children[_pageIndex],
         floatingActionButton: FloatingActionButton(
@@ -95,14 +97,13 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+
   Widget _buildAppBarOne(String title) {
+
     return AppBar(
-      bottom: PreferredSize(
-          child: Container(color: Colors.grey.shade200, height: 1.0,),
-          preferredSize: Size.fromHeight(1.0)),
+      elevation: 0.5,
       automaticallyImplyLeading: false,
-      backgroundColor: Colors.grey.shade200,
-      elevation: 0,
+      centerTitle: true,
       title: Text(title, style: TextStyle(color: Colors.black)),
     );
   }
@@ -110,7 +111,7 @@ class _HomePageState extends State<HomePage> {
 
   BottomNavigationBar _buildBottomNavigationBar() {
     return BottomNavigationBar(
-        elevation:1,
+        elevation:6,
         items: [
           BottomNavigationBarItem(
               icon: Image.asset('assets/ic_home_default.png', width:25,height:25,),

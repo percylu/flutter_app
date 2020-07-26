@@ -18,9 +18,8 @@ class DeviceData extends StatefulWidget {
 class _DeviceDataState extends State<DeviceData>
     with SingleTickerProviderStateMixin {
   var index = 0;
-  var _kg=0;
-  var _count=0;
-
+  var _kg = 0;
+  var _count = 0;
 
   TabController tabController;
 
@@ -41,7 +40,8 @@ class _DeviceDataState extends State<DeviceData>
   Widget build(BuildContext context) {
     ScreenUtil.init(width: 750, height: 1335, allowFontScaling: true);
     return Scaffold(
-      appBar: AppBar(
+      appBar:
+      AppBar(
         centerTitle: true,
         elevation: 0.5,
         leading: IconButton(
@@ -131,16 +131,34 @@ class _DeviceDataState extends State<DeviceData>
                   ],
                 ),
               ),
-              SizedBox(height: ScreenUtil().setHeight(30),),
+              SizedBox(
+                height: ScreenUtil().setHeight(30),
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("日均排泄量：${_kg}g",style: TextStyle(color: Color(0xFF999999),fontSize: ScreenUtil().setSp(30),fontWeight: FontWeight.w700),),
-                  SizedBox(width: ScreenUtil().setWidth(50),),
-                  Text("日均如厕次数：${_count}",style: TextStyle(color: Color(0xFF999999),fontSize: ScreenUtil().setSp(30),fontWeight: FontWeight.w700),),
+                  Text(
+                    "日均排泄量：${_kg}g",
+                    style: TextStyle(
+                        color: Color(0xFF999999),
+                        fontSize: ScreenUtil().setSp(30),
+                        fontWeight: FontWeight.w700),
+                  ),
+                  SizedBox(
+                    width: ScreenUtil().setWidth(50),
+                  ),
+                  Text(
+                    "日均如厕次数：${_count}",
+                    style: TextStyle(
+                        color: Color(0xFF999999),
+                        fontSize: ScreenUtil().setSp(30),
+                        fontWeight: FontWeight.w700),
+                  ),
                 ],
               ),
-              SizedBox(height: ScreenUtil().setHeight(30),),
+              SizedBox(
+                height: ScreenUtil().setHeight(30),
+              ),
             ],
           )),
     );
@@ -149,7 +167,4 @@ class _DeviceDataState extends State<DeviceData>
   initData() {
     //setState(() {});
   }
-
 }
-
-
