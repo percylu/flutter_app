@@ -9,6 +9,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_app/ui/tab/mlogintab.dart';
 
 import 'package:flutter_app/ui/tab/mhometab.dart';
+import 'package:flutter_app/ui/tab/mmiaotab.dart';
 import 'package:flutter_app/ui/tab/mminetab.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -32,12 +33,13 @@ class _HomePageState extends State<HomePage> {
     super.initState();
     _statusBar();
     ScreenUtil.init(width: 750, height: 1334, allowFontScaling: true); //flutter_screenuitl >= 1.2
-    _children.add(MiaoLogin());
     _children.add(MiaoHomeTabView());
+    _children.add(MiaoMain());
     _children.add(MiaoMine());
     //_children.add(MiaoPetTabView());
     //_children.add(MiaoProfileTabView());
-    _appBars.add(_buildAppBarLogin());
+    //_appBars.add(_buildAppBarLogin());
+    _appBars.add(null);
     _appBars.add(null);
     _appBars.add(_buildAppBarOne ("个人中心"));
   }

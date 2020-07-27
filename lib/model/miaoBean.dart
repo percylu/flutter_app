@@ -1,12 +1,12 @@
-class deviceBean {
+class miaoBean {
   int code;
   int count;
   List<Data> data;
   String msg;
 
-  deviceBean({this.code, this.count, this.data, this.msg});
+  miaoBean({this.code, this.count, this.data, this.msg});
 
-  deviceBean.fromJson(Map<String, dynamic> json) {
+  miaoBean.fromJson(Map<String, dynamic> json) {
     code = json['code'];
     count = json['count'];
     if (json['data'] != null) {
@@ -33,24 +33,31 @@ class deviceBean {
 class Data {
   int id;
   String imgUrl;
-  String desc;
-  String mac;
+  String name;
+  String nickName;
+  int sexy;
+  String bigImg;
 
-  Data({this.id, this.imgUrl, this.desc, this.mac});
+  Data({this.id, this.imgUrl, this.name, this.nickName,this.sexy,this.bigImg});
 
   Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     imgUrl = json['imgUrl'];
-    desc = json['desc'];
-    mac = json['mac'];
+    name = json['name'];
+    nickName = json['nickName'];
+    sexy = json['sexy'];
+    bigImg = json['bigImg'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
     data['imgUrl'] = this.imgUrl;
-    data['desc'] = this.desc;
-    data['mac'] = this.mac;
+    data['name'] = this.name;
+    data['nickName'] = this.nickName;
+    data['sexy'] = this.sexy;
+    data['bigImg'] = this.bigImg;
+
     return data;
   }
 }
