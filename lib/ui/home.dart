@@ -20,7 +20,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int _pageIndex = 0;
+  int _pageIndex = 1;
   List<Widget> _children = [];
   List<Widget> _appBars = [];
 

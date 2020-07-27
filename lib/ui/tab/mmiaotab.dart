@@ -18,6 +18,7 @@ class MiaoMain extends StatefulWidget {
 
 class _MiaoMainTabView extends State<MiaoMain> {
   miaoBean items = null;
+  int _current = 0;
 
   @override
   void initState() {
@@ -34,37 +35,58 @@ class _MiaoMainTabView extends State<MiaoMain> {
       child: ListView(
         children: <Widget>[
           _banner(context),
+          _name(),
+          _img(),
         ],
       ),
     );
   }
 
-  Widget _buildCategoryRow(BuildContext context) {
+  Widget _img() {
     return Container(
-      padding: EdgeInsets.all(10),
-      height: ScreenUtil().setHeight(220),
-      child: Row(
-        children: <Widget>[
-          Expanded(
-            child: picAndPicButton(
-                "assets/btn_mxx_first@3x.png", "assets/words_msp@3x.png", () {
-              Navigator.pushNamed(context, "devicelist");
-            }),
-          ),
-          Expanded(
-            child: picAndPicButton(
-                "assets/btn_mxx_second@3x.png", "assets/words_ysj@3x.png", () {
-              Navigator.pushNamed(context, "comming");
-            }),
-          ),
-          Expanded(
-            child: picAndPicButton(
-                "assets/btn_mxx_third@3x.png", "assets/words_wsq@3x.png", () {
-              Navigator.pushNamed(context, "comming");
-            }),
-          ),
-        ],
-      ),
+            alignment: Alignment.center,
+            width: ScreenUtil().setWidth(200.33),
+            height: ScreenUtil().setHeight(133.67),
+            margin: EdgeInsets.only(top: ScreenUtil().setHeight(26)),
+            child:
+            new ClipRRect(
+
+                borderRadius: BorderRadius.circular(20),
+
+                child:
+            CachedNetworkImage(
+              imageUrl: items.data[_current].bigImg,
+              width: ScreenUtil().setWidth(200.33),
+              height: ScreenUtil().setHeight(133.67),
+              placeholder: (context, url) => new CircularProgressIndicator(),
+              errorWidget: (context, url, error) => new Icon(Icons.error),
+              fit: BoxFit.fill,
+            )));
+  }
+
+  Widget _name() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            Text(items.data[_current].name,style: TextStyle(fontSize: ScreenUtil().setSp(19.33),fontWeight: FontWeight.w600),),
+            Text(items.data[_current].nickName,style: TextStyle(fontSize: ScreenUtil().setSp(12),color: Color(0xFF999999)),)
+          ],
+        ),
+        SizedBox(width: ScreenUtil().setWidth(7.67),),
+        Container(
+          height: ScreenUtil().setHeight(30),
+          width: 1,
+          color: Color(0xff999999),
+        ),
+        SizedBox(width: ScreenUtil().setWidth(7.67),),
+
+        Image.asset("assets/ic_list.png",width: ScreenUtil().setWidth(13),height: ScreenUtil().setHeight(13),)
+      ],
     );
   }
 
@@ -77,25 +99,41 @@ class _MiaoMainTabView extends State<MiaoMain> {
       height: ScreenUtil().setHeight(114.67),
       child: Swiper(
         outer: false,
+        onTap: (i){
+          Navigator.pushNamed(context, "miaodetail");
+        },
         viewportFraction: 0.5,
         scale: 0.1,
+        onIndexChanged: (i) {
+          setState(() {
+            _current = i;
+          });
+        },
         itemBuilder: (c, i) {
           if (items.data != null) {
             return Stack(
               children: [
                 ClipOval(
                     child: CachedNetworkImage(
-                      width: ScreenUtil().setWidth(114.67),
-                      height: ScreenUtil().setWidth(114.67),
+                  width: ScreenUtil().setWidth(114.67),
+                  height: ScreenUtil().setWidth(114.67),
                   imageUrl: "${items.data[i].imgUrl}",
                   placeholder: (context, url) =>
                       new CircularProgressIndicator(),
                   errorWidget: (context, url, error) => new Icon(Icons.error),
                   fit: BoxFit.fill,
                 )),
-                Positioned(bottom: ScreenUtil().setHeight(10),right: ScreenUtil().setWidth(25),child:
-                  Icon(Icons.arrow_back,size: 32,color: Colors.black54,)
-                  ,)
+                Positioned(
+                  bottom: ScreenUtil().setHeight(10),
+                  right: ScreenUtil().setWidth(25),
+                  child: Image.asset(
+                    items.data[i].sexy == 0
+                        ? "assets/ic_symbol_man.png"
+                        : "assets/ic_symbol_woman.png",
+                    width: ScreenUtil().setWidth(20.33),
+                    height: ScreenUtil().setHeight(20.33),
+                  ),
+                )
               ],
             );
           }
@@ -103,47 +141,6 @@ class _MiaoMainTabView extends State<MiaoMain> {
         },
         itemCount: items.data == null ? 0 : items.data.length,
         autoplay: false,
-      ),
-    );
-  }
-
-  Widget _buildCenterPic(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.all(30),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(10),
-        child: Stack(
-          children: [
-            GestureDetector(
-                onTap: () {
-                  print("news");
-                },
-                child: FadeInImage.assetNetwork(
-                  width: MediaQuery.of(context).size.width,
-                  height: ScreenUtil().setHeight(242.01),
-                  placeholder: "assets/img_cat.png",
-                  image:
-                      "https://img1.360buyimg.com/da/jfs/t1/132819/32/4365/158541/5f0d0a3fEd1a401c7/4741c28e0753541c.jpg!q70.jpg",
-                  fit: BoxFit.fill,
-                )),
-            Positioned(
-              bottom: 0,
-              left: 0,
-              right: 0,
-              child: Container(
-                width: MediaQuery.of(context).size.width,
-                height: 25,
-                padding: EdgeInsets.only(left: 10, top: 2),
-                decoration: BoxDecoration(color: Color(0x8c000000)),
-                child: Text(
-                  "救命！！我在这群沙雕猫中出不去了",
-                  style: TextStyle(color: Colors.white, fontSize: 15),
-                  textAlign: TextAlign.left,
-                ),
-              ),
-            ),
-          ],
-        ),
       ),
     );
   }
@@ -161,6 +158,7 @@ class _MiaoMainTabView extends State<MiaoMain> {
               "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1595792098914&di=9f046b001b45d25e2db21fb4e3b80c35&imgtype=0&src=http%3A%2F%2Fn.sinaimg.cn%2Fsinacn20115%2F521%2Fw1056h1065%2F20181211%2Feb2b-hqackaa2812377.jpg",
           "name": "zaizai",
           "nickName": "美短猫",
+          "sexy": 0,
           "bigImg":
               "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1595792098914&di=9f046b001b45d25e2db21fb4e3b80c35&imgtype=0&src=http%3A%2F%2Fn.sinaimg.cn%2Fsinacn20115%2F521%2Fw1056h1065%2F20181211%2Feb2b-hqackaa2812377.jpg",
         },
@@ -168,8 +166,9 @@ class _MiaoMainTabView extends State<MiaoMain> {
           "id": 2,
           "imgUrl":
               "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1595792098913&di=cc436ce63717fd04cdf922484ace38b7&imgtype=0&src=http%3A%2F%2Ff.hiphotos.baidu.com%2Fbaike%2Fpic%2Fitem%2F902397dda144ad34bc9ecc61daa20cf431ad8537.jpg",
-          "name": "zaizai",
-          "nickName": "美短猫",
+          "name": "GiGi",
+          "nickName": "小喵喵",
+          "sexy": 0,
           "bigImg":
               "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1595792098913&di=cc436ce63717fd04cdf922484ace38b7&imgtype=0&src=http%3A%2F%2Ff.hiphotos.baidu.com%2Fbaike%2Fpic%2Fitem%2F902397dda144ad34bc9ecc61daa20cf431ad8537.jpg",
         },
@@ -177,8 +176,9 @@ class _MiaoMainTabView extends State<MiaoMain> {
           "id": 3,
           "imgUrl":
               "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1595792098913&di=fab70c861578940b00b55c0f808a93e7&imgtype=0&src=http%3A%2F%2Fpic6.58cdn.com.cn%2Fzhuanzh%2Fn_v2ed4fc8bbfb3e4f5fa12ae084cb8a7864.jpg%3Fw%3D750%26h%3D0",
-          "name": "zaizai",
-          "nickName": "美短猫",
+          "name": "Pitgi",
+          "nickName": "鼻涕狗",
+          "sexy": 1,
           "bigImg":
               "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1595792098913&di=fab70c861578940b00b55c0f808a93e7&imgtype=0&src=http%3A%2F%2Fpic6.58cdn.com.cn%2Fzhuanzh%2Fn_v2ed4fc8bbfb3e4f5fa12ae084cb8a7864.jpg%3Fw%3D750%26h%3D0",
         },

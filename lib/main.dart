@@ -12,6 +12,7 @@ import 'package:flutter_app/ui/devicesleep.dart';
 import 'package:flutter_app/ui/devicewifi.dart';
 import 'package:flutter_app/ui/editmine.dart';
 import 'package:flutter_app/ui/home.dart';
+import 'package:flutter_app/ui/miaodetail.dart';
 import 'package:flutter_app/ui/mobileregister.dart';
 import 'package:flutter_app/ui/resetpassword.dart';
 import 'package:flutter_app/ui/setpassword.dart';
@@ -56,6 +57,7 @@ class MyApp extends StatelessWidget {
         "deviceerror":(_)=>DeviceError(),
         "editmine":(_)=>EditMine(),
         "commonsetting":(_)=>CommonSetting(),
+        "miaodetail":(_)=>MiaoDetail(),
       },
     );
   }

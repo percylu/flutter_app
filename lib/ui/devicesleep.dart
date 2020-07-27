@@ -151,8 +151,8 @@ class _DeviceSleepState extends State<DeviceSleep> {
               index == _timer.length - 1
                   ? "assets/ic_add_list.png"
                   : "assets/ic_del_list.png",
-              width: ScreenUtil().setWidth(50.01),
-              height: ScreenUtil().setHeight(50.01),
+              width: ScreenUtil().setWidth(40.01),
+              height: ScreenUtil().setHeight(40.01),
             ),
             SizedBox(
               width: ScreenUtil().setWidth(36.99),
