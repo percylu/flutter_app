@@ -34,12 +34,12 @@ class MiaoMineTabView extends State<MiaoMine> {
         allowFontScaling: true); //flutter_screenuitl >= 1.2
     return Container(
       margin: EdgeInsets.only(
-          top: ScreenUtil().setHeight(11.33),
+          //top: ScreenUtil().setHeight(11.33),
           left: ScreenUtil().setWidth(6.67),
           right: ScreenUtil().setWidth(6.67)),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: ListView(
+        //mainAxisAlignment: MainAxisAlignment.start,
+        //crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
             color: Colors.white,
@@ -84,8 +84,8 @@ class MiaoMineTabView extends State<MiaoMine> {
             margin: EdgeInsets.only(
                 top: ScreenUtil().setHeight(7)),
             padding: EdgeInsets.only(
-                top: ScreenUtil().setHeight(12.67),
-                bottom: ScreenUtil().setHeight(12.67)),
+                top: ScreenUtil().setHeight(10.67),
+                bottom: ScreenUtil().setHeight(10.67)),
             alignment: Alignment.center,
             child: Text("消息通知",
                 style: TextStyle(
@@ -103,8 +103,8 @@ class MiaoMineTabView extends State<MiaoMine> {
               margin: EdgeInsets.only(
                   top: ScreenUtil().setHeight(7)),
               padding: EdgeInsets.only(
-                  top: ScreenUtil().setHeight(12.67),
-                  bottom: ScreenUtil().setHeight(12.67)),
+                  top: ScreenUtil().setHeight(10.67),
+                  bottom: ScreenUtil().setHeight(10.67)),
               alignment: Alignment.center,
               child: Text("通用设置",
                   style: TextStyle(
@@ -122,8 +122,8 @@ class MiaoMineTabView extends State<MiaoMine> {
               margin: EdgeInsets.only(
                   top: ScreenUtil().setHeight(7)),
               padding: EdgeInsets.only(
-                  top: ScreenUtil().setHeight(12.67),
-                  bottom: ScreenUtil().setHeight(12.67)),
+                  top: ScreenUtil().setHeight(10.67),
+                  bottom: ScreenUtil().setHeight(10.67)),
               alignment: Alignment.center,
               child: Text("关于我们",
                   style: TextStyle(
@@ -141,8 +141,8 @@ class MiaoMineTabView extends State<MiaoMine> {
               margin: EdgeInsets.only(
                   top: ScreenUtil().setHeight(7)),
               padding: EdgeInsets.only(
-                  top: ScreenUtil().setHeight(12.67),
-                  bottom: ScreenUtil().setHeight(12.67)),
+                  top: ScreenUtil().setHeight(10.67),
+                  bottom: ScreenUtil().setHeight(10.67)),
               alignment: Alignment.center,
               child: Text("帮助中心",
                   style: TextStyle(
@@ -160,8 +160,8 @@ class MiaoMineTabView extends State<MiaoMine> {
               margin: EdgeInsets.only(
                   top: ScreenUtil().setHeight(7)),
               padding: EdgeInsets.only(
-                  top: ScreenUtil().setHeight(12.67),
-                  bottom: ScreenUtil().setHeight(12.67)),
+                  top: ScreenUtil().setHeight(10.67),
+                  bottom: ScreenUtil().setHeight(10.67)),
               alignment: Alignment.center,
               child: Text("检查更新",
                   style: TextStyle(
@@ -179,8 +179,8 @@ class MiaoMineTabView extends State<MiaoMine> {
               margin: EdgeInsets.only(
                   top: ScreenUtil().setHeight(7)),
               padding: EdgeInsets.only(
-                  top: ScreenUtil().setHeight(12.67),
-                  bottom: ScreenUtil().setHeight(12.67)),
+                  top: ScreenUtil().setHeight(10.67),
+                  bottom: ScreenUtil().setHeight(10.67)),
               alignment: Alignment.center,
               child: Text("退出登录",
                   style: TextStyle(

@@ -94,7 +94,7 @@ class _MiaoMainTabView extends State<MiaoMain> {
                   fit: BoxFit.fill,
                 )),
                 Positioned(bottom: ScreenUtil().setHeight(10),right: ScreenUtil().setWidth(25),child:
-                  Icon(Icons.man,size: 32,color: Colors.black54,)
+                  Icon(Icons.arrow_back,size: 32,color: Colors.black54,)
                   ,)
               ],
             );
