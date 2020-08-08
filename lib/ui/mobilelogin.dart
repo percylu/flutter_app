@@ -5,6 +5,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_app/api/MiaoApi.dart';
+import 'package:flutter_app/utility/ResultData.dart';
+import 'package:flutter_app/widget/messagedialog.dart';
 import 'package:wave/config.dart';
 import 'package:wave/wave.dart';
 
@@ -139,8 +142,14 @@ class _MobileLoginState extends State<MobileLogin> {
                       child: RaisedButton(
                         padding: EdgeInsets.symmetric(vertical: 16.0),
                         color: new Color(0xFFF28282),
-                        onPressed: () {
-                          Navigator.pushNamed(context, 'home');
+                        onPressed: ()  async{
+                          ResultData response = await MiaoApi.login(userController.text,passwordController.text);
+                          if(response.success){
+                            Navigator.pushNamed(context, 'home');
+                          }else{
+                            _showError(response.message);
+                            return;
+                          }
                         },
                         elevation: 0,
                         shape: RoundedRectangleBorder(
@@ -188,4 +197,23 @@ class _MobileLoginState extends State<MobileLogin> {
       ),
     );
   }
+  _showError(msg) {
+    showDialog<Null>(
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return new MessageDialog(
+            title: "登陆错误",
+            message: msg,
+            negativeText: "重试",
+            onCloseEvent: () {
+              Navigator.pop(context);
+            },
+            onConfirmEvent: () {
+              Navigator.pop(context);
+            },
+          );
+        });
+  }
+
 }

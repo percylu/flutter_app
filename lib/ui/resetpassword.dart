@@ -11,6 +11,8 @@ import 'package:wave/config.dart';
 import 'package:wave/wave.dart';
 
 class ResetPassword extends StatefulWidget {
+  final username;
+  ResetPassword({this.username});
   @override
   _ResetPasswordState createState() => _ResetPasswordState();
 }
@@ -27,6 +29,7 @@ class _ResetPasswordState extends State<ResetPassword> {
   Timer _timer;
   @override
   Widget build(BuildContext context) {
+    userController.text=widget.username;
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -83,6 +86,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                     Expanded(
                       child: TextField(
                         controller: userController,
+                        readOnly:true,
                         decoration: InputDecoration(
                             hintText: "输入手机号码",
                             hintStyle: TextStyle(

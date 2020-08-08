@@ -6,9 +6,11 @@ import 'dart:async';
  */
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:wave/config.dart';
-import 'package:wave/wave.dart';
+import 'package:flutter_app/api/MiaoApi.dart';
+import 'package:flutter_app/ui/setpassword.dart';
+import 'package:flutter_app/utility/ResultData.dart';
+import 'package:flutter_app/widget/messagedialog.dart';
+
 
 class MobileRegister extends StatefulWidget {
   @override
@@ -150,12 +152,18 @@ class _MobileRegisterState extends State<MobileRegister> {
                       color: _canSend?Color(0xFFF28282):Colors.grey,
                       size: 36,
                     ),
-                    onPressed: (_seconds == 0)?(){
-                      _startTimer();
-                      setState(() {
-                        _canSend=false;
-                        _ishide=false;
-                      });
+                    onPressed: (_seconds == 0)?() async{
+                      ResultData response=await MiaoApi.getVerifyCode(userController.text);
+                      if(response != null && response.success){
+                        _startTimer();
+                        setState(() {
+                          _canSend=false;
+                          _ishide=false;
+                        });
+                      }else{
+                        _showError(response.message);
+                      }
+
                     }:null,
                   )
                 ],
@@ -167,9 +175,25 @@ class _MobileRegisterState extends State<MobileRegister> {
                 child: RaisedButton(
                   padding: EdgeInsets.symmetric(vertical: 16.0),
                   color: new Color(0xFFF28282),
-                  onPressed: () {
-                    Navigator.pushNamed(context, 'setPassword');
-                    _cancleTimer();
+                  onPressed: () async{
+                    if(verifycodeController.text==""){
+                      _showError("请输入验证码");
+                      return;
+                    }
+                    ResultData response = await MiaoApi.VerifyCode(userController.text, verifycodeController.text);
+                    if(response!=null && response.success) {
+                      _cancleTimer();
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (content){
+                            return SetPassword(username: userController.text);
+                          }
+                      ));
+                      //Navigator.pushNamed(context, 'setPassword',arguments:{"username":userController.text}
+                      //);
+                    }else{
+                      _showError(response.message);
+                      return;
+                    }
                   },
 
                   elevation: 0,
@@ -222,6 +246,11 @@ class _MobileRegisterState extends State<MobileRegister> {
   }
 
   _cancleTimer(){
+    setState(() {
+      _seconds=0;
+      _ishide=true;
+      _canSend = true;
+    });
     _timer?.cancel();
   }
 
@@ -231,5 +260,24 @@ class _MobileRegisterState extends State<MobileRegister> {
     super.dispose();
     /// 页面销毁的时候,清除timer
     _cancleTimer();
+  }
+
+  _showError(msg) {
+    showDialog<Null>(
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return new MessageDialog(
+            title: "获取验证码错误",
+            message: msg,
+            negativeText: "重试",
+            onCloseEvent: () {
+              Navigator.pop(context);
+            },
+            onConfirmEvent: () {
+              Navigator.pop(context);
+            },
+          );
+        });
   }
 }

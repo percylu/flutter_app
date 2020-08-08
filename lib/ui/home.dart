@@ -6,11 +6,13 @@ import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_app/ui/tab/mlogintab.dart';
 
 import 'package:flutter_app/ui/tab/mhometab.dart';
+import 'package:flutter_app/ui/tab/mlogintab.dart';
 import 'package:flutter_app/ui/tab/mmiaotab.dart';
 import 'package:flutter_app/ui/tab/mminetab.dart';
+import 'package:flutter_app/utility/Config.dart';
+import 'package:flutter_app/utility/SpUtils.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -23,22 +25,19 @@ class _HomePageState extends State<HomePage> {
   int _pageIndex = 1;
   List<Widget> _children = [];
   List<Widget> _appBars = [];
-
+  bool islogin=true;
   //适配刘海屏顶部安全区域，@https://coding.imooc.com/learn/list/321.html
   double paddingTop = 0;
   TextEditingController _inputController = TextEditingController();
 
   @override
-  void initState() {
+  void initState(){
     super.initState();
     _statusBar();
     ScreenUtil.init(width: 750, height: 1334, allowFontScaling: true); //flutter_screenuitl >= 1.2
     _children.add(MiaoHomeTabView());
     _children.add(MiaoMain());
     _children.add(MiaoMine());
-    //_children.add(MiaoPetTabView());
-    //_children.add(MiaoProfileTabView());
-    //_appBars.add(_buildAppBarLogin());
     _appBars.add(null);
     _appBars.add(null);
     _appBars.add(_buildAppBarOne ("个人中心"));
@@ -59,14 +58,15 @@ class _HomePageState extends State<HomePage> {
   }
   @override
   Widget build(BuildContext context) {
+
     return Theme(
       data: ThemeData(
         primaryColor: Colors.white,
       ),
       child: Scaffold(
         backgroundColor: Color(0xFFFAFAFA),
-        appBar: _appBars[_pageIndex],
-        body: _children[_pageIndex],
+        appBar: islogin?_appBars[_pageIndex]:_buildAppBarLogin(),
+        body: islogin?_children[_pageIndex]:MiaoLogin(),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             setState(() {
@@ -129,10 +129,15 @@ class _HomePageState extends State<HomePage> {
               title: new Container()),
         ],
         currentIndex: _pageIndex,
-        onTap: (int index) {
+        onTap: (int index) async{
+          var token=await SpUtils.get(Config.TOKEN_KEY);
           setState(() {
             _pageIndex = index;
-            print(_pageIndex);
+            if(token==null){
+              islogin=false;
+            }else{
+              islogin=true;
+            }
           });
         });
         }

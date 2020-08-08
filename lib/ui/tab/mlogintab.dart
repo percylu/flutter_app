@@ -108,6 +108,9 @@ class MiaoLoginTabView extends State<MiaoLogin> {
                     builder: (BuildContext context) {
                       return new MessageDialog(
                           title:"请先勾选同意", message:"《许可协议》《隐私政策》", negativeText:"返回同意",
+                      onConfirmEvent: (){
+                          Navigator.pop(context);
+                      },
                       onCloseEvent: (){
                             Navigator.pop(context);
                       });
@@ -128,4 +131,5 @@ class MiaoLoginTabView extends State<MiaoLogin> {
       ],
     );
   }
+
 }

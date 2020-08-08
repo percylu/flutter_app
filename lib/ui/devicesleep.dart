@@ -169,7 +169,7 @@ class _DeviceSleepState extends State<DeviceSleep> {
               visible: index == _timer.length - 1 ? false : true,
               child: Row(children: [
                 SizedBox(
-                  width: ScreenUtil().setWidth(70),
+                  width: ScreenUtil().setWidth(40),
                 ),
                 Text(
                   "每天",
@@ -191,6 +191,7 @@ class _DeviceSleepState extends State<DeviceSleep> {
                       }),
                 ),
               ]),
+
             ),
           ],
         ),

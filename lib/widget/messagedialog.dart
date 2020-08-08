@@ -79,7 +79,7 @@ class MessageDialog extends Dialog {
                       padding: const EdgeInsets.only(left:40.0,right:40.0,top:10),
                       child: new IntrinsicHeight(
                         child: new Text(
-                          message,
+                          message.length>50?message.substring(0,49):message,
                           textAlign: TextAlign.center,
                           style: TextStyle(fontSize: 16.0,color: Color(0xff999999),fontWeight: FontWeight.w700),
                         ),

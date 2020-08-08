@@ -6,22 +6,27 @@ import 'dart:async';
  */
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:wave/config.dart';
-import 'package:wave/wave.dart';
+import 'package:flutter_app/api/MiaoApi.dart';
+import 'package:flutter_app/utility/ResultData.dart';
+import 'package:flutter_app/widget/messagedialog.dart';
+
 
 class SetPassword extends StatefulWidget {
+  final username;
+  SetPassword({this.username});
   @override
   _SetPasswordState createState() => _SetPasswordState();
 }
 
 class _SetPasswordState extends State<SetPassword> {
+  var username="";
   var passwordController = new TextEditingController();
   var confirmpasswordController = new TextEditingController();
   var _ishide = true;
   var errmsg="";
   @override
   Widget build(BuildContext context) {
+    username=widget.username;
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -122,19 +127,29 @@ class _SetPasswordState extends State<SetPassword> {
                 child: RaisedButton(
                   padding: EdgeInsets.symmetric(vertical: 16.0),
                   color: new Color(0xFFF28282),
-                  onPressed: () {
+                  onPressed: () async{
+
                     if(passwordController.text!=confirmpasswordController.text){
-                      print(passwordController.text);
-                      print(confirmpasswordController.text);
+
                       setState(() {
                         _ishide=false;
                         errmsg="输入两次密码不一致";
                       });
                       return;
-
-
                     }
-                   Navigator.pushNamed(context, 'home');
+                    if(passwordController.text==""){
+                      setState(() {
+                        _ishide=false;
+                        errmsg="密码不能为空";
+                      });
+                      return;
+                    }
+                   ResultData response=await MiaoApi.add(username, passwordController.text);
+                    if(response!=null && response.success){
+                      Navigator.pushNamed(context, 'home');
+                    }else{
+                      _showError(response.message);
+                    }
                   },
                   elevation: 0,
                   shape: RoundedRectangleBorder(
@@ -169,5 +184,22 @@ class _SetPasswordState extends State<SetPassword> {
   }
 
   /// 倒计时
-
+  _showError(msg) {
+    showDialog<Null>(
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return new MessageDialog(
+            title: "设置密码错误",
+            message: msg,
+            negativeText: "重试",
+            onCloseEvent: () {
+              Navigator.pop(context);
+            },
+            onConfirmEvent: () {
+              Navigator.pop(context);
+            },
+          );
+        });
+  }
 }

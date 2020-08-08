@@ -6,6 +6,7 @@ import 'package:flutter/cupertino.dart';
  */
 
 import 'package:flutter/material.dart';
+import 'package:flutter_app/api/MiaoApi.dart';
 import 'package:flutter_app/res/assets.dart';
 import 'package:flutter_app/widget/messagedialog.dart';
 import 'package:flutter_app/widget/picandtextbutton.dart';
@@ -188,7 +189,7 @@ class MiaoMineTabView extends State<MiaoMine> {
                       fontWeight: FontWeight.w700,
                       color: Color(0xFFF28282))),
             ),
-            onTap: (){
+            onTap: () {
               _showQuit();
             },
           ),
@@ -208,8 +209,11 @@ class MiaoMineTabView extends State<MiaoMine> {
             onCloseEvent: (){
               Navigator.pop(context);
             },
-            onConfirmEvent: (){
-              Navigator.pushNamedAndRemoveUntil(context, "home", (route) => false);
+            onConfirmEvent: () async{
+              var result=await MiaoApi.logout();
+              if(result==true){
+                Navigator.pushNamedAndRemoveUntil(context, "home", (route) => false);
+              }
 
             },
           );
