@@ -19,6 +19,9 @@ import 'package:flutter_app/ui/setpassword.dart';
 import 'package:flutter_app/ui/startup.dart';
 
 import 'package:flutter_app/ui/mobilelogin.dart';
+import 'package:flutter_app/utility/Config.dart';
+import 'package:flutter_app/utility/SpUtils.dart';
+import 'package:flutter_app/widget/camera.dart';
 
 
 void main() {
@@ -58,6 +61,7 @@ class MyApp extends StatelessWidget {
         "editmine":(_)=>EditMine(),
         "commonsetting":(_)=>CommonSetting(),
         "miaodetail":(_)=>MiaoDetail(),
+        "camera":(_)=>ImagePickerPage(),
       },
     );
   }
@@ -75,6 +79,7 @@ class MyApp extends StatelessWidget {
     );
 
     SystemChrome.setSystemUIOverlayStyle(uiOverlayStyle);
+
   }
 }
 

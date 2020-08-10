@@ -4,5 +4,8 @@ class Address{
   static const logout="user/logout";
   static const verifyCode="user/verifyCode";
   static const codeVerify="user/codeVerify";
+  static const banner = "banner/queryList";
+  static const personal = "user/queryDetail";
+
 
 }

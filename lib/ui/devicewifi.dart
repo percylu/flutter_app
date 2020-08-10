@@ -4,10 +4,8 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_app/widget/messagedialog.dart';
-import 'package:wave/config.dart';
-import 'package:wave/wave.dart';
+
 
 class DeviceWifi extends StatefulWidget {
   @override

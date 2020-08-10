@@ -6,9 +6,7 @@ import 'dart:async';
  */
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:wave/config.dart';
-import 'package:wave/wave.dart';
+
 
 class ResetPassword extends StatefulWidget {
   final username;

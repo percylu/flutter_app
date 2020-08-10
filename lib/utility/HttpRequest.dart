@@ -12,7 +12,7 @@ import 'SpUtils.dart';
 
 ///http请求管理类，可单独抽取出来
 class HttpRequest {
-  static String _baseUrl = "http://192.168.3.25:8002/";
+  static String _baseUrl = SpUtils.URL+"/";
   static const CONTENT_TYPE_JSON = "application/json";
   static const CONTENT_TYPE_FORM = "application/x-www-form-urlencoded";
   static Map optionParams = {
@@ -27,15 +27,15 @@ class HttpRequest {
   }
 
   static get(url,param) async{
-    return await request(_baseUrl+url, param, null, new Options(method:"GET"));
+    return await request(_baseUrl+url, param, {"Accept": 'application/json'}, new Options(method:"GET"));
   }
 
   static post(url,param) async{
-    return await request(_baseUrl+url, param, {"Accept": '*/*'}, new Options(method: 'POST'));
+    return await request(_baseUrl+url, param, {"Accept": 'application/json'}, new Options(method: 'POST'));
   }
 
   static postparam(url,param) async{
-    return await request(_baseUrl+url, param, {"Accept": '*/*',"content-type":CONTENT_TYPE_FORM}, new Options(method: 'POST'));
+    return await request(_baseUrl+url, param, {"Accept": 'application/json',"content-type":CONTENT_TYPE_FORM}, new Options(method: 'POST'));
   }
 
   static delete(url,param) async{
@@ -144,6 +144,11 @@ class HttpRequest {
       }
       if (response.data['code'] == 200 || response.data['code'] == 201) {
         return ResultData(response.data, true, Code.SUCCESS,"");
+      }
+      if(response.data['code']==1502){
+        //后台记录是没有登录的，删除token
+        SpUtils.remove(Config.TOKEN_KEY);
+
       }
     } catch (e) {
       print(e.toString() + url);

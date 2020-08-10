@@ -6,12 +6,14 @@ import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_app/api/MiaoApi.dart';
 
 import 'package:flutter_app/ui/tab/mhometab.dart';
 import 'package:flutter_app/ui/tab/mlogintab.dart';
 import 'package:flutter_app/ui/tab/mmiaotab.dart';
 import 'package:flutter_app/ui/tab/mminetab.dart';
 import 'package:flutter_app/utility/Config.dart';
+import 'package:flutter_app/utility/ResultData.dart';
 import 'package:flutter_app/utility/SpUtils.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -29,10 +31,12 @@ class _HomePageState extends State<HomePage> {
   //适配刘海屏顶部安全区域，@https://coding.imooc.com/learn/list/321.html
   double paddingTop = 0;
   TextEditingController _inputController = TextEditingController();
-
   @override
   void initState(){
     super.initState();
+    if(SpUtils.get(Config.TOKEN_KEY)==null){
+      islogin=false;
+    }
     _statusBar();
     ScreenUtil.init(width: 750, height: 1334, allowFontScaling: true); //flutter_screenuitl >= 1.2
     _children.add(MiaoHomeTabView());
@@ -42,6 +46,7 @@ class _HomePageState extends State<HomePage> {
     _appBars.add(null);
     _appBars.add(_buildAppBarOne ("个人中心"));
   }
+
   ///状态栏样式-沉浸式状态栏
   _statusBar() {
     //黑色沉浸式状态栏，基于SystemUiOverlayStyle.dark修改了statusBarColor

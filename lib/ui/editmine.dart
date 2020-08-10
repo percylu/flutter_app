@@ -1,15 +1,22 @@
+
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
+import 'dart:io';
 /**
  * Author: Damodar Lohani
  * profile: https://github.com/lohanidamodar
  */
 
 import 'package:flutter/material.dart';
-import 'package:flutter_app/res/assets.dart';
+import 'package:flutter_app/entity/login_entity.dart';
+import 'package:flutter_app/generated/json/base/json_convert_content.dart';
+import 'package:flutter_app/utility/Config.dart';
+import 'package:flutter_app/utility/SpUtils.dart';
+import 'package:flutter_app/widget/camera.dart';
 import 'package:flutter_app/widget/messagedialog.dart';
-import 'package:flutter_app/widget/picandtextbutton.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:image_picker/image_picker.dart';
 
 class EditMine extends StatefulWidget {
   @override
@@ -52,7 +59,8 @@ class _EditMineState extends State<EditMine> {
               height: 20,
             ),
             onPressed: () {
-              Navigator.pushNamedAndRemoveUntil(context, "home", (route) => false);
+              Navigator.pushNamedAndRemoveUntil(
+                  context, "home", (route) => false);
             },
           ),
           actions: [
@@ -63,7 +71,8 @@ class _EditMineState extends State<EditMine> {
                       color: Colors.black, fontSize: ScreenUtil().setSp(12)),
                 ),
                 onPressed: () {
-                  Navigator.pushNamedAndRemoveUntil(context, "home", (route) => false);
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, "home", (route) => false);
                 }),
           ],
           backgroundColor: Colors.white,
@@ -78,8 +87,8 @@ class _EditMineState extends State<EditMine> {
               left: ScreenUtil().setWidth(6.67),
               right: ScreenUtil().setWidth(6.67)),
           child: ListView(
-           // mainAxisAlignment: MainAxisAlignment.start,
-           // crossAxisAlignment: CrossAxisAlignment.start,
+            // mainAxisAlignment: MainAxisAlignment.start,
+            // crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
                 color: Colors.white,
@@ -87,7 +96,12 @@ class _EditMineState extends State<EditMine> {
                   top: ScreenUtil().setHeight(8.67),
                   bottom: ScreenUtil().setHeight(8.67),
                 ),
-                child: Row(
+                child: GestureDetector(
+                    onTap:() {
+                        //Navigator.pushNamed(context, "camera");
+                      _showPicPicker(context);
+                      },
+                    child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -112,7 +126,7 @@ class _EditMineState extends State<EditMine> {
                       ),
                     ),
                   ],
-                ),
+                )),
               ),
               Container(
                   color: Colors.white,
@@ -120,37 +134,40 @@ class _EditMineState extends State<EditMine> {
                   padding: EdgeInsets.only(
 //                      top: ScreenUtil().setHeight(12.67),
 //                      bottom: ScreenUtil().setHeight(12.67),
-                      left: ScreenUtil().setWidth(36.67),
+                    left: ScreenUtil().setWidth(36.67),
 //                      right: ScreenUtil().setWidth(43.33)
                   ),
                   alignment: Alignment.topLeft,
-                  child: Row(children: [
-                    Text("用户名",
-                        style: TextStyle(
-                            fontSize: ScreenUtil().setSp(10),
-                            fontWeight: FontWeight.w700,
-                            color: Color(0xFF666666))),
-                    SizedBox(width: ScreenUtil().setWidth(80),),
-                    Container(
-                      width: ScreenUtil().setWidth(80),
-                      height: ScreenUtil().setHeight(33.33),
-                     alignment: Alignment.topRight,
-                      child: TextField(
-                      controller: nameController,
-                      decoration: InputDecoration(
-                          hintText: "${_name}",
-                          hintStyle: TextStyle(color: Color(0xFF888888)),
-                          filled: true,
-                          fillColor: Colors.white,
-                          border:OutlineInputBorder(
-                            borderSide: BorderSide.none,
-                          ),
-                          contentPadding: EdgeInsets.symmetric(
-                              horizontal: 20.0, vertical: 16.0)),
-                    ),),
-
-                  ],)
-                ),
+                  child: Row(
+                    children: [
+                      Text("用户名",
+                          style: TextStyle(
+                              fontSize: ScreenUtil().setSp(10),
+                              fontWeight: FontWeight.w700,
+                              color: Color(0xFF666666))),
+                      SizedBox(
+                        width: ScreenUtil().setWidth(80),
+                      ),
+                      Container(
+                        width: ScreenUtil().setWidth(80),
+                        height: ScreenUtil().setHeight(33.33),
+                        alignment: Alignment.topRight,
+                        child: TextField(
+                          controller: nameController,
+                          decoration: InputDecoration(
+                              hintText: "${_name}",
+                              hintStyle: TextStyle(color: Color(0xFF888888)),
+                              filled: true,
+                              fillColor: Colors.white,
+                              border: OutlineInputBorder(
+                                borderSide: BorderSide.none,
+                              ),
+                              contentPadding: EdgeInsets.symmetric(
+                                  horizontal: 20.0, vertical: 16.0)),
+                        ),
+                      ),
+                    ],
+                  )),
               Container(
                   color: Colors.white,
                   height: ScreenUtil().setHeight(33.33),
@@ -162,19 +179,22 @@ class _EditMineState extends State<EditMine> {
 //                      right: ScreenUtil().setWidth(43.33)
                   ),
                   alignment: Alignment.center,
-                  child: Row(children: [
-                    Text("性别>",
-                        style: TextStyle(
-                            fontSize: ScreenUtil().setSp(10),
-                            fontWeight: FontWeight.w700,
-                            color: Color(0xFF666666))),
-                    SizedBox(width: ScreenUtil().setWidth(100),),
-                    Container(
-                      alignment: Alignment.center,
-                      child: Text(_sexy==0?"男":"女",style:TextStyle(color: Color(0xFF888888)))
-                      )
-                  ],)
-              ),
+                  child: Row(
+                    children: [
+                      Text("性别>",
+                          style: TextStyle(
+                              fontSize: ScreenUtil().setSp(10),
+                              fontWeight: FontWeight.w700,
+                              color: Color(0xFF666666))),
+                      SizedBox(
+                        width: ScreenUtil().setWidth(100),
+                      ),
+                      Container(
+                          alignment: Alignment.center,
+                          child: Text(_sexy == 0 ? "男" : "女",
+                              style: TextStyle(color: Color(0xFF888888))))
+                    ],
+                  )),
               Container(
                   color: Colors.white,
                   height: ScreenUtil().setHeight(33.33),
@@ -186,19 +206,22 @@ class _EditMineState extends State<EditMine> {
 //                      right: ScreenUtil().setWidth(43.33)
                   ),
                   alignment: Alignment.center,
-                  child: Row(children: [
-                    Text("手机号>",
-                        style: TextStyle(
-                            fontSize: ScreenUtil().setSp(10),
-                            fontWeight: FontWeight.w700,
-                            color: Color(0xFF666666))),
-                    SizedBox(width: ScreenUtil().setWidth(90),),
-                    Container(
-                        alignment: Alignment.center,
-                        child: Text("${_mobile}",style: TextStyle(color: Color(0xFF888888)))
-                    )
-                  ],)
-              ),
+                  child: Row(
+                    children: [
+                      Text("手机号>",
+                          style: TextStyle(
+                              fontSize: ScreenUtil().setSp(10),
+                              fontWeight: FontWeight.w700,
+                              color: Color(0xFF666666))),
+                      SizedBox(
+                        width: ScreenUtil().setWidth(90),
+                      ),
+                      Container(
+                          alignment: Alignment.center,
+                          child: Text("${_mobile}",
+                              style: TextStyle(color: Color(0xFF888888))))
+                    ],
+                  )),
               Container(
                   color: Colors.white,
                   height: ScreenUtil().setHeight(33.33),
@@ -210,20 +233,26 @@ class _EditMineState extends State<EditMine> {
 //                      right: ScreenUtil().setWidth(43.33)
                   ),
                   alignment: Alignment.center,
-                  child:
-                  Row(children: [
-                    Text("修改手机号",
-                        style: TextStyle(
-                            fontSize: ScreenUtil().setSp(10),
-                            fontWeight: FontWeight.w700,
-                            color: Color(0xFF666666))),
-                    SizedBox(width: ScreenUtil().setWidth(80),),
-                    Container(
-                        alignment: Alignment.center,
-                        child: Text(">",style: TextStyle(fontSize: ScreenUtil().setSp(12),color: Color(0xFF888888)),)
-                    )
-                  ],)
-              ),
+                  child: Row(
+                    children: [
+                      Text("修改手机号",
+                          style: TextStyle(
+                              fontSize: ScreenUtil().setSp(10),
+                              fontWeight: FontWeight.w700,
+                              color: Color(0xFF666666))),
+                      SizedBox(
+                        width: ScreenUtil().setWidth(80),
+                      ),
+                      Container(
+                          alignment: Alignment.center,
+                          child: Text(
+                            ">",
+                            style: TextStyle(
+                                fontSize: ScreenUtil().setSp(12),
+                                color: Color(0xFF888888)),
+                          ))
+                    ],
+                  )),
               Container(
                   color: Colors.white,
                   height: ScreenUtil().setHeight(33.33),
@@ -235,20 +264,26 @@ class _EditMineState extends State<EditMine> {
 //                      right: ScreenUtil().setWidth(43.33)
                   ),
                   alignment: Alignment.center,
-                  child:
-                  Row(children: [
-                    Text("修改密码",
-                        style: TextStyle(
-                            fontSize: ScreenUtil().setSp(10),
-                            fontWeight: FontWeight.w700,
-                            color: Color(0xFF666666))),
-                    SizedBox(width: ScreenUtil().setWidth(90),),
-                    Container(
-                        alignment: Alignment.center,
-                        child: Text(">",style: TextStyle(fontSize: ScreenUtil().setSp(12),color: Color(0xFF888888)),)
-                    )
-                  ],)
-              ),
+                  child: Row(
+                    children: [
+                      Text("修改密码",
+                          style: TextStyle(
+                              fontSize: ScreenUtil().setSp(10),
+                              fontWeight: FontWeight.w700,
+                              color: Color(0xFF666666))),
+                      SizedBox(
+                        width: ScreenUtil().setWidth(90),
+                      ),
+                      Container(
+                          alignment: Alignment.center,
+                          child: Text(
+                            ">",
+                            style: TextStyle(
+                                fontSize: ScreenUtil().setSp(12),
+                                color: Color(0xFF888888)),
+                          ))
+                    ],
+                  )),
               Container(
                   color: Colors.white,
                   height: ScreenUtil().setHeight(33.33),
@@ -260,20 +295,26 @@ class _EditMineState extends State<EditMine> {
 //                      right: ScreenUtil().setWidth(43.33)
                   ),
                   alignment: Alignment.center,
-                  child: Row(children: [
-                    Text("QQ",
-                        style: TextStyle(
-                            fontSize: ScreenUtil().setSp(10),
-                            fontWeight: FontWeight.w700,
-                            color: Color(0xFF666666))),
-                    SizedBox(width: ScreenUtil().setWidth(115),),
-                    Container(
-                        alignment: Alignment.center,
-                        child: Text("未绑定",style: TextStyle(fontSize: ScreenUtil().setSp(10),color: Color(0xFF888888)),)
-                    )
-                  ],)
-              ),
-
+                  child: Row(
+                    children: [
+                      Text("QQ",
+                          style: TextStyle(
+                              fontSize: ScreenUtil().setSp(10),
+                              fontWeight: FontWeight.w700,
+                              color: Color(0xFF666666))),
+                      SizedBox(
+                        width: ScreenUtil().setWidth(115),
+                      ),
+                      Container(
+                          alignment: Alignment.center,
+                          child: Text(
+                            "未绑定",
+                            style: TextStyle(
+                                fontSize: ScreenUtil().setSp(10),
+                                color: Color(0xFF888888)),
+                          ))
+                    ],
+                  )),
               Container(
                   color: Colors.white,
                   height: ScreenUtil().setHeight(33.33),
@@ -285,19 +326,26 @@ class _EditMineState extends State<EditMine> {
 //                      right: ScreenUtil().setWidth(43.33)
                   ),
                   alignment: Alignment.center,
-                  child: Row(children: [
-                    Text("微信",
-                        style: TextStyle(
-                            fontSize: ScreenUtil().setSp(10),
-                            fontWeight: FontWeight.w700,
-                            color: Color(0xFF666666))),
-                    SizedBox(width: ScreenUtil().setWidth(110),),
-                    Container(
-                        alignment: Alignment.center,
-                        child: Text("未绑定",style: TextStyle(fontSize: ScreenUtil().setSp(10),color: Color(0xFF888888)),)
-                    )
-                  ],)
-              ),
+                  child: Row(
+                    children: [
+                      Text("微信",
+                          style: TextStyle(
+                              fontSize: ScreenUtil().setSp(10),
+                              fontWeight: FontWeight.w700,
+                              color: Color(0xFF666666))),
+                      SizedBox(
+                        width: ScreenUtil().setWidth(110),
+                      ),
+                      Container(
+                          alignment: Alignment.center,
+                          child: Text(
+                            "未绑定",
+                            style: TextStyle(
+                                fontSize: ScreenUtil().setSp(10),
+                                color: Color(0xFF888888)),
+                          ))
+                    ],
+                  )),
               Container(
                   color: Colors.white,
                   height: ScreenUtil().setHeight(33.33),
@@ -309,20 +357,26 @@ class _EditMineState extends State<EditMine> {
 //                      right: ScreenUtil().setWidth(43.33)
                   ),
                   alignment: Alignment.center,
-                  child: Row(children: [
-                    Text("微博",
-                        style: TextStyle(
-                            fontSize: ScreenUtil().setSp(10),
-                            fontWeight: FontWeight.w700,
-                            color: Color(0xFF666666))),
-                    SizedBox(width: ScreenUtil().setWidth(110),),
-                    Container(
-                        alignment: Alignment.center,
-                        child: Text("未绑定",style: TextStyle(fontSize: ScreenUtil().setSp(10),color: Color(0xFF888888)),)
-                    )
-                  ],)
-              ),
-
+                  child: Row(
+                    children: [
+                      Text("微博",
+                          style: TextStyle(
+                              fontSize: ScreenUtil().setSp(10),
+                              fontWeight: FontWeight.w700,
+                              color: Color(0xFF666666))),
+                      SizedBox(
+                        width: ScreenUtil().setWidth(110),
+                      ),
+                      Container(
+                          alignment: Alignment.center,
+                          child: Text(
+                            "未绑定",
+                            style: TextStyle(
+                                fontSize: ScreenUtil().setSp(10),
+                                color: Color(0xFF888888)),
+                          ))
+                    ],
+                  )),
             ],
           ),
         ));
@@ -348,11 +402,88 @@ class _EditMineState extends State<EditMine> {
         });
   }
 
-  void initData() {
+  void initData() async {
+    var data = await SpUtils.getObjact(Config.USER);
+    LoginEntity user = JsonConvert.fromJsonAsT(data);
     setState(() {
-      _name = "罗西";
-      _avatar =
-          "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1027245443,3552957153&fm=26&gp=0.jpg";
+      _name = user.data.user.name;
+      _avatar = SpUtils.URL + user.data.user.avatar;
+      _sexy = user.data.user.sex;
+      _mobile = user.data.user.account;
+      user.data.user.qq == "" ? _isQQ = false : _isQQ = true;
+      user.data.user.weibo == "" ? _isWeixin = false : _isWeixin = true;
+      user.data.user.weixin == "" ? _isWeibo = false : _isWeibo = true;
     });
   }
+
+  _showPicPicker(BuildContext context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext context) {
+          return new Container(
+            alignment: Alignment.center,
+            padding: EdgeInsets.only(top:ScreenUtil().setHeight(20)),
+            height: ScreenUtil().setHeight(80),
+            width: MediaQuery.of(context).size.width,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Expanded(child: GestureDetector(
+                    child:Text("拍照",style:TextStyle(fontSize: ScreenUtil().setSp(12),fontWeight: FontWeight.w500)),
+                    onTap:(){
+                      _takePhotos();
+                      Navigator.pop(context);
+
+                    }
+                )),
+
+              //  SizedBox(height:ScreenUtil().setHeight(15) ,),
+                Expanded(child: GestureDetector(
+                    child:Text("相册",style:TextStyle(fontSize: ScreenUtil().setSp(12),fontWeight: FontWeight.w500)),
+                    onTap:(){
+                      _getPhotos();
+                      Navigator.pop(context);
+
+
+                    }
+                ),
+                ),
+              ],
+            ),
+          );
+        });
+  }
+
+  _takePhotos() async {
+    var image = await ImagePicker.pickImage(source: ImageSource.camera);
+    _uploadImage(image);
+  }
+
+  //获取相册照片
+  _getPhotos() async {
+    var image = await ImagePicker.pickImage(
+        source: ImageSource.gallery);
+    _uploadImage(image);
+  }
+
+  Future<Map<String, dynamic>> _uploadImage(File _imageDir) async {
+    var fileDir = _imageDir.path;
+    print(fileDir);
+    FormData formData = FormData.fromMap({
+      "file": await MultipartFile.fromFile(_imageDir.path, filename: "aa.jpg"),
+    });
+    Dio dio = new Dio();
+    var response = await dio.post(
+        "http://192.168.9.234:8020/fileUpload",
+        data: formData);
+    print(response);
+    setState(() {
+      var path = "http://192.168.10.14:8888/" + response.data["data"]["path"];
+      _avatar = path;
+    });
+    return response.data;
+  }
+
+
 }

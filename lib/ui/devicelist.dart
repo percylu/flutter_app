@@ -4,12 +4,9 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_app/widget/devicelistwidgit.dart';
 import 'package:flutter_app/widget/messagedialog.dart';
 import 'package:flutter_screenutil/screenutil.dart';
-import 'package:wave/config.dart';
-import 'package:wave/wave.dart';
 
 class DeviceList extends StatefulWidget {
   @override

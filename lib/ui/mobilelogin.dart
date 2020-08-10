@@ -4,12 +4,11 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_app/api/MiaoApi.dart';
+import 'package:flutter_app/utility/Config.dart';
 import 'package:flutter_app/utility/ResultData.dart';
+import 'package:flutter_app/utility/SpUtils.dart';
 import 'package:flutter_app/widget/messagedialog.dart';
-import 'package:wave/config.dart';
-import 'package:wave/wave.dart';
 
 class MobileLogin extends StatefulWidget {
   @override
@@ -145,6 +144,8 @@ class _MobileLoginState extends State<MobileLogin> {
                         onPressed: ()  async{
                           ResultData response = await MiaoApi.login(userController.text,passwordController.text);
                           if(response.success){
+                            SpUtils.save(Config.ACCOUNT, userController.text);
+                            SpUtils.save(Config.PWD, passwordController.text);
                             Navigator.pushNamed(context, 'home');
                           }else{
                             _showError(response.message);

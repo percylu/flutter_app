@@ -7,7 +7,12 @@ import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_app/api/MiaoApi.dart';
+import 'package:flutter_app/entity/login_entity.dart';
+import 'package:flutter_app/generated/json/base/json_convert_content.dart';
 import 'package:flutter_app/res/assets.dart';
+import 'package:flutter_app/utility/Config.dart';
+import 'package:flutter_app/utility/ResultData.dart';
+import 'package:flutter_app/utility/SpUtils.dart';
 import 'package:flutter_app/widget/messagedialog.dart';
 import 'package:flutter_app/widget/picandtextbutton.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -220,11 +225,22 @@ class MiaoMineTabView extends State<MiaoMine> {
 
         });
   }
-  void initData() {
-    setState(() {
-      _name = "罗西";
-      _avatar =
-          "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1027245443,3552957153&fm=26&gp=0.jpg";
-    });
+  void initData() async{
+//    var username=await SpUtils.get(Config.ACCOUNT);
+//    ResultData response=await MiaoApi.personal(username);
+//var test=response.data['data'];
+//    print(response.code);
+      var data =await SpUtils.getObjact(Config.USER);
+      LoginEntity user =JsonConvert.fromJsonAsT(data);
+      print(user);
+      setState(() {
+//        _name = response.data['data']['name'];
+//        _avatar =SpUtils.URL+response.data['data']['avatar'];
+        _name = user.data.user.name;
+        _avatar = SpUtils.URL+user.data.user.avatar;
+      });
+
+
+
   }
 }
