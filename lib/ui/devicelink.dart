@@ -5,12 +5,13 @@ import 'package:flutter/cupertino.dart';
  */
 
 import 'package:flutter/material.dart';
-import 'package:flutter_app/widget/messagedialog.dart';
+import 'package:flutter_app/api/MiaoApi.dart';
+import 'package:flutter_app/utility/ResultData.dart';
 import 'package:flutter_cupertino_date_picker/flutter_cupertino_date_picker.dart'
     as HandOverDutyDatePicker;
 import 'package:flutter_screenutil/screenutil.dart';
-import 'package:numberpicker/numberpicker.dart';
-import 'package:percent_indicator/linear_percent_indicator.dart';
+import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
+
 
 class DeviceLink extends StatefulWidget {
   @override
@@ -23,7 +24,7 @@ class _DeviceLinkState extends State<DeviceLink> {
     super.initState();
     initData();
   }
-
+  var _html="加载中...";
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(width: 250, height: 445, allowFontScaling: true);
@@ -81,11 +82,9 @@ class _DeviceLinkState extends State<DeviceLink> {
                   margin: EdgeInsets.only(top: ScreenUtil().setHeight(10)),
                   alignment: Alignment.topLeft,
                   height: ScreenUtil().setHeight(220),
-                  child: Text(
-                    "1.abc",
-                    style: TextStyle(
-                        color: Color(0xFF4A3D3D),
-                        fontSize: ScreenUtil().setSp(10)),
+                  child:
+                  HtmlWidget(this._html,
+                      webView: true
                   ),
 
                 ),
@@ -115,5 +114,13 @@ class _DeviceLinkState extends State<DeviceLink> {
     );
   }
 
-  initData() {}
+  initData() async{
+    ResultData response = await MiaoApi.getSetting("配网指引");
+    if(response.code==200){
+      setState(() {
+        _html=response.data['data']['settingContent'];
+      });
+    }
+  }
+
 }

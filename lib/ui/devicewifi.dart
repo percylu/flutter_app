@@ -1,11 +1,20 @@
+import 'dart:async';
+
 /**
  * Author: Damodar Lohani
  * profile: https://github.com/lohanidamodar
  */
 
 import 'package:flutter/material.dart';
+import 'package:flutter_app/api/MiaoApi.dart';
+import 'package:flutter_app/entity/login_entity.dart';
+import 'package:flutter_app/generated/json/base/json_convert_content.dart';
+import 'package:flutter_app/utility/Config.dart';
+import 'package:flutter_app/utility/ResultData.dart';
+import 'package:flutter_app/utility/SpUtils.dart';
+import 'package:flutter_app/utility/hangfeng_smartlink.dart';
 import 'package:flutter_app/widget/messagedialog.dart';
-
+import 'package:connectivity/connectivity.dart';
 
 class DeviceWifi extends StatefulWidget {
   @override
@@ -15,8 +24,22 @@ class DeviceWifi extends StatefulWidget {
 class _DeviceWifiState extends State<DeviceWifi> {
   var wifiController = new TextEditingController();
   var passwordController = new TextEditingController();
+  var connectivityResult;
   var _isObscure = true;
-  var _eyeColor = Colors.black54;
+  var _searchText = " Wi-Fi连接";
+  var _fixText = "正在搜索附近设备";
+  var _isConnect = false;
+  var obj;
+  var _deviceMac = "";
+  var _seconds = 0;
+  LoginEntity user;
+  Timer _timer;
+
+  @override
+  void initState() {
+    super.initState();
+    initData();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -93,7 +116,6 @@ class _DeviceWifiState extends State<DeviceWifi> {
                         controller: passwordController,
                         obscureText: _isObscure,
                         decoration: InputDecoration(
-
                             hintText: "输入 WiFi密码",
                             hintStyle: TextStyle(
                               color: Colors.black26,
@@ -118,13 +140,14 @@ class _DeviceWifiState extends State<DeviceWifi> {
                         color: new Color(0xFFF28282),
                         onPressed: () {
                           //_showWifiFailed();
-                          Navigator.pushNamed(context, "deviceerror");
+                          initPlatformState();
+                          //Navigator.pushNamed(context, "deviceerror");
                         },
                         elevation: 0,
                         shape: RoundedRectangleBorder(
                             borderRadius:
                                 BorderRadius.all(Radius.circular(20.0))),
-                        child: Text("WiFi连接",
+                        child: Text("${_searchText}",
                             style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 20,
@@ -135,19 +158,19 @@ class _DeviceWifiState extends State<DeviceWifi> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        SizedBox(height: 20,),
+                        SizedBox(
+                          height: 20,
+                        ),
                         Text("配网流程",
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w400)),
-
-                       Text("输入账号及密码->wifi连接->等待配置完成",
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w400)),
-
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 15,
+                                fontWeight: FontWeight.w400)),
+                        Text("输入账号及密码->wifi连接->等待配置完成",
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 15,
+                                fontWeight: FontWeight.w400)),
                       ],
                     ),
                   ],
@@ -159,22 +182,128 @@ class _DeviceWifiState extends State<DeviceWifi> {
       ),
     );
   }
-  _showWifiFailed(){
+
+  void initPlatformState() async{
+    print(wifiController.text);
+    if (wifiController.text == "" || passwordController.text == "") {
+      _showWifiError("WiFi连接失败?", "请填写WI-FI名称和密码");
+      return;
+    }
+    _startTimer();
+     obj = await HanfengSmartlink.startLink(wifiController.text, passwordController.text);
+      if (obj.toString() == '204') {
+        setState(() {
+          _seconds = 90;
+          _searchText = "Wi-Fi连接";
+        });
+        _cancleTimer();
+        _showWifiError("WiFi连接失败?", "连接超时");
+        return;
+      }
+      print(obj.toString().substring(0, 3));
+      if (obj.toString().substring(0, 3) == "404") {
+        setState(() {
+          _seconds = 90;
+          _searchText = "Wi-Fi连接";
+        });
+        _cancleTimer();
+        _showWifiError("WiFi连接失败?", obj.toString());
+        return;
+      }
+      _deviceMac = obj.toString();
+      _cancleTimer();
+      //处理配网成功；
+      print("_deviceMAc+++++++++++++++" + _deviceMac);
+      if (_deviceMac != "") {
+        Future.delayed(const Duration(milliseconds: 2000), () async{
+          print("delay......");
+          ResultData response =
+          await MiaoApi.deviceAdd(user.data.user.userId, _deviceMac);
+          if (response.code == 200) {
+            _showWifi("WiFi连接成功!", _deviceMac);
+          }
+          return;
+        });
+      }
+  }
+
+  initData() async {
+    var data = await SpUtils.getObjact(Config.USER);
+    user = JsonConvert.fromJsonAsT(data);
+
+    wifiController.text = await (Connectivity().getWifiName());
+    setState(() {});
+  }
+
+  /// 倒计时
+  _startTimer() {
+    _seconds = 90;
+    _searchText = _fixText;
+    _timer = Timer.periodic(new Duration(seconds: 1), (timer) {
+      if (_seconds == 0) {
+        _searchText = "Wi-Fi连接";
+        setState(() {});
+        _cancleTimer();
+        return;
+      }
+      _seconds--;
+      if (_seconds % 4 == 0) {
+        _searchText = _fixText;
+      } else {
+        _searchText = _searchText + ".";
+      }
+      setState(() {});
+    });
+  }
+
+  _cancleTimer() {
+    _timer?.cancel();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    /// 页面销毁的时候,清除timer
+    _cancleTimer();
+    super.dispose();
+  }
+
+  _showWifi(title, msg) {
     showDialog<Null>(
         context: context,
         barrierDismissible: false,
         builder: (BuildContext context) {
-          return new     MessageDialog(
-            title:"WiFi连接失败?", message:"请重新检查网络配置", negativeText:"重新输入",
-            onCloseEvent: (){
-              Navigator.pop(context);
+          return new MessageDialog(
+            title: "WiFi连接成功",
+            message: msg,
+            negativeText: "确定",
+            onCloseEvent: () {
+              Navigator.popAndPushNamed(context, "devicelist");
             },
-            onConfirmEvent: (){
-              Navigator.pop(context);
-
+            onConfirmEvent: () {
+              Navigator.popAndPushNamed(context, "devicelist");
             },
           );
+        });
+  }
 
+  _showWifiError(title, msg) {
+    showDialog<Null>(
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return new MessageDialog(
+            title: "WiFi连接失败",
+            message: msg,
+            negativeText: "重新连接",
+            onCloseEvent: () {
+              Navigator.pop(context);
+            },
+            onConfirmEvent: () {
+              Navigator.pop(context);
+              initPlatformState();
+            },
+          );
         });
   }
 }

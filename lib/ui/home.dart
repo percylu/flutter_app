@@ -6,45 +6,49 @@ import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_app/api/MiaoApi.dart';
 
 import 'package:flutter_app/ui/tab/mhometab.dart';
 import 'package:flutter_app/ui/tab/mlogintab.dart';
 import 'package:flutter_app/ui/tab/mmiaotab.dart';
 import 'package:flutter_app/ui/tab/mminetab.dart';
 import 'package:flutter_app/utility/Config.dart';
-import 'package:flutter_app/utility/ResultData.dart';
 import 'package:flutter_app/utility/SpUtils.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HomePage extends StatefulWidget {
+  HomePage({this.index});
+  final int index;
   @override
   _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-  int _pageIndex = 1;
+  static int _pageIndex = 0;
   List<Widget> _children = [];
   List<Widget> _appBars = [];
-  bool islogin=true;
+  bool islogin = true;
+
   //适配刘海屏顶部安全区域，@https://coding.imooc.com/learn/list/321.html
   double paddingTop = 0;
   TextEditingController _inputController = TextEditingController();
+
+
   @override
-  void initState(){
+  void initState() {
     super.initState();
-    if(SpUtils.get(Config.TOKEN_KEY)==null){
-      islogin=false;
-    }
+    _pageIndex=widget.index;
+    initData();
     _statusBar();
-    ScreenUtil.init(width: 750, height: 1334, allowFontScaling: true); //flutter_screenuitl >= 1.2
+    ScreenUtil.init(width: 750,
+        height: 1334,
+        allowFontScaling: true); //flutter_screenuitl >= 1.2
     _children.add(MiaoHomeTabView());
     _children.add(MiaoMain());
     _children.add(MiaoMine());
     _appBars.add(null);
     _appBars.add(null);
-    _appBars.add(_buildAppBarOne ("个人中心"));
+    _appBars.add(_buildAppBarOne("个人中心"));
   }
 
   ///状态栏样式-沉浸式状态栏
@@ -61,17 +65,19 @@ class _HomePageState extends State<HomePage> {
 
     SystemChrome.setSystemUIOverlayStyle(uiOverlayStyle);
   }
+
   @override
   Widget build(BuildContext context) {
-
     return Theme(
       data: ThemeData(
         primaryColor: Colors.white,
       ),
       child: Scaffold(
         backgroundColor: Color(0xFFFAFAFA),
-        appBar: islogin?_appBars[_pageIndex]:_buildAppBarLogin(),
-        body: islogin?_children[_pageIndex]:MiaoLogin(),
+        appBar: islogin ? _appBars[_pageIndex] : _buildAppBarLogin(),
+        body: islogin ? _children[_pageIndex] : MiaoLogin(),
+        //appBar: _appBars[_pageIndex],
+        //body: _children[_pageIndex],
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             setState(() {
@@ -80,7 +86,9 @@ class _HomePageState extends State<HomePage> {
             });
           },
           child:
-          Image.asset("assets/ic_logo_black.png",width:ScreenUtil().setWidth(113) ,height: ScreenUtil().setWidth(103),),
+          Image.asset(
+            "assets/ic_logo_black.png", width: ScreenUtil().setWidth(113),
+            height: ScreenUtil().setWidth(103),),
           elevation: 0.0,
           backgroundColor: Color.fromARGB(0, 0xff, 0xff, 0xff),
         ),
@@ -95,9 +103,9 @@ class _HomePageState extends State<HomePage> {
     return AppBar(
       elevation: 0.5,
       leading: IconButton(
-        icon:Image.asset("assets/ic_back.png",width: 12,height: 20,),
-        onPressed: (){
-          Navigator.pop(context);
+        icon: Image.asset("assets/ic_back.png", width: 12, height: 20,),
+        onPressed: () {
+          Navigator.pushReplacementNamed(context, "home");
         },
       ),
 
@@ -106,7 +114,6 @@ class _HomePageState extends State<HomePage> {
 
 
   Widget _buildAppBarOne(String title) {
-
     return AppBar(
       elevation: 0.5,
       automaticallyImplyLeading: false,
@@ -118,32 +125,53 @@ class _HomePageState extends State<HomePage> {
 
   BottomNavigationBar _buildBottomNavigationBar() {
     return BottomNavigationBar(
-        elevation:6,
+        elevation: 6,
         items: [
           BottomNavigationBarItem(
-              icon: Image.asset('assets/ic_home_default.png', width:25,height:25,),
-              activeIcon: Image.asset("assets/ic_home_pressed@3x.png",width: 25,height: 25,),
+              icon: Image.asset(
+                'assets/ic_home_default.png', width: 25, height: 25,),
+              activeIcon: Image.asset(
+                "assets/ic_home_pressed@3x.png", width: 25, height: 25,),
               title: new Container()),
           BottomNavigationBarItem(
               icon: new Container(),
               title: new Container()),
 
           BottomNavigationBarItem(
-              icon: Image.asset('assets/ic_me_default.png',width: 25,height: 27,),
-              activeIcon: Image.asset("assets/ic_me.png",width: 25,height: 25,),
+              icon: Image.asset(
+                'assets/ic_me_default.png', width: 25, height: 27,),
+              activeIcon: Image.asset(
+                "assets/ic_me.png", width: 25, height: 25,),
               title: new Container()),
         ],
         currentIndex: _pageIndex,
-        onTap: (int index) async{
-          var token=await SpUtils.get(Config.TOKEN_KEY);
+        onTap: (int index) async {
+          var token = await SpUtils.get(Config.TOKEN_KEY);
           setState(() {
             _pageIndex = index;
-            if(token==null){
-              islogin=false;
-            }else{
-              islogin=true;
+            if (token == null) {
+              islogin = false;
+            } else {
+              islogin = true;
             }
           });
         });
-        }
   }
+
+  void initData() async{
+    print("------------login-------------");
+    var res= await SpUtils.get(Config.TOKEN_KEY);
+
+      print("+++login+++");
+      print(res);
+      setState(() {
+        if(res==null){
+          islogin=false;
+        }else{
+          islogin=true;
+        }
+      });
+
+
+  }
+}

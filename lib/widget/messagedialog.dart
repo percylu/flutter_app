@@ -36,7 +36,7 @@ class MessageDialog extends Dialog {
           children: <Widget>[
             new Container(
               width:ScreenUtil().setWidth(399.99),
-              height: ScreenUtil().setHeight(399.99),
+              height: ScreenUtil().setHeight(365.99),
               padding:EdgeInsets.only(top:20,left:0,right:0,bottom: 0),
               decoration: ShapeDecoration(
                 color: Color(0xffffffff),

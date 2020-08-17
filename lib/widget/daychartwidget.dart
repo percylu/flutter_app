@@ -124,18 +124,9 @@ class _DayChartState extends State<DayChart> {
 
   initData() {
     data = [
-      new DayDatas("0:00", 20),
-      new DayDatas("1:00", 50),
-      new DayDatas("2:00", 20),
-      new DayDatas("3:00", 80),
-      new DayDatas("4:00", 120),
-      new DayDatas("5:00", 30),
-      new DayDatas("6:00", 20),
-      new DayDatas("7:00", 50),
-      new DayDatas("8:00", 20),
-      new DayDatas("9:00", 80),
-      new DayDatas("10:00", 120),
-      new DayDatas("11:00", 30),
+      new DayDatas("0:00", 10),
+      new DayDatas("9:00", 8),
+      new DayDatas("21:00", 12),
     ];
   }
 }

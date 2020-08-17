@@ -95,12 +95,12 @@ class _WeekChartState extends State<WeekChart> {
   initData() {
     data = [
       new DayDatas("M", 20),
-      new DayDatas("T", 50),
-      new DayDatas("W", 20),
-      new DayDatas("T", 80),
-      new DayDatas("F", 120),
-      new DayDatas("S", 30),
+      new DayDatas("T", 30),
+      new DayDatas("W", 21),
+      new DayDatas("T", 22),
+      new DayDatas("F", 18),
       new DayDatas("S", 20),
+      new DayDatas("S", 21),
 
     ];
   }

@@ -124,18 +124,31 @@ class _MonthChartState extends State<MonthChart> {
 
   initData() {
     data = [
-      new DayDatas("7.1", 20),
-      new DayDatas("7.2", 50),
-      new DayDatas("7.3", 20),
-      new DayDatas("7.4", 80),
-      new DayDatas("7.5", 120),
-      new DayDatas("7.6", 30),
-      new DayDatas("7.7", 20),
-      new DayDatas("7.8", 50),
-      new DayDatas("7.9", 20),
-      new DayDatas("7.10", 80),
-      new DayDatas("7.11", 120),
-      new DayDatas("7.12", 30),
+      new DayDatas("8.1", 20),
+      new DayDatas("8.2", 21),
+      new DayDatas("8.3", 30),
+      new DayDatas("8.4", 17),
+      new DayDatas("8.5", 18),
+      new DayDatas("8.6", 30),
+      new DayDatas("8.7", 30),
+      new DayDatas("8.8", 18),
+      new DayDatas("8.9", 20),
+      new DayDatas("8.10", 21),
+      new DayDatas("8.11", 22),
+      new DayDatas("8.12", 16),
+      new DayDatas("8.13", 31),
+      new DayDatas("8.14", 29),
+      new DayDatas("8.15", 30),
+      new DayDatas("8.16", 21),
+      new DayDatas("8.17", 34),
+      new DayDatas("8.18", 21),
+      new DayDatas("8.19", 31),
+      new DayDatas("8.20", 18),
+
+
+
+
+
     ];
   }
 }

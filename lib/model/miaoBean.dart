@@ -35,18 +35,33 @@ class Data {
   String imgUrl;
   String name;
   String nickName;
+  String birth;
+  String weight;
   int sexy;
-  String bigImg;
+  String rfid;
+  List<String> bigImg;
 
-  Data({this.id, this.imgUrl, this.name, this.nickName,this.sexy,this.bigImg});
+  Data(
+      {this.id,
+        this.imgUrl,
+        this.name,
+        this.nickName,
+        this.birth,
+        this.weight,
+        this.sexy,
+        this.rfid,
+        this.bigImg});
 
   Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     imgUrl = json['imgUrl'];
     name = json['name'];
     nickName = json['nickName'];
+    birth = json['birth'];
+    weight = json['weight'];
     sexy = json['sexy'];
-    bigImg = json['bigImg'];
+    rfid = json['rfid'];
+    bigImg = json['bigImg'].cast<String>();
   }
 
   Map<String, dynamic> toJson() {
@@ -55,9 +70,11 @@ class Data {
     data['imgUrl'] = this.imgUrl;
     data['name'] = this.name;
     data['nickName'] = this.nickName;
+    data['birth'] = this.birth;
+    data['weight'] = this.weight;
     data['sexy'] = this.sexy;
+    data['rfid'] = this.rfid;
     data['bigImg'] = this.bigImg;
-
     return data;
   }
 }

@@ -1,4 +1,3 @@
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
@@ -9,12 +8,14 @@ import 'dart:io';
  */
 
 import 'package:flutter/material.dart';
+import 'package:flutter_app/api/MiaoApi.dart';
 import 'package:flutter_app/entity/login_entity.dart';
 import 'package:flutter_app/generated/json/base/json_convert_content.dart';
 import 'package:flutter_app/utility/Config.dart';
+import 'package:flutter_app/utility/ResultData.dart';
 import 'package:flutter_app/utility/SpUtils.dart';
-import 'package:flutter_app/widget/camera.dart';
 import 'package:flutter_app/widget/messagedialog.dart';
+import 'package:flutter_luban/flutter_luban.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -24,7 +25,9 @@ class EditMine extends StatefulWidget {
 }
 
 class _EditMineState extends State<EditMine> {
+  var _userId="";
   var _name = "";
+  var _path="";
   var _avatar = "";
   var _sexy = 0;
   var _mobile = "13823545677";
@@ -32,9 +35,7 @@ class _EditMineState extends State<EditMine> {
   var _isQQ = false;
   var _isWeixin = false;
   var _isWeibo = false;
-  TextEditingController nameController;
-  TextEditingController sexyController;
-  TextEditingController mobileController;
+  TextEditingController nameController = new TextEditingController();
 
   @override
   void initState() {
@@ -59,8 +60,7 @@ class _EditMineState extends State<EditMine> {
               height: 20,
             ),
             onPressed: () {
-              Navigator.pushNamedAndRemoveUntil(
-                  context, "home", (route) => false);
+              Navigator.pop(context,true);
             },
           ),
           actions: [
@@ -70,9 +70,15 @@ class _EditMineState extends State<EditMine> {
                   style: TextStyle(
                       color: Colors.black, fontSize: ScreenUtil().setSp(12)),
                 ),
-                onPressed: () {
-                  Navigator.pushNamedAndRemoveUntil(
-                      context, "home", (route) => false);
+                onPressed: () async{
+                  ResultData response = await MiaoApi.userUpdate(_userId,_path, nameController.text, _sexy);
+                  if(response.code==200){
+                    update();
+                    Navigator.pop(context,true);
+                  }else{
+                    showError(response.message);
+                  }
+
                 }),
           ],
           backgroundColor: Colors.white,
@@ -81,11 +87,10 @@ class _EditMineState extends State<EditMine> {
             style: TextStyle(color: Colors.black, fontWeight: FontWeight.w700),
           ),
         ),
+        backgroundColor: Colors.grey.shade100,
         body: Container(
-          margin: EdgeInsets.only(
-              top: ScreenUtil().setHeight(11.33),
-              left: ScreenUtil().setWidth(6.67),
-              right: ScreenUtil().setWidth(6.67)),
+
+
           child: ListView(
             // mainAxisAlignment: MainAxisAlignment.start,
             // crossAxisAlignment: CrossAxisAlignment.start,
@@ -116,7 +121,7 @@ class _EditMineState extends State<EditMine> {
                     ClipOval(
                       child: CachedNetworkImage(
                         height: ScreenUtil().setWidth(49.33),
-                        width: ScreenUtil().setHeight(49.33),
+                        width: ScreenUtil().setHeight(44.33),
                         imageUrl: "${_avatar}",
                         placeholder: (context, url) =>
                             new CircularProgressIndicator(),
@@ -129,8 +134,14 @@ class _EditMineState extends State<EditMine> {
                 )),
               ),
               Container(
-                  color: Colors.white,
-                  margin: EdgeInsets.only(top: ScreenUtil().setHeight(7)),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10)
+                  ),
+                  margin: EdgeInsets.only(top: ScreenUtil().setHeight(7),
+                    left:ScreenUtil().setWidth(8),
+                    right:ScreenUtil().setWidth(8)
+                  ),
                   padding: EdgeInsets.only(
 //                      top: ScreenUtil().setHeight(12.67),
 //                      bottom: ScreenUtil().setHeight(12.67),
@@ -169,9 +180,14 @@ class _EditMineState extends State<EditMine> {
                     ],
                   )),
               Container(
-                  color: Colors.white,
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10)
+                  ),
                   height: ScreenUtil().setHeight(33.33),
-                  margin: EdgeInsets.only(top: ScreenUtil().setHeight(7)),
+                  margin: EdgeInsets.only(top: ScreenUtil().setHeight(7),
+                      left:ScreenUtil().setWidth(8),
+                      right:ScreenUtil().setWidth(8)),
                   padding: EdgeInsets.only(
 //                      top: ScreenUtil().setHeight(12.67),
 //                      bottom: ScreenUtil().setHeight(12.67),
@@ -191,14 +207,30 @@ class _EditMineState extends State<EditMine> {
                       ),
                       Container(
                           alignment: Alignment.center,
-                          child: Text(_sexy == 0 ? "男" : "女",
-                              style: TextStyle(color: Color(0xFF888888))))
+//                          child: Text(_sexy == 0 ? "男" : "女",
+//                              style: TextStyle(color: Color(0xFF888888))))
+                      child:DropdownButton(
+                          value:_sexy,
+                        //value:_sexy==0?"男":"女",
+                          items: [
+                        DropdownMenuItem(child: Text('男'),value:0),
+                        DropdownMenuItem(child: Text('女'),value:1),
+                      ], onChanged: (value) {
+                          setState(() {
+                            _sexy=value;
+                          });
+                      }))
                     ],
                   )),
               Container(
-                  color: Colors.white,
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10)
+                  ),
                   height: ScreenUtil().setHeight(33.33),
-                  margin: EdgeInsets.only(top: ScreenUtil().setHeight(7)),
+                  margin: EdgeInsets.only(top: ScreenUtil().setHeight(7),
+                      left:ScreenUtil().setWidth(8),
+                      right:ScreenUtil().setWidth(8)),
                   padding: EdgeInsets.only(
 //                      top: ScreenUtil().setHeight(12.67),
 //                      bottom: ScreenUtil().setHeight(12.67),
@@ -223,9 +255,14 @@ class _EditMineState extends State<EditMine> {
                     ],
                   )),
               Container(
-                  color: Colors.white,
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10)
+                  ),
                   height: ScreenUtil().setHeight(33.33),
-                  margin: EdgeInsets.only(top: ScreenUtil().setHeight(7)),
+                  margin: EdgeInsets.only(top: ScreenUtil().setHeight(7),
+                      left:ScreenUtil().setWidth(8),
+                      right:ScreenUtil().setWidth(8)),
                   padding: EdgeInsets.only(
 //                      top: ScreenUtil().setHeight(12.67),
 //                      bottom: ScreenUtil().setHeight(12.67),
@@ -254,9 +291,14 @@ class _EditMineState extends State<EditMine> {
                     ],
                   )),
               Container(
-                  color: Colors.white,
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10)
+                  ),
                   height: ScreenUtil().setHeight(33.33),
-                  margin: EdgeInsets.only(top: ScreenUtil().setHeight(7)),
+                  margin: EdgeInsets.only(top: ScreenUtil().setHeight(7),
+                      left:ScreenUtil().setWidth(8),
+                      right:ScreenUtil().setWidth(8)),
                   padding: EdgeInsets.only(
 //                      top: ScreenUtil().setHeight(12.67),
 //                      bottom: ScreenUtil().setHeight(12.67),
@@ -285,9 +327,14 @@ class _EditMineState extends State<EditMine> {
                     ],
                   )),
               Container(
-                  color: Colors.white,
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10)
+                  ),
                   height: ScreenUtil().setHeight(33.33),
-                  margin: EdgeInsets.only(top: ScreenUtil().setHeight(7)),
+                  margin: EdgeInsets.only(top: ScreenUtil().setHeight(7),
+                      left:ScreenUtil().setWidth(8),
+                      right:ScreenUtil().setWidth(8)),
                   padding: EdgeInsets.only(
 //                      top: ScreenUtil().setHeight(12.67),
 //                      bottom: ScreenUtil().setHeight(12.67),
@@ -316,9 +363,14 @@ class _EditMineState extends State<EditMine> {
                     ],
                   )),
               Container(
-                  color: Colors.white,
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10)
+                  ),
                   height: ScreenUtil().setHeight(33.33),
-                  margin: EdgeInsets.only(top: ScreenUtil().setHeight(7)),
+                  margin: EdgeInsets.only(top: ScreenUtil().setHeight(7),
+                      left:ScreenUtil().setWidth(8),
+                      right:ScreenUtil().setWidth(8)),
                   padding: EdgeInsets.only(
 //                      top: ScreenUtil().setHeight(12.67),
 //                      bottom: ScreenUtil().setHeight(12.67),
@@ -347,9 +399,14 @@ class _EditMineState extends State<EditMine> {
                     ],
                   )),
               Container(
-                  color: Colors.white,
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10)
+                  ),
                   height: ScreenUtil().setHeight(33.33),
-                  margin: EdgeInsets.only(top: ScreenUtil().setHeight(7)),
+                  margin: EdgeInsets.only(top: ScreenUtil().setHeight(7),
+                      left:ScreenUtil().setWidth(8),
+                      right:ScreenUtil().setWidth(8)),
                   padding: EdgeInsets.only(
 //                      top: ScreenUtil().setHeight(12.67),
 //                      bottom: ScreenUtil().setHeight(12.67),
@@ -382,32 +439,16 @@ class _EditMineState extends State<EditMine> {
         ));
   }
 
-  _showQuit() {
-    showDialog<Null>(
-        context: context,
-        barrierDismissible: false,
-        builder: (BuildContext context) {
-          return new MessageDialog(
-            title: "正在退出登录?",
-            message: "退出后无法使用完整功能",
-            negativeText: "立即退出",
-            onCloseEvent: () {
-              Navigator.pop(context);
-            },
-            onConfirmEvent: () {
-              Navigator.pushNamedAndRemoveUntil(
-                  context, "home", (route) => false);
-            },
-          );
-        });
-  }
 
   void initData() async {
     var data = await SpUtils.getObjact(Config.USER);
     LoginEntity user = JsonConvert.fromJsonAsT(data);
     setState(() {
+      nameController.text=user.data.user.name;
+      _userId = user.data.user.userId;
       _name = user.data.user.name;
       _avatar = SpUtils.URL + user.data.user.avatar;
+      _path = user.data.user.avatar;
       _sexy = user.data.user.sex;
       _mobile = user.data.user.account;
       user.data.user.qq == "" ? _isQQ = false : _isQQ = true;
@@ -433,8 +474,7 @@ class _EditMineState extends State<EditMine> {
                     child:Text("拍照",style:TextStyle(fontSize: ScreenUtil().setSp(12),fontWeight: FontWeight.w500)),
                     onTap:(){
                       _takePhotos();
-                      Navigator.pop(context);
-
+                      Navigator.pop(context,true);
                     }
                 )),
 
@@ -443,9 +483,7 @@ class _EditMineState extends State<EditMine> {
                     child:Text("相册",style:TextStyle(fontSize: ScreenUtil().setSp(12),fontWeight: FontWeight.w500)),
                     onTap:(){
                       _getPhotos();
-                      Navigator.pop(context);
-
-
+                      Navigator.pop(context,true);
                     }
                 ),
                 ),
@@ -468,22 +506,67 @@ class _EditMineState extends State<EditMine> {
   }
 
   Future<Map<String, dynamic>> _uploadImage(File _imageDir) async {
-    var fileDir = _imageDir.path;
-    print(fileDir);
-    FormData formData = FormData.fromMap({
-      "file": await MultipartFile.fromFile(_imageDir.path, filename: "aa.jpg"),
-    });
-    Dio dio = new Dio();
-    var response = await dio.post(
-        "http://192.168.9.234:8020/fileUpload",
-        data: formData);
-    print(response);
     setState(() {
-      var path = "http://192.168.10.14:8888/" + response.data["data"]["path"];
-      _avatar = path;
+      _avatar="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2467429933,3710707406&fm=26&gp=0.jpg";
     });
-    return response.data;
+    var fileDir = _imageDir.parent.path;
+    print("fileDir:-------"+fileDir);
+    CompressObject compressObject = CompressObject(
+        imageFile: _imageDir,
+        path: fileDir,
+        quality: 70,//first compress quality, default 80
+        step: 20,//compress quality step, The bigger the fast, Smaller is more accurate, default 6
+        mode: CompressMode.LARGE2SMALL,//d
+    );
+    Luban.compressImage(compressObject).then((fileDir) async{
+      // _path为压缩后图片路径
+       File newImage = new File(fileDir);
+       print("newImage:-----"+newImage.path);
+       FormData formData = FormData.fromMap({
+         "file": await MultipartFile.fromFile(newImage.path, filename: "aa.jpg"),
+       });
+       ResultData response = await MiaoApi.upload(formData);
+       if(response.code==200){
+         _path='/image/'+response.data['data']['finalName'];
+         setState(() {
+           _avatar = SpUtils.URL+'/image/'+response.data['data']['finalName'];
+         });
+       }
+    });
+
+
   }
 
+  update() async{
+    var data = await SpUtils.getObjact(Config.USER);
+    LoginEntity user = JsonConvert.fromJsonAsT(data);
+    print("path----------"+_path);
+    if(_path!=""){
+      user.data.user.avatar=_path;
+    }
+    if(nameController.text!=""){
+      user.data.user.name=nameController.text;
+    }
+    user.data.user.sex=_sexy;
+    SpUtils.set(Config.USER, user);
+  }
+
+  showError(String msg){
+    showDialog<Null>(
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return new     MessageDialog(
+            title:"更新用户信息错误", message:msg, negativeText:"返回",
+            onCloseEvent: (){
+              Navigator.pop(context,true);
+            },
+            onConfirmEvent: () async{
+              Navigator.pop(context,true);
+              },
+          );
+
+        });
+  }
 
 }

@@ -18,8 +18,8 @@ class DeviceData extends StatefulWidget {
 class _DeviceDataState extends State<DeviceData>
     with SingleTickerProviderStateMixin {
   var index = 0;
-  var _kg = 0;
-  var _count = 0;
+  var _kg = 21;
+  var _count = 3;
 
   TabController tabController;
 

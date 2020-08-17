@@ -146,7 +146,10 @@ class _SetPasswordState extends State<SetPassword> {
                     }
                    ResultData response=await MiaoApi.add(username, passwordController.text);
                     if(response!=null && response.success){
-                      Navigator.pushNamed(context, 'home');
+                      ResultData login=await MiaoApi.login(username, passwordController.text);
+                      if(login!=null && login.success){
+                        Navigator.pushNamed(context, 'home');
+                      }
                     }else{
                       _showError(response.message);
                     }

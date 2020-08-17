@@ -1,20 +1,36 @@
+import 'dart:convert';
+import 'dart:io';
+
 /**
  * Author: Damodar Lohani
  * profile: https://github.com/lohanidamodar
  */
 
 import 'package:flutter/material.dart';
+import 'package:flutter_app/utility/mqtt.dart';
 import 'package:flutter_app/widget/messagedialog.dart';
 import 'package:flutter_screenutil/screenutil.dart';
+import 'package:mqtt_client/mqtt_client.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
 class DeviceDetail extends StatefulWidget {
+  final String deviceId;
+  DeviceDetail({ Key key,  this.deviceId }) : super(key: key);
   @override
   _DeviceDetailState createState() => _DeviceDetailState();
+
 }
 
 class _DeviceDetailState extends State<DeviceDetail> {
   var index=0;
+  var _workStatus="空闲中";
+  var _network = "未连接";
+  var _rubbish ="90%";
+  var _percent=0.90;
+  var topic;
+  var deviceSn="";
+  //MqttClient client = MqttClient('http://mqtt.miaotechnology.com', '1883');
+  Mqtt client;
   @override
   void initState() {
     super.initState();
@@ -23,6 +39,9 @@ class _DeviceDetailState extends State<DeviceDetail> {
 
   @override
   Widget build(BuildContext context) {
+    this.deviceSn=widget.deviceId;
+    print("deviceID:--------");
+    print(widget.deviceId);
     ScreenUtil.init(width: 750, height: 1335, allowFontScaling: true);
     return Scaffold(
       appBar: AppBar(
@@ -71,7 +90,7 @@ class _DeviceDetailState extends State<DeviceDetail> {
                         height: ScreenUtil().setHeight(32),
                       ),
                       Text(
-                        "未连接",
+                        "${_network}",
                         style: TextStyle(
                             fontSize: ScreenUtil().setSp(24),
                             color: Color(0xFF666666),
@@ -125,7 +144,7 @@ class _DeviceDetailState extends State<DeviceDetail> {
                         height: ScreenUtil().setHeight(32),
                       ),
                       Text(
-                        "待机中",
+                        "${_workStatus}",
                         style: TextStyle(
                             fontSize: ScreenUtil().setSp(24),
                             color: Color(0xFF666666),
@@ -167,13 +186,13 @@ class _DeviceDetailState extends State<DeviceDetail> {
                 child: LinearPercentIndicator(
                   //0~1的浮点数，用来表示进度多少;如果 value 为 null 或空，则显示一个动画，否则显示一个定值
                   alignment: MainAxisAlignment.center,
-                  percent: 0.75,
+                  percent: _percent,
                   // width:ScreenUtil().setWidth(249),
                   lineHeight: ScreenUtil().setHeight(46),
                   animation: true,
                   animationDuration: 1000,
                   center: Text(
-                    "75.0%",
+                    "${_rubbish}",
                     style: new TextStyle(
                         fontSize: ScreenUtil().setSp(30),
                         fontWeight: FontWeight.w600,
@@ -338,53 +357,209 @@ class _DeviceDetailState extends State<DeviceDetail> {
     );
   }
   _checkFunction(int i){
-    index=i;
-    switch(index){
+
+    switch(i){
       case 1:
-        showDialog<Null>(
-            context: context,
-            barrierDismissible: false,
-            builder: (BuildContext context) {
-              return new     MessageDialog(
-                title:"准备启动一键铲💩", message:"型号A-2", negativeText:"确认启动",
-                onCloseEvent: (){
-                  Navigator.pop(context);
-                },
-                onConfirmEvent: (){
-                  print("confirm");
-                  Navigator.pop(context);
-                },);
-            });
+        if(index==i){
+          showDialog<Null>(
+              context: context,
+              barrierDismissible: false,
+              builder: (BuildContext context) {
+                return new     MessageDialog(
+                  title:"准备停止一键铲💩", message:"型号A-2", negativeText:"确认停止",
+                  onCloseEvent: (){
+                    Navigator.pop(context);
+                  },
+                  onConfirmEvent: (){
+                    publishMessage("{\"excreta:\"\"0\"}");
+                    setState(() {
+                      index=0;
+                    });
+                    Navigator.pop(context);
+                  },);
+              });
+        }else{
+          showDialog<Null>(
+              context: context,
+              barrierDismissible: false,
+              builder: (BuildContext context) {
+                return new     MessageDialog(
+                  title:"准备启动一键铲💩", message:"型号A-2", negativeText:"确认启动",
+                  onCloseEvent: (){
+                    Navigator.pop(context);
+                  },
+                  onConfirmEvent: (){
+                    publishMessage("{\"excreta:\"\"1\"}");
+                    setState(() {
+                      index=i;
+                    });
+                    Navigator.pop(context);
+                  },);
+              });
+        }
         break;
       case 2:
-        showDialog<Null>(
-            context: context,
-            barrierDismissible: false,
-            builder: (BuildContext context) {
-              return new     MessageDialog(
+        if(index==i){
+          showDialog<Null>(
+              context: context,
+              barrierDismissible: false,
+              builder: (BuildContext context) {
+                return new     MessageDialog(
+                  title:"准备停止一键清砂", message:"型号A-2", negativeText:"确认停止",
+                  onCloseEvent: (){
+                    Navigator.pop(context);
+                  },
+                  onConfirmEvent: (){
+                    publishMessage("{\"sand:\"\"0\"}");
+                    setState(() {
+                      index=0;
+                    });
+                    Navigator.pop(context);
+                  },);
+              });
+        }else{
+          showDialog<Null>(
+              context: context,
+              barrierDismissible: false,
+              builder: (BuildContext context) {
+                return new     MessageDialog(
                   title:"准备启动一键清砂", message:"型号A-2", negativeText:"确认启动",
                   onCloseEvent: (){
                     Navigator.pop(context);
                   },
-                onConfirmEvent: (){
-                  print("confirm");
-                  Navigator.pop(context);
-                },);
-            });
+                  onConfirmEvent: (){
+                    publishMessage("{\"sand:\"\"1\"}");
+                    setState(() {
+                      index=i;
+                    });
+                    Navigator.pop(context);
+                  },);
+              });
+        }
         break;
       case 3:
+        index=i;
         Navigator.pushNamed(context, "devicesleep");
         break;
       case 4:
+        index=i;
         Navigator.pushNamed(context, "devicedata");
         break;
       default:
 
     }
-    setState(() {
 
+  }
+  initData() async{
+    //client= Mqtt.getInstance('ws://39.108.96.5/mqtt',8083,widget.deviceId);
+    client= Mqtt.getInstance("mqtt.miaotechnology.com",1883,"app_"+widget.deviceId);
+    var connect=await client.connect();
+    print(connect);
+    client.mqttClient.autoReconnect=true;
+    client.subscribe("mxx/"+widget.deviceId+"/cat");
+      publishMessage('{"equipmentstatus:"}');
+    client.mqttClient.updates.listen(listenMqtt);
+
+  }
+  listenMqtt(List<MqttReceivedMessage<MqttMessage>> data) {
+    data.forEach((MqttReceivedMessage<MqttMessage> m) {
+      final MqttPublishMessage recMess = m.payload;
+
+      final String pt = MqttPublishPayload.bytesToStringAsString(recMess.payload.message);
+      print("----");
+      String str=pt.replaceAll(':"', '":').replaceAll('""', '","');
+      Map json=jsonDecode(str);
+      int count=json.length;
+      if(count==7){
+        //设备状态
+        _network="已连接";
+        if(json['sand']=="1"||json['excreta']=="1"){
+          _workStatus="工作中";
+        }else{
+          _workStatus="空闲中";
+        }
+        switch(json['capacity']){
+          case "0":
+            _rubbish="100%";
+            _percent=1.00;
+            break;
+          case "1":
+            _rubbish="90%";
+            _percent=0.90;
+            break;
+          case "2":
+            _rubbish="50%";
+            _percent=0.50;
+            break;
+          case "3":
+            _rubbish="25%";
+            _percent=0.25;
+
+            break;
+        }
+        setState(() {
+
+        });
+
+
+      }else if(count==3){
+
+        //主动上传
+      }else{
+        //其他
+        print(json.keys.first);
+        switch(json.keys.first){
+          case "led":
+            if(json.values.first=="1ok"){
+
+            }else{
+
+            }
+            break;
+          case "capacity":
+            print(json.values.first);
+            break;
+          case "sand":
+            index==2?index=0:index;
+            if(json.values.first=="1ok"){
+
+            }else{
+
+            }
+            break;
+          case "excreta":
+            index==1?index=0:index;
+            if(json.values.first=="1ok"){
+
+            }else{
+
+            }
+            break;
+          case "shutdown":
+            print(json.values.first);
+            break;
+          case "sleep":
+            if(json.values.first=="1ok"){
+
+            }else{
+
+            }
+            break;
+        }
+        setState(() {
+
+        });
+      }
+      print(str);
     });
   }
-  initData() {
+  publishMessage(msg){
+    client.publishMessage(msg,"mxx/"+widget.deviceId+"/web");
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    client.disconnect();
   }
 }

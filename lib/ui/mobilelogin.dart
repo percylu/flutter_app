@@ -143,10 +143,11 @@ class _MobileLoginState extends State<MobileLogin> {
                         color: new Color(0xFFF28282),
                         onPressed: ()  async{
                           ResultData response = await MiaoApi.login(userController.text,passwordController.text);
-                          if(response.success){
+                          print(response);
+                          if(response.code==200){
                             SpUtils.save(Config.ACCOUNT, userController.text);
                             SpUtils.save(Config.PWD, passwordController.text);
-                            Navigator.pushNamed(context, 'home');
+                            Navigator.pushReplacementNamed(context, 'home');
                           }else{
                             _showError(response.message);
                             return;

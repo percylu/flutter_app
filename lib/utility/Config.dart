@@ -5,4 +5,5 @@ class Config{
   static const ACCOUNT="account";
   static const PWD="password";
   static const USER="user";
+  static const LISTFLAG="listflag";
 }

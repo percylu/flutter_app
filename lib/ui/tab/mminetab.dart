@@ -13,18 +13,23 @@ import 'package:flutter_app/res/assets.dart';
 import 'package:flutter_app/utility/Config.dart';
 import 'package:flutter_app/utility/ResultData.dart';
 import 'package:flutter_app/utility/SpUtils.dart';
+import 'package:flutter_app/widget/htmlWidget.dart';
 import 'package:flutter_app/widget/messagedialog.dart';
 import 'package:flutter_app/widget/picandtextbutton.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MiaoMine extends StatefulWidget {
+  final reslut;
+  MiaoMine({this.reslut});
   @override
   MiaoMineTabView createState() => MiaoMineTabView();
+
 }
 
 class MiaoMineTabView extends State<MiaoMine> {
   var _name = "";
   var _avatar = "";
+
 
   @override
   void initState() {
@@ -39,10 +44,11 @@ class MiaoMineTabView extends State<MiaoMine> {
         height: 445,
         allowFontScaling: true); //flutter_screenuitl >= 1.2
     return Container(
-      margin: EdgeInsets.only(
-          //top: ScreenUtil().setHeight(11.33),
-          left: ScreenUtil().setWidth(6.67),
-          right: ScreenUtil().setWidth(6.67)),
+      color: Colors.grey.shade100,
+//      margin: EdgeInsets.only(
+//          //top: ScreenUtil().setHeight(11.33),
+//          left: ScreenUtil().setWidth(6.67),
+//          right: ScreenUtil().setWidth(6.67)),
       child: ListView(
         //mainAxisAlignment: MainAxisAlignment.start,
         //crossAxisAlignment: CrossAxisAlignment.start,
@@ -68,7 +74,7 @@ class MiaoMineTabView extends State<MiaoMine> {
                       ClipOval(
                         child: CachedNetworkImage(
                           height: ScreenUtil().setWidth(49.33),
-                          width: ScreenUtil().setHeight(49.33),
+                          width: ScreenUtil().setHeight(44.33),
                           imageUrl: "${_avatar}",
                           placeholder: (context, url) =>
                           new CircularProgressIndicator(),
@@ -79,16 +85,23 @@ class MiaoMineTabView extends State<MiaoMine> {
                     ],
                   ),
                   onTap:(){
-                    Navigator.pushNamedAndRemoveUntil(context, "editmine", (route) => false);
+                    Navigator.pushNamed(context, "editmine").then((value) async{
+                      await initData();
+                    });
                   }
                 ),
 
           ),
           GestureDetector(
               child: Container(
-            color: Colors.white,
-            margin: EdgeInsets.only(
-                top: ScreenUtil().setHeight(7)),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10)
+                ),
+                margin: EdgeInsets.only(top: ScreenUtil().setHeight(7),
+                    left:ScreenUtil().setWidth(8),
+                    right:ScreenUtil().setWidth(8)
+                ),
             padding: EdgeInsets.only(
                 top: ScreenUtil().setHeight(10.67),
                 bottom: ScreenUtil().setHeight(10.67)),
@@ -105,9 +118,15 @@ class MiaoMineTabView extends State<MiaoMine> {
           ),
           GestureDetector(
             child: Container(
-              color: Colors.white,
-              margin: EdgeInsets.only(
-                  top: ScreenUtil().setHeight(7)),
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(10)
+              ),
+              margin: EdgeInsets.only(top: ScreenUtil().setHeight(7),
+                  left:ScreenUtil().setWidth(8),
+                  right:ScreenUtil().setWidth(8)
+              ),
+
               padding: EdgeInsets.only(
                   top: ScreenUtil().setHeight(10.67),
                   bottom: ScreenUtil().setHeight(10.67)),
@@ -124,9 +143,14 @@ class MiaoMineTabView extends State<MiaoMine> {
           ),
           GestureDetector(
             child: Container(
-              color: Colors.white,
-              margin: EdgeInsets.only(
-                  top: ScreenUtil().setHeight(7)),
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(10)
+              ),
+              margin: EdgeInsets.only(top: ScreenUtil().setHeight(7),
+                  left:ScreenUtil().setWidth(8),
+                  right:ScreenUtil().setWidth(8)
+              ),
               padding: EdgeInsets.only(
                   top: ScreenUtil().setHeight(10.67),
                   bottom: ScreenUtil().setHeight(10.67)),
@@ -138,14 +162,22 @@ class MiaoMineTabView extends State<MiaoMine> {
                       color: Color(0xFF666666))),
             ),
             onTap: (){
-
-            },
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (content){
+                    return CustomerHtml(title:"关于我们");
+                  }));
+              },
           ),
           GestureDetector(
             child: Container(
-              color: Colors.white,
-              margin: EdgeInsets.only(
-                  top: ScreenUtil().setHeight(7)),
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(10)
+              ),
+              margin: EdgeInsets.only(top: ScreenUtil().setHeight(7),
+                  left:ScreenUtil().setWidth(8),
+                  right:ScreenUtil().setWidth(8)
+              ),
               padding: EdgeInsets.only(
                   top: ScreenUtil().setHeight(10.67),
                   bottom: ScreenUtil().setHeight(10.67)),
@@ -157,14 +189,22 @@ class MiaoMineTabView extends State<MiaoMine> {
                       color: Color(0xFF666666))),
             ),
             onTap: (){
-
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (content){
+                return CustomerHtml(title:"帮助中心");
+              }));
             },
           ),
           GestureDetector(
             child: Container(
-              color: Colors.white,
-              margin: EdgeInsets.only(
-                  top: ScreenUtil().setHeight(7)),
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(10)
+              ),
+              margin: EdgeInsets.only(top: ScreenUtil().setHeight(7),
+                  left:ScreenUtil().setWidth(8),
+                  right:ScreenUtil().setWidth(8)
+              ),
               padding: EdgeInsets.only(
                   top: ScreenUtil().setHeight(10.67),
                   bottom: ScreenUtil().setHeight(10.67)),
@@ -176,14 +216,19 @@ class MiaoMineTabView extends State<MiaoMine> {
                       color: Color(0xFF666666))),
             ),
             onTap: (){
-
+              _showUpdate();
             },
           ),
           GestureDetector(
             child: Container(
-              color: Colors.white,
-              margin: EdgeInsets.only(
-                  top: ScreenUtil().setHeight(7)),
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(10)
+              ),
+              margin: EdgeInsets.only(top: ScreenUtil().setHeight(7),
+                  left:ScreenUtil().setWidth(8),
+                  right:ScreenUtil().setWidth(8)
+              ),
               padding: EdgeInsets.only(
                   top: ScreenUtil().setHeight(10.67),
                   bottom: ScreenUtil().setHeight(10.67)),
@@ -215,8 +260,15 @@ class MiaoMineTabView extends State<MiaoMine> {
               Navigator.pop(context);
             },
             onConfirmEvent: () async{
-              var result=await MiaoApi.logout();
-              if(result==true){
+              try{
+              ResultData response =   await MiaoApi.logout();
+                  if(response!=null){
+                    print("-----logout-------");
+                    Navigator.pushNamedAndRemoveUntil(context, "home", (route) => false);
+                  }
+
+
+              }catch(e){
                 Navigator.pushNamedAndRemoveUntil(context, "home", (route) => false);
               }
 
@@ -225,19 +277,33 @@ class MiaoMineTabView extends State<MiaoMine> {
 
         });
   }
+
+  _showUpdate(){
+    showDialog<Null>(
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return new     MessageDialog(
+            title:"当前已是最新版本", message:"版本号V1.9.1", negativeText:"返回",
+            onCloseEvent: (){
+              Navigator.pop(context);
+            },
+            onConfirmEvent: () {
+              Navigator.pop(context);
+            },
+          );
+
+        });
+  }
   void initData() async{
-//    var username=await SpUtils.get(Config.ACCOUNT);
-//    ResultData response=await MiaoApi.personal(username);
-//var test=response.data['data'];
-//    print(response.code);
+
       var data =await SpUtils.getObjact(Config.USER);
       LoginEntity user =JsonConvert.fromJsonAsT(data);
-      print(user);
+      print("-----------------");
       setState(() {
-//        _name = response.data['data']['name'];
-//        _avatar =SpUtils.URL+response.data['data']['avatar'];
         _name = user.data.user.name;
         _avatar = SpUtils.URL+user.data.user.avatar;
+        print("--------+++++++++"+_name);
       });
 
 

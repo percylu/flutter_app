@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/api/MiaoApi.dart';
 import 'package:flutter_app/utility/ResultData.dart';
 import 'package:flutter_app/utility/SpUtils.dart';
+import 'package:flutter_app/widget/acticleWidget.dart';
 import 'package:flutter_app/widget/messagedialog.dart';
 import 'package:flutter_app/widget/picandpicbutton.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -25,15 +26,28 @@ class MiaoHomeTabView extends StatefulWidget{
 class _MiaoHomeTabView extends State<MiaoHomeTabView> {
   var isRefresh=false;
   List swiperDataList=[];
-
+  var _futureBuilderFuture;
+  var _imgurl="";
+  var _desc="加载中...";
+  var _content="加载中...";
   @override
   void initState() {
     print("--initState-");
     super.initState();
-    //initData(context);
+    _futureBuilderFuture=initData(context);
 
   }
   initData(BuildContext context) {
+     MiaoApi.getArticle().then((res){
+       if(res.code==200){
+         setState(() {
+           _imgurl = SpUtils.URL+res.data['data']['articleCover'];
+           _desc = res.data['data']['articleTitle'];
+           _content = res.data['data']['articleContent'];
+         });
+       }
+     });
+
     if(!this.isRefresh) {
       MiaoApi.banner().then((res) {
         print("--initData-");
@@ -44,13 +58,17 @@ class _MiaoHomeTabView extends State<MiaoHomeTabView> {
           for (var banner in response.data['data']) {
             list.add(SpUtils.URL + banner['bannerImg']);
           }
-          setState(() {
+//          setState(() {
             this.isRefresh=true;
             this.swiperDataList = list;
             print("init:");
             print(this.swiperDataList);
-          });
+//          });
         } else {
+          print(response.code);
+          if(response.code==1502){
+            Navigator.pushReplacementNamed(context, "home");
+          }
           _showError(context, response.message);
         }
       });
@@ -70,15 +88,26 @@ class _MiaoHomeTabView extends State<MiaoHomeTabView> {
       child: ListView(
         children: <Widget>[
       FutureBuilder(
-      future: initData(context),
-      builder: (BuildContext context, AsyncSnapshot<Response> snapshot) {
+      future: _futureBuilderFuture,
+      builder:
+          (BuildContext context, AsyncSnapshot<Response> snapshot) {
         if(this.swiperDataList.length>0){
           return _banner(context);
         }else{
-          return Text("加载中...");
+          return Container(
+            alignment: Alignment.center,
+              margin: EdgeInsets.all(0),
+              width: MediaQuery
+                  .of(context)
+                  .size
+                  .width,
+              height: ScreenUtil().setHeight(549.99),
+          child: Text("加载中..."),
+          );
+         return Text("加载中...");
         }
         /*表示数据成功返回*/
-      },
+      }
       ),
        /*   _banner(context),*/
           _buildCategoryRow(context),
@@ -90,15 +119,17 @@ class _MiaoHomeTabView extends State<MiaoHomeTabView> {
   }
 
 
+
+
   _showError(BuildContext context, String msg) {
     showDialog<Null>(
         context: context,
         barrierDismissible: false,
         builder: (BuildContext context) {
           return new MessageDialog(
-            title: "获取广告错误",
+            title: "请先登陆",
             message: msg,
-            negativeText: "重试",
+            negativeText: "返回登陆",
             onCloseEvent: () {
               Navigator.pop(context);
             },
@@ -121,12 +152,22 @@ class _MiaoHomeTabView extends State<MiaoHomeTabView> {
               Navigator.pushNamed(context, "devicelist");
             }),
           ),
+          Container(
+              width: 1,
+              height: ScreenUtil().setHeight(120),
+              color: Colors.grey.shade300,
+          ),
           Expanded(
             child: picAndPicButton("assets/btn_mxx_second@3x.png",
                 "assets/words_ysj@3x.png", () {
                   Navigator.pushNamed(context, "comming");
                 }),
 
+          ),
+          Container(
+            width: 1,
+            height: ScreenUtil().setHeight(120),
+            color: Colors.grey.shade300,
           ),
           Expanded(
             child: picAndPicButton("assets/btn_mxx_third@3x.png",
@@ -149,7 +190,7 @@ class _MiaoHomeTabView extends State<MiaoHomeTabView> {
             .of(context)
             .size
             .width,
-        height: ScreenUtil().setHeight(549.99),
+        height: ScreenUtil().setHeight(589.99),
         child: Stack(
           children: [
             Swiper(
@@ -197,22 +238,26 @@ class _MiaoHomeTabView extends State<MiaoHomeTabView> {
 
   Widget _buildCenterPic(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(30),
+      margin: EdgeInsets.all(20),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(10),
         child: Stack(
           children: [
             GestureDetector(onTap: () {
               print("news");
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (content){
+                    return Article(title:this._desc,html:this._content);
+                  }));
             }, child: FadeInImage.assetNetwork(
               width: MediaQuery
                   .of(context)
                   .size
                   .width,
-              height: ScreenUtil().setHeight(242.01),
+              height: ScreenUtil().setHeight(241.98),
               placeholder: "assets/img_cat.png",
               image:
-              "https://img1.360buyimg.com/da/jfs/t1/132819/32/4365/158541/5f0d0a3fEd1a401c7/4741c28e0753541c.jpg!q70.jpg",
+              "${_imgurl}",
               fit: BoxFit.fill,
             )),
 
@@ -231,7 +276,7 @@ class _MiaoHomeTabView extends State<MiaoHomeTabView> {
                     color: Color(0x8c000000)
                 ),
                 child: Text(
-                  "救命！！我在这群沙雕猫中出不去了",
+                  "${_desc}",
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: 15),

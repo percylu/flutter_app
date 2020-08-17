@@ -20,10 +20,10 @@ class DeviceListWidget extends StatelessWidget{
     return Container(
       margin: EdgeInsets.all(ScreenUtil().setWidth(51)),
       width: MediaQuery.of(context).size.width,
-      alignment: Alignment.bottomLeft,
+      alignment: Alignment.topCenter,
       child:Row(
         mainAxisAlignment: MainAxisAlignment.start,
-        mainAxisSize: MainAxisSize.max,
+        mainAxisSize: MainAxisSize.min,
         children: [
           CachedNetworkImage(
             imageUrl: imgpath,
@@ -33,7 +33,7 @@ class DeviceListWidget extends StatelessWidget{
             errorWidget: (context, url, error) =>Image.asset("assets/img_cat.png",width: ScreenUtil().setWidth(341.01),height: ScreenUtil().setHeight(246.09),),
             fit: BoxFit.fill,
           ),
-          SizedBox(width: ScreenUtil().setWidth(50),),
+          SizedBox(width: ScreenUtil().setWidth(30),),
           Column(
             mainAxisAlignment: MainAxisAlignment.end,
             crossAxisAlignment: CrossAxisAlignment.end,

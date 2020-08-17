@@ -1,6 +1,7 @@
+import 'dart:io';
+
 import 'package:connectivity/connectivity.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter_app/entity/login_entity.dart';
 
 import 'dart:collection';
 
@@ -56,6 +57,14 @@ class HttpRequest {
     //没有网络
     var connectivityResult = await (new Connectivity().checkConnectivity());
     if (connectivityResult == ConnectivityResult.none) {
+      return new ResultData("", false, Code.NETWORK_ERROR,Code.errorHandleFunction(Code.NETWORK_ERROR, "", noTip));
+    }
+    try {
+      final result = await InternetAddress.lookup('baidu.com');
+      if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
+        print('connected');
+      }
+    } on SocketException catch (_) {
       return new ResultData("", false, Code.NETWORK_ERROR,Code.errorHandleFunction(Code.NETWORK_ERROR, "", noTip));
     }
 

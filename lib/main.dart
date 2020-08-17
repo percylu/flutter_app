@@ -11,42 +11,50 @@ import 'package:flutter_app/ui/devicescan.dart';
 import 'package:flutter_app/ui/devicesleep.dart';
 import 'package:flutter_app/ui/devicewifi.dart';
 import 'package:flutter_app/ui/editmine.dart';
+import 'package:flutter_app/ui/editpet.dart';
 import 'package:flutter_app/ui/home.dart';
 import 'package:flutter_app/ui/miaodetail.dart';
 import 'package:flutter_app/ui/mobileregister.dart';
+import 'package:flutter_app/ui/petlist.dart';
 import 'package:flutter_app/ui/resetpassword.dart';
 import 'package:flutter_app/ui/setpassword.dart';
 import 'package:flutter_app/ui/startup.dart';
 
 import 'package:flutter_app/ui/mobilelogin.dart';
-import 'package:flutter_app/utility/Config.dart';
-import 'package:flutter_app/utility/SpUtils.dart';
+
 import 'package:flutter_app/widget/camera.dart';
 
 
 void main() {
-  runApp(new MyApp());
+
+  // 强制竖屏
+  // 强制竖屏
+    runApp(new MyApp());
 }
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp, //只能纵向
+      DeviceOrientation.portraitDown,//只能纵向
+    ]);
     _statusBar();
     return
     MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter UIs',
+      title: '喵小小',
       theme: ThemeData(
         //scaffoldBackgroundColor: Colors.grey.shade100,
         primarySwatch: Colors.red,
         accentColor: Colors.indigo,
       ),
-      home: Startup(),
+      home: HomePage(index:0),
       routes: {
         "mobileLogin": (_) => MobileLogin(),
         "mobileRegister":(_) =>MobileRegister(),
         "setPassword":(_)=>SetPassword(),
-        "home": (_) => HomePage(),
+        "home": (_) => HomePage(index:0),
         "resetPassword":(_) =>ResetPassword(),
         "startup":(_)=>Startup(),
         "devicelist":(_)=>DeviceList(),
@@ -62,6 +70,8 @@ class MyApp extends StatelessWidget {
         "commonsetting":(_)=>CommonSetting(),
         "miaodetail":(_)=>MiaoDetail(),
         "camera":(_)=>ImagePickerPage(),
+        "petlist":(_)=>PetList(),
+        "editpet":(_)=>EditPet(petId:"0"),
       },
     );
   }

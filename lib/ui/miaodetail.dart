@@ -6,10 +6,14 @@ import 'package:flutter/cupertino.dart';
  */
 
 import 'package:flutter/material.dart';
+import 'package:flutter_app/ui/editpet.dart';
+import 'package:flutter_app/ui/petdata.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MiaoDetail extends StatelessWidget {
+  final petId;
+  MiaoDetail({this.petId});
   ///状态栏样式-沉浸式状态栏
   @override
   Widget build(BuildContext context) {
@@ -22,7 +26,7 @@ class MiaoDetail extends StatelessWidget {
           child: ListView(
             children: <Widget>[
               _banner(context),
-              _content(),
+              _content(context),
             ],
           ),
         ));
@@ -66,7 +70,7 @@ class MiaoDetail extends StatelessWidget {
     );
   }
 
-  Widget _content() {
+  Widget _content(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(
           top: ScreenUtil().setHeight(20.67),
@@ -192,7 +196,11 @@ class MiaoDetail extends StatelessWidget {
                         ),
                       ],
                     ),
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.of(context).push(new MaterialPageRoute(builder: (_) {
+                        return new PetData(petId: this.petId);
+                      }));
+                    },
                   ),
                   SizedBox(
                     width: ScreenUtil().setWidth(11),
@@ -213,7 +221,11 @@ class MiaoDetail extends StatelessWidget {
                         ),
                       ],
                     ),
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.of(context).push(new MaterialPageRoute(builder: (_) {
+                        return new EditPet(petId: this.petId);
+                      }));
+                    },
                   ),
 
                   //IconButton(),
