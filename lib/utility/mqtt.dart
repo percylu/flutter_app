@@ -8,7 +8,7 @@ class Mqtt {
   String clientIdentifier;//=客户端标识;
   String subTopic;// = 需要订阅的topic;
   String publishTopic;//= 发送消息的topic;
-  MqttQos qos = MqttQos.atLeastOnce;
+  MqttQos qos = MqttQos.atMostOnce;
   MqttClient mqttClient;
   static Mqtt _instance;
 
@@ -109,7 +109,7 @@ class Mqtt {
   _onSubscribed(String topic) {
     _log("_onSubscribed");
     ///在订阅成功的时候注册消息监听
-    mqttClient.updates.listen(_onData);
+   // mqttClient.updates.listen(_onData);
   }
 
   _onSubscribeFail(String topic) {

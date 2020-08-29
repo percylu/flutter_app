@@ -1,3 +1,6 @@
+
+import 'package:barcode_scan/barcode_scan.dart';
+import 'package:barcode_scan/platform_wrapper.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
@@ -8,14 +11,18 @@ import 'dart:io';
  */
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_app/api/MiaoApi.dart';
-import 'package:flutter_app/entity/login_entity.dart';
+import 'package:flutter_app/entity/pet_detail_entity.dart';
+import 'package:flutter_app/entity/pet_entity.dart';
+import 'package:flutter_app/entity/pet_type_entity.dart';
 import 'package:flutter_app/generated/json/base/json_convert_content.dart';
-import 'package:flutter_app/model/miaoBean.dart';
+import 'package:flutter_app/ui/petlist.dart';
 import 'package:flutter_app/utility/Config.dart';
 import 'package:flutter_app/utility/ResultData.dart';
 import 'package:flutter_app/utility/SpUtils.dart';
 import 'package:flutter_app/widget/messagedialog.dart';
+import 'package:flutter_cupertino_date_picker_fork/flutter_cupertino_date_picker_fork.dart';
 import 'package:flutter_luban/flutter_luban.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
@@ -30,21 +37,13 @@ class EditPet extends StatefulWidget {
 }
 
 class _EditPetState extends State<EditPet> {
-  var _userId = "";
-  var _name = "";
   var _path = "";
-  var _avatar = "";
   var _sexy = 0;
-  var _mobile = "13823545677";
-  var _pwd = "";
-  var _isQQ = false;
-  var _isWeixin = false;
-  var _isWeibo = false;
-  miaoBean items;
-
+  var _imglist = ["","",""];
+  PetDetailEntity items;
+  List<Map<String, String>> petTypes = [];
   var petNameController = new TextEditingController();
-  var petNickController = new TextEditingController();
-  var petSexController = new TextEditingController();
+  var petTypeController = new TextEditingController();
   var petWeightController = new TextEditingController();
   var petBirthController = new TextEditingController();
   var petRFIDController = new TextEditingController();
@@ -61,8 +60,9 @@ class _EditPetState extends State<EditPet> {
         width: 250,
         height: 445,
         allowFontScaling: true); //flutter_screenuitl >= 1.2
+
     return Scaffold(
-      resizeToAvoidBottomPadding: false,
+        resizeToAvoidBottomPadding: false,
         appBar: AppBar(
           centerTitle: true,
           elevation: 0.5,
@@ -83,8 +83,8 @@ class _EditPetState extends State<EditPet> {
                   style: TextStyle(
                       color: Colors.black, fontSize: ScreenUtil().setSp(12)),
                 ),
-                onPressed: () {
-                  Navigator.pop(context);
+                onPressed: () async{
+                  await update();
                 }),
           ],
           backgroundColor: Colors.white,
@@ -95,13 +95,11 @@ class _EditPetState extends State<EditPet> {
         ),
         backgroundColor: Colors.white,
         body: Container(
-
             child: Stack(children: [
           Container(
-              constraints:BoxConstraints(
+              constraints: BoxConstraints(
                 minHeight: ScreenUtil().setHeight(306.66),
               ),
-
               width: ScreenUtil().setWidth(190),
               height: ScreenUtil().setHeight(306.66),
               margin: EdgeInsets.only(
@@ -132,7 +130,7 @@ class _EditPetState extends State<EditPet> {
                                 fontSize: ScreenUtil().setSp(10),
                                 fontWeight: FontWeight.w700)),
                         SizedBox(
-                          width: ScreenUtil().setWidth(70.66),
+                          width: ScreenUtil().setWidth(60.66),
                         ),
                         SizedBox(
                           width: ScreenUtil().setWidth(70.66),
@@ -166,26 +164,40 @@ class _EditPetState extends State<EditPet> {
                                 fontSize: ScreenUtil().setSp(10),
                                 fontWeight: FontWeight.w700)),
                         SizedBox(
-                          width: ScreenUtil().setWidth(70.66),
+                          width: ScreenUtil().setWidth(72.66),
                         ),
                         SizedBox(
-                          width: ScreenUtil().setWidth(70.66),
-                          child: TextField(
-                            style: TextStyle(
-                                fontSize: ScreenUtil().setSp(10),
-                                color: Colors.black26,
-                                fontWeight: FontWeight.w700),
-                            controller: petNickController,
-                            decoration: InputDecoration(
-                                filled: true,
-                                fillColor: Colors.white,
-                                border: OutlineInputBorder(
-                                  borderSide: BorderSide.none,
-                                ),
-                                contentPadding: EdgeInsets.symmetric(
-                                    horizontal: 20.0, vertical: 16.0)),
-                          ),
-                        )
+                          width: ScreenUtil().setWidth(57.66),
+                          child: petTypes.length==0
+                              ? Container(
+                                  height: ScreenUtil().setHeight(28),
+                                )
+                              : Container(
+                                  alignment: Alignment.bottomLeft,
+                                  child: DropdownButtonHideUnderline(
+                                      child: DropdownButton(
+                                          value: petTypeController.text,
+                                          items: petTypes
+                                              .map((item) => DropdownMenuItem(
+                                                    value: item['id'],
+                                                    child: Text(
+                                                      item['type'],
+                                                      style: TextStyle(
+                                                        color: Colors.black26,
+                                                        fontSize: ScreenUtil()
+                                                            .setSp(10),
+                                                        fontWeight:
+                                                            FontWeight.w700,
+                                                      ),
+                                                    ),
+                                                  ))
+                                              .toList(),
+                                          onChanged: (newValue) {
+                                            setState(() {
+                                              petTypeController.text = newValue;
+                                            });
+                                          }))),
+                        ),
                       ],
                     ),
                     Container(
@@ -200,19 +212,18 @@ class _EditPetState extends State<EditPet> {
                                 fontSize: ScreenUtil().setSp(10),
                                 fontWeight: FontWeight.w700)),
                         SizedBox(
-                          width: ScreenUtil().setWidth(78.66),
+                          width: ScreenUtil().setWidth(72.66),
                         ),
                         SizedBox(
-                            width: ScreenUtil().setWidth(48.66),
+                            width: ScreenUtil().setWidth(59.66),
                             child: Container(
                                 margin: EdgeInsets.all(0),
                                 padding: EdgeInsets.all(0),
-                                alignment: Alignment.center,
-//                          child: Text(_sexy == 0 ? "男" : "女",
-//                              style: TextStyle(color: Color(0xFF888888))))
+                                alignment: Alignment.bottomLeft,
+//
                                 child: DropdownButtonHideUnderline(
                                     child: DropdownButton(
-                                        value: petSexController.text,
+                                        value: _sexy,
                                         //value:_sexy==0?"男":"女",
                                         items: [
                                           DropdownMenuItem(
@@ -223,7 +234,7 @@ class _EditPetState extends State<EditPet> {
                                                       ScreenUtil().setSp(10),
                                                   fontWeight: FontWeight.w700,
                                                 )),
-                                            value: "0",
+                                            value: 0,
                                           ),
                                           DropdownMenuItem(
                                               child: Text('女孩',
@@ -233,7 +244,7 @@ class _EditPetState extends State<EditPet> {
                                                         ScreenUtil().setSp(10),
                                                     fontWeight: FontWeight.w700,
                                                   )),
-                                              value: "1"),
+                                              value: 1),
                                         ],
                                         onChanged: (value) {
                                           setState(() {
@@ -254,25 +265,37 @@ class _EditPetState extends State<EditPet> {
                                 fontSize: ScreenUtil().setSp(10),
                                 fontWeight: FontWeight.w700)),
                         SizedBox(
-                          width: ScreenUtil().setWidth(70.66),
+                          width: ScreenUtil().setWidth(58.66),
                         ),
                         SizedBox(
-                          width: ScreenUtil().setWidth(70.66),
-                          child: TextField(
-                            style: TextStyle(
-                                fontSize: ScreenUtil().setSp(10),
-                                color: Colors.black26,
-                                fontWeight: FontWeight.w700),
-                            controller: petWeightController,
-                            decoration: InputDecoration(
-                                filled: true,
-                                fillColor: Colors.white,
-                                border: OutlineInputBorder(
-                                  borderSide: BorderSide.none,
-                                ),
-                                contentPadding: EdgeInsets.symmetric(
-                                    horizontal: 20.0, vertical: 16.0)),
-                          ),
+                            width: ScreenUtil().setWidth(40.66),
+                            child: Container(
+                              alignment: Alignment.centerLeft,
+                              child: TextField(
+                                style: TextStyle(
+                                    fontSize: ScreenUtil().setSp(10),
+                                    color: Colors.black26,
+                                    fontWeight: FontWeight.w700),
+                                controller: petWeightController,
+                                inputFormatters: [
+                                  WhitelistingTextInputFormatter.digitsOnly
+                                ],
+                                decoration: InputDecoration(
+                                    filled: true,
+                                    fillColor: Colors.white,
+                                    border: OutlineInputBorder(
+                                      borderSide: BorderSide.none,
+                                    ),
+                                    contentPadding: EdgeInsets.symmetric(
+                                        horizontal: 20.0, vertical: 16.0)),
+                              ),
+                            )),
+                        SizedBox(
+                          child: Text("KG",
+                              style: TextStyle(
+                                  fontSize: ScreenUtil().setSp(10),
+                                  color: Colors.black26,
+                                  fontWeight: FontWeight.w700)),
                         )
                       ],
                     ),
@@ -288,24 +311,25 @@ class _EditPetState extends State<EditPet> {
                                 fontSize: ScreenUtil().setSp(10),
                                 fontWeight: FontWeight.w700)),
                         SizedBox(
-                          width: ScreenUtil().setWidth(70.66),
+                          width: ScreenUtil().setWidth(72.66),
                         ),
                         SizedBox(
-                          width: 80,
-                          child: TextField(
-                            style: TextStyle(
-                                fontSize: ScreenUtil().setSp(10),
-                                color: Colors.black26,
-                                fontWeight: FontWeight.w700),
-                            controller: petBirthController,
-                            decoration: InputDecoration(
-                                filled: true,
-                                fillColor: Colors.white,
-                                border: OutlineInputBorder(
-                                  borderSide: BorderSide.none,
-                                ),
-                                contentPadding: EdgeInsets.symmetric(
-                                    horizontal: 20.0, vertical: 16.0)),
+                          width: ScreenUtil().setWidth(70),
+                          child: GestureDetector(
+                            onTap:() {
+                               _showDatePick(context);
+                            },
+                            child: Container(
+                              alignment: Alignment.centerLeft,
+                              height: ScreenUtil().setHeight(30),
+                              child: Text(
+                                petBirthController.text,
+                                style: TextStyle(
+                                    fontSize: ScreenUtil().setSp(10),
+                                    color: Colors.black26,
+                                    fontWeight: FontWeight.w700),
+                              ),
+                            ),
                           ),
                         )
                       ],
@@ -325,23 +349,25 @@ class _EditPetState extends State<EditPet> {
                           width: ScreenUtil().setWidth(70.66),
                         ),
                         SizedBox(
-                          width: 80,
-                          child: TextField(
+                          width: ScreenUtil().setWidth(40.66),
+                          child:
+                          GestureDetector(onTap: ()async{
+                            var result = await BarcodeScanner.scan();
+                            petRFIDController.text=result.rawContent;
+                            setState(() {
+
+                            });
+
+                          },child: Container(
+                            alignment: Alignment.centerLeft,
+                            height: ScreenUtil().setHeight(30),child:Text(
+                            petRFIDController.text,
                             style: TextStyle(
                                 fontSize: ScreenUtil().setSp(10),
                                 color: Colors.black26,
                                 fontWeight: FontWeight.w700),
-                            controller: petRFIDController,
-                            decoration: InputDecoration(
-                                filled: true,
-                                fillColor: Colors.white,
-                                border: OutlineInputBorder(
-                                  borderSide: BorderSide.none,
-                                ),
-                                contentPadding: EdgeInsets.symmetric(
-                                    horizontal: 20.0, vertical: 16.0)),
+                          ),)),
                           ),
-                        )
                       ],
                     ),
                     Container(
@@ -367,8 +393,21 @@ class _EditPetState extends State<EditPet> {
                               bottom: ScreenUtil().setHeight(8),
                               right: ScreenUtil().setHeight(0)),
                           child: GestureDetector(
-                            onTap: () {},
-                            child: Image.asset(
+                            onTap: () async{
+                              await _showPicPicker(context,0);
+                            },
+                            child: _imglist[0]!=""?
+                            CachedNetworkImage(
+                              imageUrl: _imglist[0],
+                              width: ScreenUtil().setWidth(35.66),
+                              height: ScreenUtil().setWidth(34.66),
+                              placeholder: (context, url) =>
+                              new CircularProgressIndicator(),
+                              errorWidget: (context, url, error) =>
+                              new Icon(Icons.error),
+                              fit: BoxFit.cover,
+                            )
+                                :Image.asset(
                               "assets/pic_add_pet.png",
                               width: ScreenUtil().setWidth(35.66),
                               height: ScreenUtil().setHeight(34.66),
@@ -378,8 +417,21 @@ class _EditPetState extends State<EditPet> {
                         Container(
                           margin: EdgeInsets.all(ScreenUtil().setHeight(8)),
                           child: GestureDetector(
-                            onTap: () {},
-                            child: Image.asset(
+                            onTap: () async{
+                              await _showPicPicker(context,1);
+
+                            },
+                            child:  _imglist[1]!=""?
+                            CachedNetworkImage(
+                              imageUrl: _imglist[1],
+                              width: ScreenUtil().setWidth(35.66),
+                              height: ScreenUtil().setWidth(34.66),
+                              placeholder: (context, url) =>
+                              new CircularProgressIndicator(),
+                              errorWidget: (context, url, error) =>
+                              new Icon(Icons.error),
+                              fit: BoxFit.cover,
+                            ):Image.asset(
                               "assets/pic_add_pet.png",
                               width: ScreenUtil().setWidth(35.66),
                               height: ScreenUtil().setHeight(34.66),
@@ -392,8 +444,20 @@ class _EditPetState extends State<EditPet> {
                               bottom: ScreenUtil().setHeight(8),
                               right: ScreenUtil().setHeight(0)),
                           child: GestureDetector(
-                            onTap: () {},
-                            child: Image.asset(
+                            onTap: () async{
+                             await _showPicPicker(context,2);
+                            },
+                            child: _imglist[2]!=""?
+                            CachedNetworkImage(
+                              imageUrl: _imglist[2],
+                              width: ScreenUtil().setWidth(35.66),
+                              height: ScreenUtil().setWidth(34.66),
+                              placeholder: (context, url) =>
+                              new CircularProgressIndicator(),
+                              errorWidget: (context, url, error) =>
+                              new Icon(Icons.error),
+                              fit: BoxFit.cover,
+                            ):Image.asset(
                               "assets/pic_add_pet.png",
                               width: ScreenUtil().setWidth(35.66),
                               height: ScreenUtil().setHeight(34.66),
@@ -413,81 +477,81 @@ class _EditPetState extends State<EditPet> {
                 child: ClipRRect(
                     borderRadius: BorderRadius.circular(63),
                     child: CachedNetworkImage(
-                      imageUrl: items.data[widget.petId].imgUrl,
+                      imageUrl: items == null
+                          ? ""
+                          : SpUtils.URL + items.data.imgurls.split(",")[0],
                       width: ScreenUtil().setWidth(63),
                       height: ScreenUtil().setWidth(63),
                       placeholder: (context, url) =>
                           new CircularProgressIndicator(),
                       errorWidget: (context, url, error) =>
                           new Icon(Icons.error),
-                      fit: BoxFit.fill,
+                      fit: BoxFit.cover,
                     )),
               )),
         ])));
   }
 
   initData() async {
-    items = await miaoBean.fromJson({
-      "code": 0,
-      "count": 3,
-      "data": [
-        {
-          "id": 1,
-          "imgUrl":
-              "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1595792098914&di=9f046b001b45d25e2db21fb4e3b80c35&imgtype=0&src=http%3A%2F%2Fn.sinaimg.cn%2Fsinacn20115%2F521%2Fw1056h1065%2F20181211%2Feb2b-hqackaa2812377.jpg",
-          "name": "zaizai",
-          "nickName": "美短猫",
-          "birth": "10.1",
-          "weight": "20",
-          "sexy": 0,
-          "rfid": "11123",
-          "bigImg": [
-            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1595792098914&di=9f046b001b45d25e2db21fb4e3b80c35&imgtype=0&src=http%3A%2F%2Fn.sinaimg.cn%2Fsinacn20115%2F521%2Fw1056h1065%2F20181211%2Feb2b-hqackaa2812377.jpg"
-          ]
-        },
-        {
-          "id": 2,
-          "imgUrl":
-              "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1595792098913&di=cc436ce63717fd04cdf922484ace38b7&imgtype=0&src=http%3A%2F%2Ff.hiphotos.baidu.com%2Fbaike%2Fpic%2Fitem%2F902397dda144ad34bc9ecc61daa20cf431ad8537.jpg",
-          "name": "GiGi",
-          "nickName": "小喵喵",
-          "birth": "10.1",
-          "weight": "20",
-          "sexy": 0,
-          "rfid": "12343",
-          "bigImg": [
-            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1595792098913&di=cc436ce63717fd04cdf922484ace38b7&imgtype=0&src=http%3A%2F%2Ff.hiphotos.baidu.com%2Fbaike%2Fpic%2Fitem%2F902397dda144ad34bc9ecc61daa20cf431ad8537.jpg"
-          ]
-        },
-        {
-          "id": 3,
-          "imgUrl":
-              "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1595792098913&di=fab70c861578940b00b55c0f808a93e7&imgtype=0&src=http%3A%2F%2Fpic6.58cdn.com.cn%2Fzhuanzh%2Fn_v2ed4fc8bbfb3e4f5fa12ae084cb8a7864.jpg%3Fw%3D750%26h%3D0",
-          "name": "Pitgi",
-          "nickName": "鼻涕狗",
-          "birth": "10.1",
-          "weight": "20",
-          "sexy": 1,
-          "rfid": "1233",
-          "bigImg": [
-            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1595792098913&di=fab70c861578940b00b55c0f808a93e7&imgtype=0&src=http%3A%2F%2Fpic6.58cdn.com.cn%2Fzhuanzh%2Fn_v2ed4fc8bbfb3e4f5fa12ae084cb8a7864.jpg%3Fw%3D750%26h%3D0"
-          ]
+    ResultData response = await MiaoApi.petDetail(widget.petId);
+    if (response.code == 200) {
+      items = JsonConvert.fromJsonAsT(response.data);
+      petNameController.text = items.data.name;
+      petTypeController.text = items.data.type;
+      _sexy = items.data.sexy;
+      petWeightController.text = items.data.weight.toString();
+      petBirthController.text = items.data.birthday.substring(0, 10);
+      petRFIDController.text = items.data.rdid.toString();
+      if(items!=null){
+        var arr=items.data.imgurls.split(",");
+        for(int i=0;i<arr.length;i++){
+          _imglist[i]=SpUtils.URL+arr[i];
         }
-      ],
-      "msg": "请求成功"
-    });
-    setState(() {
-      petNameController.text = items.data[widget.petId].name;
-      petNickController.text = items.data[widget.petId].nickName;
-      petSexController.text = items.data[widget.petId].sexy.toString();
-      petWeightController.text = items.data[widget.petId].weight;
-      petBirthController.text = items.data[widget.petId].birth;
-      petRFIDController.text = items.data[widget.petId].rfid;
-    });
-    return items;
+      }
+    } else if (response.code == 1502) {
+      _showError("请先登陆", response.message);
+      Navigator.pushReplacementNamed(context, "home");
+    } else {
+      _showError("编辑", response.message);
+    }
+
+    ResultData types = await MiaoApi.petTypeList();
+    if (types.code == 200) {
+      PetTypeEntity petTypeEntity = JsonConvert.fromJsonAsT(types.data);
+
+      petTypeEntity.data.forEach((element) {
+        petTypes.add({"id": element.typeId, "type": element.typeName});
+      });
+    } else if (types.code == 1502) {
+      _showError("请先登陆", types.message);
+      Navigator.pushReplacementNamed(context, "home");
+    } else {
+      _showError("获取品种", types.message);
+    }
+    print(petTypes);
+    setState(() {});
   }
 
-  _showPicPicker(BuildContext context) {
+  _showError(String title, String msg) {
+    showDialog<Null>(
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return new MessageDialog(
+            title: title,
+            message: msg,
+            negativeText: "返回",
+            onCloseEvent: () {
+              Navigator.pop(context);
+            },
+            onConfirmEvent: () {
+              Navigator.pop(context);
+            },
+          );
+        });
+  }
+
+  _showPicPicker(BuildContext context,int index) {
     showModalBottomSheet(
         context: context,
         builder: (BuildContext context) {
@@ -507,7 +571,7 @@ class _EditPetState extends State<EditPet> {
                                 fontSize: ScreenUtil().setSp(12),
                                 fontWeight: FontWeight.w500)),
                         onTap: () {
-                          _takePhotos();
+                          _takePhotos(index);
                           Navigator.pop(context, true);
                         })),
 
@@ -519,7 +583,7 @@ class _EditPetState extends State<EditPet> {
                               fontSize: ScreenUtil().setSp(12),
                               fontWeight: FontWeight.w500)),
                       onTap: () {
-                        _getPhotos();
+                        _getPhotos(index);
                         Navigator.pop(context, true);
                       }),
                 ),
@@ -529,20 +593,20 @@ class _EditPetState extends State<EditPet> {
         });
   }
 
-  _takePhotos() async {
+  _takePhotos(int index) async {
     var image = await ImagePicker.pickImage(source: ImageSource.camera);
-    _uploadImage(image);
+    _uploadImage(image,index);
   }
 
   //获取相册照片
-  _getPhotos() async {
+  _getPhotos(int index) async {
     var image = await ImagePicker.pickImage(source: ImageSource.gallery);
-    _uploadImage(image);
+    _uploadImage(image,index);
   }
 
-  Future<Map<String, dynamic>> _uploadImage(File _imageDir) async {
+  Future<Map<String, dynamic>> _uploadImage(File _imageDir,int index) async {
     setState(() {
-      _avatar =
+      _imglist[index] =
           "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2467429933,3710707406&fm=26&gp=0.jpg";
     });
     var fileDir = _imageDir.parent.path;
@@ -566,41 +630,61 @@ class _EditPetState extends State<EditPet> {
       ResultData response = await MiaoApi.upload(formData);
       if (response.code == 200) {
         _path = '/image/' + response.data['data']['finalName'];
+        _imglist[index] =
+            SpUtils.URL + '/image/' + response.data['data']['finalName'];
         setState(() {
-          _avatar =
-              SpUtils.URL + '/image/' + response.data['data']['finalName'];
+
         });
       }
     });
   }
 
   update() async {
-    var data = await SpUtils.getObjact(Config.USER);
-    LoginEntity user = JsonConvert.fromJsonAsT(data);
-    print("path----------" + _path);
-    if (_path != "") {
-      user.data.user.avatar = _path;
+//    var data = await SpUtils.getObjact(Config.USER);
+//    LoginEntity user = JsonConvert.fromJsonAsT(data);
+    PetData petData=new PetData();
+    var arr=[];
+    _imglist.forEach((element) {
+      if(element!=""){
+        var index=element.indexOf("/image");
+          arr.add(element.substring(index));
+      }
+    });
+    petData.imgurls=arr.join(",");
+    petData.rdid=petRFIDController.text;
+    petData.birthday=petBirthController.text;
+    petData.weight=int.parse(petWeightController.text);
+    petData.name=petNameController.text;
+    petData.petId=widget.petId;
+    petData.sexy=_sexy;
+    petData.type=petTypeController.text;
+    ResultData response = await MiaoApi.petUpdate(petData);
+    if(response.code==200){
+      Navigator.of(context)
+          .pushReplacement(new MaterialPageRoute(builder: (_) {
+        return new PetList();
+      }));
+    }else if(response.code==1502){
+      Navigator.pushReplacementNamed(context, "home");
+    }else{
+      _showError("更新宠物资料失败", response.message);
     }
-    user.data.user.sex = _sexy;
-    SpUtils.set(Config.USER, user);
+
+  }
+  _showDatePick(BuildContext context) {
+    //showDatePicker(context: context, initialDate: DateTime.now(), firstDate: DateTime.parse("2000-01-01"), lastDate: DateTime.parse("2050-01-01"));
+    DatePicker.showDatePicker(
+      context,
+      initialDateTime: DateTime.now(),
+      dateFormat: "yyyy.MM.dd",
+      onCancel: () {},
+      onConfirm: (data, i) {
+        setState(() {
+          petBirthController.text = data.toString().substring(0, 10);
+        });
+        //print(data.toString().substring(0,10));
+      },
+    );
   }
 
-  showError(String msg) {
-    showDialog<Null>(
-        context: context,
-        barrierDismissible: false,
-        builder: (BuildContext context) {
-          return new MessageDialog(
-            title: "更新用户信息错误",
-            message: msg,
-            negativeText: "返回",
-            onCloseEvent: () {
-              Navigator.pop(context, true);
-            },
-            onConfirmEvent: () async {
-              Navigator.pop(context, true);
-            },
-          );
-        });
-  }
 }

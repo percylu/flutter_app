@@ -1,6 +1,7 @@
 
 import 'package:dio/dio.dart';
 import 'package:flutter_app/entity/login_entity.dart';
+import 'package:flutter_app/entity/pet_entity.dart';
 import 'package:flutter_app/generated/json/base/json_convert_content.dart';
 import 'package:flutter_app/utility/Config.dart';
 import 'package:flutter_app/utility/ResultData.dart';
@@ -13,8 +14,7 @@ class MiaoApi{
   // 手机号码登录
   static login(String username,String password) async{
     ResultData response = await HttpRequest.postparam(Address.login, {"username" : username,"password":password});
-    print(response.data);
-    if(response.code==201){
+    if(response.code==200){
       LoginEntity user=JsonConvert.fromJsonAsT(response.data);
       print("user:-------------");
       print(user.data.user.name);
@@ -45,10 +45,18 @@ class MiaoApi{
   // 获取验证码
   static getVerifyCode(String phone) async {
     ResultData response = await HttpRequest.postparam(
-        Address.verifyCode, {"username": phone});
+        Address.getVerifyCode, {"username": phone});
 
 //    var response = await HttpRequest.get(Address.getVerifyCode, {"phone":phone});
+    return response;
+  }
 
+  // 获取验证码
+  static getCode(String phone) async {
+    ResultData response = await HttpRequest.postparam(
+        Address.getCode, {"username": phone});
+
+//    var response = await HttpRequest.get(Address.getVerifyCode, {"phone":phone});
     return response;
   }
 
@@ -58,7 +66,25 @@ class MiaoApi{
         Address.codeVerify, {"username": phone,"code":code});
     return response;
   }
+  // 获取验证码 for change mobile
+  static codeVerifyChange(String phone,String code) async {
+    ResultData response = await HttpRequest.postparam(
+        Address.codeVerifyChange, {"username": phone,"code":code});
+    return response;
+  }
 
+  //重置密码
+  static resetPassword(String phone,String code,String password) async{
+    ResultData response = await HttpRequest.postparam(
+        Address.resetPassword, {"username": phone,"code":code,"password":password});
+    return response;
+  }
+ //修改手机号
+  static changeAccount(String userId,String phone,String code,) async{
+    ResultData response = await HttpRequest.postparam(
+        Address.changeAccount, {"userId":userId,"username": phone,"code":code});
+    return response;
+  }
   // 注册用户
   static add(String phone,String code) async {
     ResultData response = await HttpRequest.post(
@@ -110,4 +136,35 @@ class MiaoApi{
     return response;
   }
 
+  static getPetList(String userId) async{
+    ResultData response =await HttpRequest.post(Address.petList, {"userId":userId});
+    return response;
+  }
+
+  static petSetTop(String petId) async{
+    ResultData response =await HttpRequest.post(Address.petSetTop, {"petId":petId});
+    return response;
+  }
+  static petDelete(String petId) async{
+    ResultData response =await HttpRequest.post(Address.petDelete, {"petId":petId});
+    return response;
+  }
+  static petDetail(String petId) async{
+    ResultData response =await HttpRequest.post(Address.petDetail, {"petId":petId});
+    return response;
+  }
+  static petTypeList() async{
+    ResultData response =await HttpRequest.post(Address.petType, {});
+    return response;
+  }
+
+  static petUpdate(PetData pet) async{
+    ResultData response =await HttpRequest.post(Address.petUpdate, pet.toJson());
+    return response;
+  }
+
+  static petAdd(PetData pet) async{
+    ResultData response =await HttpRequest.post(Address.petAdd, pet.toJson());
+    return response;
+  }
 }

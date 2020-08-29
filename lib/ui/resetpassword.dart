@@ -6,6 +6,9 @@ import 'dart:async';
  */
 
 import 'package:flutter/material.dart';
+import 'package:flutter_app/api/MiaoApi.dart';
+import 'package:flutter_app/utility/ResultData.dart';
+import 'package:flutter_app/widget/messagedialog.dart';
 
 
 class ResetPassword extends StatefulWidget {
@@ -34,7 +37,7 @@ class _ResetPasswordState extends State<ResetPassword> {
         elevation: 0.8,
         backgroundColor: Colors.white,
         title: Text(
-          "注册",
+          "忘记密码",
           style: TextStyle(color: Colors.black, fontWeight: FontWeight.w700),
         ),
         leading: IconButton(
@@ -84,7 +87,6 @@ class _ResetPasswordState extends State<ResetPassword> {
                     Expanded(
                       child: TextField(
                         controller: userController,
-                        readOnly:true,
                         decoration: InputDecoration(
                             hintText: "输入手机号码",
                             hintStyle: TextStyle(
@@ -155,12 +157,24 @@ class _ResetPasswordState extends State<ResetPassword> {
                       color: _canSend?Color(0xFFF28282):Colors.grey,
                       size: 36,
                     ),
-                    onPressed: (_seconds == 0)?(){
-                      _startTimer();
-                      setState(() {
-                        _canSend=false;
-                        _ishide=false;
-                      });
+                    onPressed: (_seconds == 0)?() async{
+                      if(userController.text==""){
+                        _showError("输入错误","请输入手机号");
+                        return;
+
+                      }
+                      ResultData response=await MiaoApi.getVerifyCode(userController.text);
+                      if(response != null && response.success){
+                        _startTimer();
+                        setState(() {
+                          _canSend=false;
+                          _ishide=false;
+                        });
+                      }else{
+                        _showError("获取验证码错误",response.message);
+                        return;
+                      }
+
                     }:null,
                   )
                 ],
@@ -213,9 +227,16 @@ class _ResetPasswordState extends State<ResetPassword> {
                 child: RaisedButton(
                   padding: EdgeInsets.symmetric(vertical: 16.0),
                   color: new Color(0xFFF28282),
-                  onPressed: () {
-                    Navigator.pushNamed(context, 'setPassword');
+                  onPressed: () async{
                     _cancleTimer();
+                    ResultData response = await MiaoApi.resetPassword(userController.text,
+                        verifycodeController.text, passwordController.text);
+                    if(response.code==200) {
+                      Navigator.pushNamed(context, 'mobileLogin');
+                    }else{
+                      _showError("重置密码错误", response.message);
+                      return;
+                    }
                   },
 
                   elevation: 0,
@@ -262,5 +283,24 @@ class _ResetPasswordState extends State<ResetPassword> {
     super.dispose();
     /// 页面销毁的时候,清除timer
     _cancleTimer();
+  }
+
+  _showError(title,msg) {
+    showDialog<Null>(
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return new MessageDialog(
+            title: title,
+            message: msg,
+            negativeText: "重试",
+            onCloseEvent: () {
+              Navigator.pop(context);
+            },
+            onConfirmEvent: () {
+              Navigator.pop(context);
+            },
+          );
+        });
   }
 }

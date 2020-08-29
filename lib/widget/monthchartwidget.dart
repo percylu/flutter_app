@@ -1,7 +1,7 @@
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_cupertino_date_picker/flutter_cupertino_date_picker.dart';
+import 'package:flutter_cupertino_date_picker_fork/flutter_cupertino_date_picker_fork.dart';
 import 'package:flutter_screenutil/screenutil.dart';
 import 'package:luhenchang_plugin/time/data_time_utils/data_time.dart';
 
@@ -30,7 +30,7 @@ class _MonthChartState extends State<MonthChart> {
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(width: 750, height: 1334, allowFontScaling: true);
-    return Column(
+    return ListView(
       children: [
         Padding(
             padding: EdgeInsets.only(
@@ -55,7 +55,7 @@ class _MonthChartState extends State<MonthChart> {
             )),
         Container(
             width: ScreenUtil().setWidth(603.99),
-            height: ScreenUtil().setWidth(545.01),
+            height: ScreenUtil().setWidth(515.01),
             padding: EdgeInsets.all(10),
             decoration: BoxDecoration(
                 color: Color(0xFFEEEEEE),
@@ -108,6 +108,8 @@ class _MonthChartState extends State<MonthChart> {
   }
 
   _showDatePick(BuildContext context) {
+    //showDatePicker(context: context, initialDate: DateTime.now(), firstDate: DateTime.parse("2000-01-01"), lastDate: DateTime.parse("2050-01-01"));
+
     DatePicker.showDatePicker(
       context,
       initialDateTime: DateTime.now(),

@@ -15,7 +15,8 @@ import 'package:flutter_app/widget/messagedialog.dart';
 import 'package:flutter_app/widget/picandpicbutton.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
-class MiaoHomeTabView extends StatefulWidget{
+
+class MiaoHomeTabView extends StatefulWidget {
   MiaoHomeTabView({Key key}) : super(key: key);
 
   @override
@@ -23,103 +24,87 @@ class MiaoHomeTabView extends StatefulWidget{
     return _MiaoHomeTabView();
   }
 }
+
 class _MiaoHomeTabView extends State<MiaoHomeTabView> {
-  var isRefresh=false;
-  List swiperDataList=[];
+  var isRefresh = false;
+  List swiperDataList = [];
   var _futureBuilderFuture;
-  var _imgurl="";
-  var _desc="加载中...";
-  var _content="加载中...";
+  var _imgurl = "";
+  var _desc = "加载中...";
+  var _content = "加载中...";
+
   @override
   void initState() {
     print("--initState-");
     super.initState();
-    _futureBuilderFuture=initData(context);
-
+    //_futureBuilderFuture = initData(context);
+    var context=this.context;
+    initData(context);
   }
-  initData(BuildContext context) {
-     MiaoApi.getArticle().then((res){
-       if(res.code==200){
-         setState(() {
-           _imgurl = SpUtils.URL+res.data['data']['articleCover'];
-           _desc = res.data['data']['articleTitle'];
-           _content = res.data['data']['articleContent'];
-         });
-       }
-     });
 
-    if(!this.isRefresh) {
-      MiaoApi.banner().then((res) {
+  initData(BuildContext context) async{
+    ResultData res= await MiaoApi.getArticle();
+      if (res.code == 200) {
+        _imgurl = SpUtils.URL + res.data['data']['articleCover'];
+          _desc = res.data['data']['articleTitle'];
+          _content = res.data['data']['articleContent'];
+      }
+
+  //  if (!this.isRefresh) {
+      ResultData resa=await MiaoApi.banner();//.then((res) {
         print("--initData-");
 
-        ResultData response = res;
+        ResultData response = resa;
         if (response.code == 200) {
           List list = [];
           for (var banner in response.data['data']) {
             list.add(SpUtils.URL + banner['bannerImg']);
           }
 //          setState(() {
-            this.isRefresh=true;
-            this.swiperDataList = list;
-            print("init:");
-            print(this.swiperDataList);
+          this.isRefresh = true;
+          this.swiperDataList = list;
 //          });
         } else {
-          print(response.code);
-          if(response.code==1502){
+          if (response.code == 1502) {
             Navigator.pushReplacementNamed(context, "home");
           }
           _showError(context, response.message);
         }
-      });
-    }
+     // });
+  //  }
+    setState(() {
+
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    ScreenUtil.init(
-        width: 750,
-        height: 1335,
-        allowFontScaling: true);
+    ScreenUtil.init(width: 750, height: 1335, allowFontScaling: true);
 
     return MediaQuery.removePadding(
       context: context,
       removeTop: true,
       child: ListView(
-        children: <Widget>[
-      FutureBuilder(
-      future: _futureBuilderFuture,
-      builder:
-          (BuildContext context, AsyncSnapshot<Response> snapshot) {
-        if(this.swiperDataList.length>0){
-          return _banner(context);
-        }else{
-          return Container(
-            alignment: Alignment.center,
-              margin: EdgeInsets.all(0),
-              width: MediaQuery
-                  .of(context)
-                  .size
-                  .width,
-              height: ScreenUtil().setHeight(549.99),
-          child: Text("加载中..."),
-          );
-         return Text("加载中...");
-        }
-        /*表示数据成功返回*/
-      }
-      ),
-       /*   _banner(context),*/
-          _buildCategoryRow(context),
-          _buildCenterPic(context)
-        ],
-      ),
+          children: <Widget>[
+      this.swiperDataList.length>0?_banner(context):
+      Container(
+      alignment: Alignment.center,
+      margin: EdgeInsets.all(0),
+      width: MediaQuery
+          .of(context)
+          .size
+          .width,
+      height: ScreenUtil().setHeight(549.99),
+      child: Text("加载中..."),
+    ),
+
+    _buildCategoryRow(context)
+    ,
+    _buildCenterPic(context)
+    ],
+    ),
     );
-
   }
-
-
-
 
   _showError(BuildContext context, String msg) {
     showDialog<Null>(
@@ -153,16 +138,15 @@ class _MiaoHomeTabView extends State<MiaoHomeTabView> {
             }),
           ),
           Container(
-              width: 1,
-              height: ScreenUtil().setHeight(120),
-              color: Colors.grey.shade300,
+            width: 1,
+            height: ScreenUtil().setHeight(120),
+            color: Colors.grey.shade300,
           ),
           Expanded(
-            child: picAndPicButton("assets/btn_mxx_second@3x.png",
-                "assets/words_ysj@3x.png", () {
-                  Navigator.pushNamed(context, "comming");
-                }),
-
+            child: picAndPicButton(
+                "assets/btn_mxx_second@3x.png", "assets/words_ysj@3x.png", () {
+              Navigator.pushNamed(context, "comming");
+            }),
           ),
           Container(
             width: 1,
@@ -170,20 +154,17 @@ class _MiaoHomeTabView extends State<MiaoHomeTabView> {
             color: Colors.grey.shade300,
           ),
           Expanded(
-            child: picAndPicButton("assets/btn_mxx_third@3x.png",
-                "assets/words_wsq@3x.png", () {
-                  Navigator.pushNamed(context, "comming");
-
-                }),
+            child: picAndPicButton(
+                "assets/btn_mxx_third@3x.png", "assets/words_wsq@3x.png", () {
+              Navigator.pushNamed(context, "comming");
+            }),
           ),
         ],
       ),
     );
   }
 
-
   Widget _banner(BuildContext context) {
-
     return Container(
         margin: EdgeInsets.all(0),
         width: MediaQuery
@@ -197,13 +178,15 @@ class _MiaoHomeTabView extends State<MiaoHomeTabView> {
               outer: false,
               autoplayDelay: 2000,
               itemBuilder: (c, i) {
-                return swiperDataList.length>0?
-                CachedNetworkImage(
-                  imageUrl: "${swiperDataList[i]}",
-                  placeholder: (context, url) =>
-                  new CircularProgressIndicator(),
-                  errorWidget: (context, url, error) => new Icon(Icons.error),
-                  fit: BoxFit.fill,):Text("加载中...");
+                return //swiperDataList.length>0?
+                  CachedNetworkImage(
+                    imageUrl: "${swiperDataList[i]}",
+                    placeholder: (context, url) =>
+                    new CircularProgressIndicator(),
+                    errorWidget: (context, url, error) => new Icon(Icons.error),
+                    fit: BoxFit.cover,
+                  );
+                //:Text("加载中...");
               },
               pagination: new SwiperPagination(
                   alignment: Alignment.bottomCenter,
@@ -233,7 +216,6 @@ class _MiaoHomeTabView extends State<MiaoHomeTabView> {
                 )),
           ],
         ));
-
   }
 
   Widget _buildCenterPic(BuildContext context) {
@@ -243,24 +225,27 @@ class _MiaoHomeTabView extends State<MiaoHomeTabView> {
         borderRadius: BorderRadius.circular(10),
         child: Stack(
           children: [
-            GestureDetector(onTap: () {
-              print("news");
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (content){
-                    return Article(title:this._desc,html:this._content);
+            GestureDetector(
+                onTap: () {
+                  print("news");
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (content) {
+                    return Article(title: this._desc, html: this._content);
                   }));
-            }, child: FadeInImage.assetNetwork(
-              width: MediaQuery
-                  .of(context)
-                  .size
-                  .width,
-              height: ScreenUtil().setHeight(241.98),
-              placeholder: "assets/img_cat.png",
-              image:
-              "${_imgurl}",
-              fit: BoxFit.fill,
-            )),
-
+                },
+                child:
+                _imgurl!=""?
+                FadeInImage.assetNetwork(
+                  width: MediaQuery
+                      .of(context)
+                      .size
+                      .width,
+                  height: ScreenUtil().setHeight(241.98),
+                  placeholder: "assets/img_cat.png",
+                  image: "${_imgurl}",
+                  fit: BoxFit.cover,
+                ):Text("加载中...")
+            ),
             Positioned(
               bottom: 0,
               left: 0,
@@ -272,14 +257,10 @@ class _MiaoHomeTabView extends State<MiaoHomeTabView> {
                     .width,
                 height: 25,
                 padding: EdgeInsets.only(left: 10, top: 2),
-                decoration: BoxDecoration(
-                    color: Color(0x8c000000)
-                ),
+                decoration: BoxDecoration(color: Color(0x8c000000)),
                 child: Text(
                   "${_desc}",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 15),
+                  style: TextStyle(color: Colors.white, fontSize: 15),
                   textAlign: TextAlign.left,
                 ),
               ),
@@ -289,6 +270,4 @@ class _MiaoHomeTabView extends State<MiaoHomeTabView> {
       ),
     );
   }
-
-
 }

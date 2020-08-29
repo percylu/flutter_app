@@ -6,9 +6,14 @@ import 'package:flutter/cupertino.dart';
  */
 
 import 'package:flutter/material.dart';
-import 'package:flutter_app/model/miaoBean.dart';
+import 'package:flutter_app/api/MiaoApi.dart';
+import 'package:flutter_app/entity/login_entity.dart';
+import 'package:flutter_app/entity/pet_entity.dart';
+import 'package:flutter_app/generated/json/base/json_convert_content.dart';
 import 'package:flutter_app/utility/Config.dart';
+import 'package:flutter_app/utility/ResultData.dart';
 import 'package:flutter_app/utility/SpUtils.dart';
+import 'package:flutter_app/widget/messagedialog.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 
@@ -19,10 +24,11 @@ class MiaoMain extends StatefulWidget {
   _MiaoMainTabView createState() => _MiaoMainTabView();
 }
 
-class _MiaoMainTabView extends State<MiaoMain> {
-  miaoBean items = null;
+class _MiaoMainTabView extends State<MiaoMain>{
+  PetEntity items = null;
   int _current = 0;
   var listFlag;
+
   @override
   void initState() {
     super.initState();
@@ -46,25 +52,47 @@ class _MiaoMainTabView extends State<MiaoMain> {
   }
 
   Widget _img() {
-    return Container(
-            alignment: Alignment.center,
-            width: ScreenUtil().setWidth(200.33),
-            height: ScreenUtil().setHeight(133.67),
-            margin: EdgeInsets.only(top: ScreenUtil().setHeight(26)),
-            child:
-            new ClipRRect(
-
+    var arr = [];
+    if(items!=null) {
+      if (items.data.length != 0) {
+        arr = items.data[_current].imgurls.split(",");
+      }
+    }
+    return
+      Container(
+        alignment: Alignment.center,
+        width: ScreenUtil().setWidth(200.33),
+        height: ScreenUtil().setHeight(143.67),
+        margin: EdgeInsets.only(
+            top: ScreenUtil().setHeight(26),
+            left: ScreenUtil().setWidth(15),
+            right: ScreenUtil().setWidth(15)),
+        child: arr.length == 0
+            ? Text("还没有设置宠物图片")
+            : new ClipRRect(
                 borderRadius: BorderRadius.circular(20),
+                child: Swiper(
+                  key:UniqueKey(),
+                  outer: false,
+                  viewportFraction: 1,
+                  itemBuilder: (c, i) {
+                    return CachedNetworkImage(
+                      width: ScreenUtil().setWidth(114.67),
+                      height: ScreenUtil().setWidth(114.67),
+                      imageUrl: "${SpUtils.URL + arr[i]}",
+                      placeholder: (context, url) =>
+                          new CircularProgressIndicator(),
+                      errorWidget: (context, url, error) =>
+                          new Icon(Icons.error),
+                      fit: BoxFit.cover,
+                    );
 
-                child:
-            CachedNetworkImage(
-              imageUrl: items.data[_current].imgUrl,
-              width: ScreenUtil().setWidth(200.33),
-              height: ScreenUtil().setHeight(133.67),
-              placeholder: (context, url) => new CircularProgressIndicator(),
-              errorWidget: (context, url, error) => new Icon(Icons.error),
-              fit: BoxFit.fill,
-            )));
+                    return null;
+                  },
+                  itemCount: arr.length,
+                  autoplay: false,
+                ),
+              ));
   }
 
   Widget _name() {
@@ -76,34 +104,58 @@ class _MiaoMainTabView extends State<MiaoMain> {
           mainAxisAlignment: MainAxisAlignment.end,
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            Text(items.data[_current].name,style: TextStyle(fontSize: ScreenUtil().setSp(19.33),fontWeight: FontWeight.w600),),
-            Text(items.data[_current].nickName,style: TextStyle(fontSize: ScreenUtil().setSp(12),color: Color(0xFF999999)),)
+            Text(
+              items==null?"宠物名字":items.data[_current].name,
+              style: TextStyle(
+                  fontSize: ScreenUtil().setSp(19.33),
+                  fontWeight: FontWeight.w600),
+            ),
+            Text(
+              items==null?"品种":items.data[_current].type,
+              style: TextStyle(
+                  fontSize: ScreenUtil().setSp(12), color: Color(0xFF999999)),
+            )
           ],
         ),
-        SizedBox(width: ScreenUtil().setWidth(7.67),),
+        SizedBox(
+          width: ScreenUtil().setWidth(7.67),
+        ),
         Container(
           height: ScreenUtil().setHeight(30),
           width: 1,
           color: Color(0xff999999),
         ),
-        SizedBox(width: ScreenUtil().setWidth(7.67),),
-        GestureDetector(child:
-          Image.asset("assets/ic_list.png",width: ScreenUtil().setWidth(13),height: ScreenUtil().setHeight(13),),
-          onTap: (){
-          Navigator.pushNamed(context, "petlist");
-        },),
-        listFlag==null?
-        Container(
-          alignment: Alignment.center,
-          margin: EdgeInsets.only(left:3),
-          child: Text("切换为列表显示",style: TextStyle(fontSize: ScreenUtil().setSp(8)),),
-          height: ScreenUtil().setHeight(20),
-          width: ScreenUtil().setWidth(70),
-          decoration: BoxDecoration(
-            image: DecorationImage(image: Image.asset("assets/bg_list_tip.png",).image,)
-
+        SizedBox(
+          width: ScreenUtil().setWidth(7.67),
+        ),
+        GestureDetector(
+          child: Image.asset(
+            "assets/ic_list.png",
+            width: ScreenUtil().setWidth(13),
+            height: ScreenUtil().setHeight(13),
           ),
-        ):Text("")
+          onTap: () {
+            Navigator.pushNamed(context, "petlist");
+          },
+        ),
+        listFlag == null
+            ? Container(
+                alignment: Alignment.center,
+                margin: EdgeInsets.only(left: 3),
+                child: Text(
+                  "切换为列表显示",
+                  style: TextStyle(fontSize: ScreenUtil().setSp(8)),
+                ),
+                height: ScreenUtil().setHeight(20),
+                width: ScreenUtil().setWidth(70),
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                  image: Image.asset(
+                    "assets/bg_list_tip.png",
+                  ).image,
+                )),
+              )
+            : Text("")
       ],
     );
   }
@@ -115,9 +167,15 @@ class _MiaoMainTabView extends State<MiaoMain> {
           bottom: ScreenUtil().setHeight(21)),
       width: ScreenUtil().setWidth(250),
       height: ScreenUtil().setHeight(114.67),
-      child: Swiper(
+      child: items==null?
+           Container(
+             alignment: Alignment.center,
+             child:Text("还没有宠物...",style: TextStyle(fontSize: ScreenUtil().setSp(12),fontWeight: FontWeight.w500),)
+           )
+
+          :Swiper(
         outer: false,
-        onTap: (i){
+        onTap: (i) {
 //          Navigator.pushNamed(context, "miaodetail");
           Navigator.of(context).push(new MaterialPageRoute(builder: (_) {
             return new MiaoDetail(petId: i);
@@ -131,21 +189,22 @@ class _MiaoMainTabView extends State<MiaoMain> {
           });
         },
         itemBuilder: (c, i) {
-          if (items.data != null) {
+          if (items != null) {
+            var imgs= items.data[i].imgurls.split(",");
             return Stack(
               children: [
                 ClipOval(
                     child: CachedNetworkImage(
                   width: ScreenUtil().setWidth(114.67),
                   height: ScreenUtil().setWidth(114.67),
-                  imageUrl: "${items.data[i].imgUrl}",
+                  imageUrl: imgs.length>0?"${SpUtils.URL+imgs[0]}":null,
                   placeholder: (context, url) =>
                       new CircularProgressIndicator(),
                   errorWidget: (context, url, error) => new Icon(Icons.error),
-                  fit: BoxFit.fill,
+                  fit: BoxFit.cover,
                 )),
                 Positioned(
-                  bottom: ScreenUtil().setHeight(10),
+                  bottom: ScreenUtil().setHeight(15),
                   right: ScreenUtil().setWidth(25),
                   child: Image.asset(
                     items.data[i].sexy == 0
@@ -160,68 +219,52 @@ class _MiaoMainTabView extends State<MiaoMain> {
           }
           return null;
         },
-        itemCount: items.data == null ? 0 : items.data.length,
+        itemCount: items == null ? 0 : items.data.length,
         autoplay: false,
       ),
     );
   }
 
-  initData() async{
+  initData() async {
     items:
     //List<Map<String, String>>.generate(3, (index) => "Item$index")
-    items = miaoBean.fromJson({
-      "code": 0,
-      "count": 3,
-      "data": [
-        {
-          "id": 1,
-          "imgUrl":
-          "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1595792098914&di=9f046b001b45d25e2db21fb4e3b80c35&imgtype=0&src=http%3A%2F%2Fn.sinaimg.cn%2Fsinacn20115%2F521%2Fw1056h1065%2F20181211%2Feb2b-hqackaa2812377.jpg",
-          "name": "zaizai",
-          "nickName": "美短猫",
-          "birth": "10.1",
-          "weight": "20",
-          "sexy": 0,
-          "bigImg": [
-            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1595792098914&di=9f046b001b45d25e2db21fb4e3b80c35&imgtype=0&src=http%3A%2F%2Fn.sinaimg.cn%2Fsinacn20115%2F521%2Fw1056h1065%2F20181211%2Feb2b-hqackaa2812377.jpg"
-          ]
-        },
-        {
-          "id": 2,
-          "imgUrl":
-          "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1595792098913&di=cc436ce63717fd04cdf922484ace38b7&imgtype=0&src=http%3A%2F%2Ff.hiphotos.baidu.com%2Fbaike%2Fpic%2Fitem%2F902397dda144ad34bc9ecc61daa20cf431ad8537.jpg",
-          "name": "GiGi",
-          "nickName": "小喵喵",
-          "birth": "10.1",
-          "weight": "20",
-          "sexy": 0,
-          "bigImg": [
-            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1595792098913&di=cc436ce63717fd04cdf922484ace38b7&imgtype=0&src=http%3A%2F%2Ff.hiphotos.baidu.com%2Fbaike%2Fpic%2Fitem%2F902397dda144ad34bc9ecc61daa20cf431ad8537.jpg"
-          ]
-        },
-        {
-          "id": 3,
-          "imgUrl":
-          "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1595792098913&di=fab70c861578940b00b55c0f808a93e7&imgtype=0&src=http%3A%2F%2Fpic6.58cdn.com.cn%2Fzhuanzh%2Fn_v2ed4fc8bbfb3e4f5fa12ae084cb8a7864.jpg%3Fw%3D750%26h%3D0",
-          "name": "Pitgi",
-          "nickName": "鼻涕狗",
-          "birth": "10.1",
-          "weight": "20",
-          "sexy": 1,
-          "bigImg": [
-            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1595792098913&di=fab70c861578940b00b55c0f808a93e7&imgtype=0&src=http%3A%2F%2Fpic6.58cdn.com.cn%2Fzhuanzh%2Fn_v2ed4fc8bbfb3e4f5fa12ae084cb8a7864.jpg%3Fw%3D750%26h%3D0"
-          ]
-        }
-      ],
-      "msg": "请求成功"
-    });
-
+    var data = await SpUtils.getObjact(Config.USER);
+    LoginEntity user = JsonConvert.fromJsonAsT(data);
+    ResultData response = await MiaoApi.getPetList(user.data.user.userId);
+    if (response.code != 200) {
+      _showError("获取数据错误", response.message);
+      return;
+    }
     listFlag = await SpUtils.get(Config.LISTFLAG);
-
-    print(listFlag);
-    if(listFlag==null){
+    if (listFlag == null) {
       await SpUtils.save(Config.LISTFLAG, "1");
     }
-    setState(() {});
+    items = JsonConvert.fromJsonAsT(response.data);
+    if(items.data.isEmpty){
+      items=null;
+    }
+    setState(() {
+   });
+
   }
+
+  _showError(String title, String msg) {
+    showDialog<Null>(
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return new MessageDialog(
+            title: title,
+            message: msg,
+            negativeText: "返回",
+            onCloseEvent: () {
+              Navigator.pop(context);
+            },
+            onConfirmEvent: () {
+              Navigator.pop(context);
+            },
+          );
+        });
+  }
+
 }

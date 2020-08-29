@@ -10,6 +10,10 @@ class HanfengSmartlink {
     return version;
   }
 
+  static Future<String> get stopLink async {
+    return await _channel.invokeMethod('stopLink');
+  }
+
   static Future<String> startLink(String wifi,String pwd) async {
     return await _channel.invokeMethod<String>(
       'startLink',{"wifi":wifi,"password":pwd});

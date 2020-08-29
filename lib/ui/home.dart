@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 /**
  * Author: Damodar Lohani
@@ -6,6 +8,7 @@ import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_app/ui/messagelist.dart';
 
 import 'package:flutter_app/ui/tab/mhometab.dart';
 import 'package:flutter_app/ui/tab/mlogintab.dart';
@@ -15,7 +18,10 @@ import 'package:flutter_app/utility/Config.dart';
 import 'package:flutter_app/utility/SpUtils.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+import 'package:mobpush_plugin/mobpush_custom_message.dart';
+import 'package:mobpush_plugin/mobpush_notify_message.dart';
+import 'package:mobpush_plugin/mobpush_plugin.dart';
+import 'dart:io';
 class HomePage extends StatefulWidget {
   HomePage({this.index});
   final int index;
@@ -23,7 +29,7 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage>{
   static int _pageIndex = 0;
   List<Widget> _children = [];
   List<Widget> _appBars = [];
@@ -37,6 +43,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
+    initMob();
     _pageIndex=widget.index;
     initData();
     _statusBar();
@@ -48,7 +55,9 @@ class _HomePageState extends State<HomePage> {
     _children.add(MiaoMine());
     _appBars.add(null);
     _appBars.add(null);
-    _appBars.add(_buildAppBarOne("个人中心"));
+   // _appBars.add(null);
+
+    _appBars.add(null);
   }
 
   ///状态栏样式-沉浸式状态栏
@@ -75,7 +84,10 @@ class _HomePageState extends State<HomePage> {
       child: Scaffold(
         backgroundColor: Color(0xFFFAFAFA),
         appBar: islogin ? _appBars[_pageIndex] : _buildAppBarLogin(),
-        body: islogin ? _children[_pageIndex] : MiaoLogin(),
+        body:islogin?
+        IndexedStack(index:_pageIndex,
+        children: _children,
+        ):MiaoLogin(),
         //appBar: _appBars[_pageIndex],
         //body: _children[_pageIndex],
         floatingActionButton: FloatingActionButton(
@@ -116,12 +128,17 @@ class _HomePageState extends State<HomePage> {
   Widget _buildAppBarOne(String title) {
     return AppBar(
       elevation: 0.5,
-      automaticallyImplyLeading: false,
+      automaticallyImplyLeading: true,
       centerTitle: true,
       title: Text(title, style: TextStyle(color: Colors.black)),
     );
   }
-
+  Widget _buildAppBarTwo() {
+    return AppBar(
+      elevation: 0,
+      toolbarOpacity:1,
+    );
+  }
 
   BottomNavigationBar _buildBottomNavigationBar() {
     return BottomNavigationBar(
@@ -162,7 +179,6 @@ class _HomePageState extends State<HomePage> {
     print("------------login-------------");
     var res= await SpUtils.get(Config.TOKEN_KEY);
 
-      print("+++login+++");
       print(res);
       setState(() {
         if(res==null){
@@ -174,4 +190,76 @@ class _HomePageState extends State<HomePage> {
 
 
   }
+
+  void initMob() {
+    MobpushPlugin.updatePrivacyPermissionStatus(true);
+    MobpushPlugin.setClickNotificationToLaunchMainActivity(true);
+    MobpushPlugin.setAppForegroundHiddenNotification(true);
+    if (Platform.isIOS) {
+      MobpushPlugin.setCustomNotification();
+      MobpushPlugin.setAPNsForProduction(false);
+    }else{
+      MobpushPlugin.setClickNotificationToLaunchMainActivity(false);
+    }
+
+    MobpushPlugin.addPushReceiver(_onEvent, _onError);
+
+    // WidgetsBinding.instance.addPostFrameCallback((time) {
+    //   // print("----addPostFrameCallback--route=${widget?.route}");
+    //   // switch (widget?.route ?? "") {
+    //   //   case "msg":
+    //     //link://com.mob.mobpush.demo2
+    //       Navigator.push(
+    //           context, MaterialPageRoute(builder: (_) => MessageList()));
+    //     //   break;
+    //     // default:
+    //   // }
+    // });
+  }
+
+  _onEvent(Object event) {
+    print(">>>>>>>>>>>onEvent:${event.toString()}");
+    setState(() {
+      Map<String, dynamic> eventMap = json.decode(event);
+      Map<String, dynamic> result = eventMap['result'];
+      int action = eventMap['action'];
+      print(eventMap['action']);
+      switch (action) {
+        case 0:
+          MobPushCustomMessage message =
+          new MobPushCustomMessage.fromJson(result);
+          showDialog(
+              context: context,
+              child: AlertDialog(
+                content: Text(message.content),
+                actions: <Widget>[
+                  FlatButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: Text("确定"),
+                  )
+                ],
+              ));
+          break;
+        case 1:
+          MobPushNotifyMessage message =
+          new MobPushNotifyMessage.fromJson(result);
+          break;
+        case 2:
+          MobPushNotifyMessage message =
+          new MobPushNotifyMessage.fromJson(result);
+          Navigator.push(
+              context, MaterialPageRoute(builder: (_) => MessageList()));
+          break;
+      }
+    });
+  }
+
+  _onError(Object event) {
+    print(">>>>>>>>>>onError:${event.toString()}");
+  }
+
+
+
 }

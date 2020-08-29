@@ -22,7 +22,10 @@ if (flutterVersionName == null) {
 }
 
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
+apply plugin: 'com.mob.sdk'
+
 def keystorePropertiesFile=rootProject.file('key.properties')
 def keystoreProperties = new Properties()
 keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
@@ -52,7 +55,7 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "com.example.flutter_app"
+        applicationId "com.miao.flutter_app"
         minSdkVersion 21
         targetSdkVersion 26
         versionCode flutterVersionCode.toInteger()
@@ -60,7 +63,25 @@ android {
     }
 
 }
+//apply plugin: 'com.mob.sdk'
 
+MobSDK {
+    appKey "30789f8a664c2"
+    appSecret "b9ad967223f5011a3da6713747049861"
+    ShareSDK {
+        loopShare false
+        devInfo {
+            WechatMoments {
+                appId "wx4868b35061f87885"
+                appSecret "64020361b8ec4c99936c0e3999a9f249"
+            }
+        }
+    }
+    MobPush {
+
+    }
+
+}
 flutter {
     source '../..'
 }
@@ -74,6 +95,8 @@ dependencies {
     implementation group: 'com.alibaba', name: 'fastjson', version: '1.1.68.android'
     implementation "org.permissionsdispatcher:permissionsdispatcher:4.3.0"
     annotationProcessor "org.permissionsdispatcher:permissionsdispatcher-processor:4.3.0"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
 
 }
 

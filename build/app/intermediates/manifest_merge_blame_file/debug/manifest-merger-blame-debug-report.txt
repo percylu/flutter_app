@@ -1,6 +1,6 @@
 1<?xml version="1.0" encoding="utf-8"?>
 2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-3    package="com.example.flutter_app"
+3    package="com.miao.flutter_app"
 4    android:versionCode="1"
 5    android:versionName="1.0.0" >
 6
@@ -15,133 +15,188 @@
 14-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:8:5-67
 14-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:8:22-64
 15    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-15-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:48:5-75
-15-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:48:22-73
+15-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:53:5-75
+15-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:53:22-73
 16    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-16-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:49:5-78
-16-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:49:22-76
+16-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:54:5-78
+16-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:54:22-76
 17    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-17-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:50:5-80
-17-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:50:22-78
+17-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:55:5-80
+17-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:55:22-78
 18    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-18-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:51:5-78
-18-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:51:22-76
+18-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:56:5-78
+18-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:56:22-76
 19    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-19-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:52:5-75
-19-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:52:22-73
+19-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:57:5-75
+19-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:57:22-73
 20    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
-20-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:53:5-78
-20-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:53:22-76
+20-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:58:5-78
+20-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:58:22-76
 21    <uses-permission android:name="android.permission.WAKE_LOCK" />
-21-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:55:5-67
-21-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:55:22-65
-22    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-22-->[:image_picker] /Users/percylu/flutter_app/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-80
-22-->[:image_picker] /Users/percylu/flutter_app/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:7:22-77
-23    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-23-->[:image_picker] /Users/percylu/flutter_app/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:8:5-81
-23-->[:image_picker] /Users/percylu/flutter_app/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:8:22-78
-24
-25    <application
-25-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:9:5-47:19
-26        android:name="io.flutter.app.FlutterApplication"
-26-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:10:9-57
-27        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-27-->[androidx.core:core:1.1.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/6b399c2363bb098ebde1725d903cbda0/core-1.1.0/AndroidManifest.xml:24:18-86
-28        android:debuggable="true"
-29        android:icon="@drawable/appicon96"
-29-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:12:9-43
-30        android:label="喵小小" >
-30-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:11:9-28
-31        <activity
-31-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:13:9-41:20
-32            android:name="com.example.flutter_app.MainActivity"
-32-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:14:13-41
-33            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
-33-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:17:13-163
-34            android:hardwareAccelerated="true"
-34-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:18:13-47
-35            android:launchMode="singleTop"
-35-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:15:13-43
-36            android:theme="@style/LaunchTheme"
-36-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:16:13-47
-37            android:windowSoftInputMode="adjustResize" >
-37-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:19:13-55
-38
-39            <!--
-40                 Specifies an Android theme to apply to this Activity as soon as
-41                 the Android process has started. This theme is visible to the user
-42                 while the Flutter UI initializes. After that, this theme continues
-43                 to determine the Window background behind the Flutter UI.
-44            -->
-45            <meta-data
-45-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:24:13-27:17
-46                android:name="io.flutter.embedding.android.NormalTheme"
-46-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:25:15-70
-47                android:resource="@style/NormalTheme" />
-47-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:26:15-52
-48            <!--
-49                 Displays an Android View that continues showing the launch screen
-50                 Drawable until Flutter paints its first frame, then this splash
-51                 screen fades out. A splash screen is useful to avoid any visual
-52                 gap between the end of Android's launch screen and the painting of
-53                 Flutter's first frame.
-54            -->
-55            <meta-data
-55-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:33:13-36:17
-56                android:name="io.flutter.embedding.android.SplashScreenDrawable"
-56-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:34:15-79
-57                android:resource="@drawable/launch_background" />
-57-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:35:15-61
-58
-59            <intent-filter>
-59-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:37:13-40:29
-60                <action android:name="android.intent.action.MAIN" />
-60-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:38:17-68
-60-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:38:25-66
-61
-62                <category android:name="android.intent.category.LAUNCHER" />
-62-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:39:17-76
-62-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:39:27-74
-63            </intent-filter>
-64        </activity>
-65        <!--
-66             Don't delete the meta-data below.
-67             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
-68        -->
-69        <meta-data
-69-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:44:9-46:33
-70            android:name="flutterEmbedding"
-70-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:45:13-44
-71            android:value="2" />
-71-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:46:13-30
-72
-73        <provider
-73-->[:image_picker] /Users/percylu/flutter_app/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:11:9-19:20
-74            android:name="io.flutter.plugins.imagepicker.ImagePickerFileProvider"
-74-->[:image_picker] /Users/percylu/flutter_app/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:12:13-82
-75            android:authorities="com.example.flutter_app.flutter.image_provider"
-75-->[:image_picker] /Users/percylu/flutter_app/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:13:13-74
-76            android:exported="false"
-76-->[:image_picker] /Users/percylu/flutter_app/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:14:13-37
-77            android:grantUriPermissions="true" >
-77-->[:image_picker] /Users/percylu/flutter_app/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:15:13-47
-78            <meta-data
-78-->[:image_picker] /Users/percylu/flutter_app/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:16:13-18:75
-79                android:name="android.support.FILE_PROVIDER_PATHS"
-79-->[:image_picker] /Users/percylu/flutter_app/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:17:17-67
-80                android:resource="@xml/flutter_image_picker_file_paths" />
-80-->[:image_picker] /Users/percylu/flutter_app/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:18:17-72
-81        </provider>
-82
-83        <activity
-83-->[:url_launcher] /Users/percylu/flutter_app/build/url_launcher/intermediates/library_manifest/debug/AndroidManifest.xml:8:9-11:74
-84            android:name="io.flutter.plugins.urllauncher.WebViewActivity"
-84-->[:url_launcher] /Users/percylu/flutter_app/build/url_launcher/intermediates/library_manifest/debug/AndroidManifest.xml:9:13-74
-85            android:exported="false"
-85-->[:url_launcher] /Users/percylu/flutter_app/build/url_launcher/intermediates/library_manifest/debug/AndroidManifest.xml:10:13-37
-86            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
-86-->[:url_launcher] /Users/percylu/flutter_app/build/url_launcher/intermediates/library_manifest/debug/AndroidManifest.xml:11:13-71
-87    </application>
+21-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:60:5-67
+21-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:60:22-65
+22    <uses-permission android:name="android.permission.CAMERA" />
+22-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:61:5-65
+22-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:61:22-62
+23    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+23-->[:image_picker] /Users/percylu/flutter_app/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-80
+23-->[:image_picker] /Users/percylu/flutter_app/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:7:22-77
+24    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+24-->[:image_picker] /Users/percylu/flutter_app/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:8:5-81
+24-->[:image_picker] /Users/percylu/flutter_app/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:8:22-78
+25
+26    <application
+26-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:9:5-52:19
+27        android:name="io.flutter.app.FlutterApplication"
+27-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:10:9-57
+28        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+28-->[androidx.core:core:1.1.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/4f6477515a4019fc4b99d61dad627e3a/core-1.1.0/AndroidManifest.xml:24:18-86
+29        android:debuggable="true"
+30        android:icon="@drawable/appicon96"
+30-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:12:9-43
+31        android:label="喵小小" >
+31-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:11:9-28
+32        <activity
+32-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:13:9-44:20
+33            android:name="com.miao.flutter_app.MainActivity"
+33-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:14:13-61
+34            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+34-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:17:13-163
+35            android:hardwareAccelerated="true"
+35-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:18:13-47
+36            android:launchMode="singleTop"
+36-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:15:13-43
+37            android:theme="@style/LaunchTheme"
+37-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:16:13-47
+38            android:windowSoftInputMode="adjustResize" >
+38-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:19:13-55
+39
+40            <!--
+41                 Specifies an Android theme to apply to this Activity as soon as
+42                 the Android process has started. This theme is visible to the user
+43                 while the Flutter UI initializes. After that, this theme continues
+44                 to determine the Window background behind the Flutter UI.
+45            -->
+46            <meta-data
+46-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:24:13-27:17
+47                android:name="io.flutter.embedding.android.NormalTheme"
+47-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:25:15-70
+48                android:resource="@style/NormalTheme" />
+48-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:26:15-52
+49            <!--
+50                 Displays an Android View that continues showing the launch screen
+51                 Drawable until Flutter paints its first frame, then this splash
+52                 screen fades out. A splash screen is useful to avoid any visual
+53                 gap between the end of Android's launch screen and the painting of
+54                 Flutter's first frame.
+55            -->
+56            <meta-data
+56-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:33:13-36:17
+57                android:name="io.flutter.embedding.android.SplashScreenDrawable"
+57-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:34:15-79
+58                android:resource="@drawable/launch_background" />
+58-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:35:15-61
+59
+60            <intent-filter>
+60-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:37:13-43:29
+61                <action android:name="android.intent.action.MAIN" />
+61-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:38:17-68
+61-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:38:25-66
+62
+63                <category android:name="android.intent.category.LAUNCHER" />
+63-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:39:17-76
+63-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:39:27-74
+64                <!-- <data -->
+65                <!-- android:host="com.mob.mobpush.miao" -->
+66                <!-- android:scheme="link" /> -->
+67            </intent-filter>
+68        </activity>
+69        <activity android:name="com.apptreesoftware.barcodescan.BarcodeScannerActivity" />
+69-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:45:9-90
+69-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:45:19-88
+70
+71        <!--
+72             Don't delete the meta-data below.
+73             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
+74        -->
+75        <meta-data
+75-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:49:9-51:33
+76            android:name="flutterEmbedding"
+76-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:50:13-44
+77            android:value="2" />
+77-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:51:13-30
+78
+79        <provider
+79-->[:image_picker] /Users/percylu/flutter_app/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:11:9-19:20
+80            android:name="io.flutter.plugins.imagepicker.ImagePickerFileProvider"
+80-->[:image_picker] /Users/percylu/flutter_app/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:12:13-82
+81            android:authorities="com.miao.flutter_app.flutter.image_provider"
+81-->[:image_picker] /Users/percylu/flutter_app/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:13:13-74
+82            android:exported="false"
+82-->[:image_picker] /Users/percylu/flutter_app/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:14:13-37
+83            android:grantUriPermissions="true" >
+83-->[:image_picker] /Users/percylu/flutter_app/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:15:13-47
+84            <meta-data
+84-->[:image_picker] /Users/percylu/flutter_app/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:16:13-18:75
+85                android:name="android.support.FILE_PROVIDER_PATHS"
+85-->[:image_picker] /Users/percylu/flutter_app/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:17:17-67
+86                android:resource="@xml/flutter_image_picker_file_paths" />
+86-->[:image_picker] /Users/percylu/flutter_app/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:18:17-72
+87        </provider>
 88
-89</manifest>
+89        <activity
+89-->[:url_launcher] /Users/percylu/flutter_app/build/url_launcher/intermediates/library_manifest/debug/AndroidManifest.xml:8:9-11:74
+90            android:name="io.flutter.plugins.urllauncher.WebViewActivity"
+90-->[:url_launcher] /Users/percylu/flutter_app/build/url_launcher/intermediates/library_manifest/debug/AndroidManifest.xml:9:13-74
+91            android:exported="false"
+91-->[:url_launcher] /Users/percylu/flutter_app/build/url_launcher/intermediates/library_manifest/debug/AndroidManifest.xml:10:13-37
+92            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+92-->[:url_launcher] /Users/percylu/flutter_app/build/url_launcher/intermediates/library_manifest/debug/AndroidManifest.xml:11:13-71
+93        <activity android:name="de.mintware.barcode_scan.BarcodeScannerActivity" />
+93-->[:barcode_scan] /Users/percylu/flutter_app/build/barcode_scan/intermediates/library_manifest/debug/AndroidManifest.xml:10:9-84
+93-->[:barcode_scan] /Users/percylu/flutter_app/build/barcode_scan/intermediates/library_manifest/debug/AndroidManifest.xml:10:19-81
+94
+95        <service
+95-->[com.mob:MobPush:3.2.4] /Users/percylu/.gradle/caches/transforms-2/files-2.1/3b6bf7ab9247a0da73c114fa560b0800/MobPush-3.2.4/AndroidManifest.xml:10:9-16:19
+96            android:name="com.mob.pushsdk.plugins.fcm.FCMFirebaseInstanceIdService"
+96-->[com.mob:MobPush:3.2.4] /Users/percylu/.gradle/caches/transforms-2/files-2.1/3b6bf7ab9247a0da73c114fa560b0800/MobPush-3.2.4/AndroidManifest.xml:11:13-84
+97            android:exported="true" >
+97-->[com.mob:MobPush:3.2.4] /Users/percylu/.gradle/caches/transforms-2/files-2.1/3b6bf7ab9247a0da73c114fa560b0800/MobPush-3.2.4/AndroidManifest.xml:12:13-36
+98            <intent-filter>
+98-->[com.mob:MobPush:3.2.4] /Users/percylu/.gradle/caches/transforms-2/files-2.1/3b6bf7ab9247a0da73c114fa560b0800/MobPush-3.2.4/AndroidManifest.xml:13:13-15:29
+99                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+99-->[com.mob:MobPush:3.2.4] /Users/percylu/.gradle/caches/transforms-2/files-2.1/3b6bf7ab9247a0da73c114fa560b0800/MobPush-3.2.4/AndroidManifest.xml:14:17-80
+99-->[com.mob:MobPush:3.2.4] /Users/percylu/.gradle/caches/transforms-2/files-2.1/3b6bf7ab9247a0da73c114fa560b0800/MobPush-3.2.4/AndroidManifest.xml:14:25-77
+100            </intent-filter>
+101        </service>
+102        <service
+102-->[com.mob:MobPush:3.2.4] /Users/percylu/.gradle/caches/transforms-2/files-2.1/3b6bf7ab9247a0da73c114fa560b0800/MobPush-3.2.4/AndroidManifest.xml:17:9-23:19
+103            android:name="com.mob.pushsdk.plugins.huawei.HuaweiPushService"
+103-->[com.mob:MobPush:3.2.4] /Users/percylu/.gradle/caches/transforms-2/files-2.1/3b6bf7ab9247a0da73c114fa560b0800/MobPush-3.2.4/AndroidManifest.xml:18:13-76
+104            android:exported="false" >
+104-->[com.mob:MobPush:3.2.4] /Users/percylu/.gradle/caches/transforms-2/files-2.1/3b6bf7ab9247a0da73c114fa560b0800/MobPush-3.2.4/AndroidManifest.xml:19:13-37
+105            <intent-filter>
+105-->[com.mob:MobPush:3.2.4] /Users/percylu/.gradle/caches/transforms-2/files-2.1/3b6bf7ab9247a0da73c114fa560b0800/MobPush-3.2.4/AndroidManifest.xml:20:13-22:29
+106                <action android:name="com.huawei.push.action.MESSAGING_EVENT" />
+106-->[com.mob:MobPush:3.2.4] /Users/percylu/.gradle/caches/transforms-2/files-2.1/3b6bf7ab9247a0da73c114fa560b0800/MobPush-3.2.4/AndroidManifest.xml:21:17-81
+106-->[com.mob:MobPush:3.2.4] /Users/percylu/.gradle/caches/transforms-2/files-2.1/3b6bf7ab9247a0da73c114fa560b0800/MobPush-3.2.4/AndroidManifest.xml:21:25-78
+107            </intent-filter>
+108        </service>
+109        <service
+109-->[com.mob:MobConnect:3.2.4] /Users/percylu/.gradle/caches/transforms-2/files-2.1/a818c90ae746c43dbb2896f4a87862ad/MobConnect-3.2.4/AndroidManifest.xml:10:9-17:19
+110            android:name="com.mob.socketservice.MobService"
+110-->[com.mob:MobConnect:3.2.4] /Users/percylu/.gradle/caches/transforms-2/files-2.1/a818c90ae746c43dbb2896f4a87862ad/MobConnect-3.2.4/AndroidManifest.xml:11:13-60
+111            android:exported="true"
+111-->[com.mob:MobConnect:3.2.4] /Users/percylu/.gradle/caches/transforms-2/files-2.1/a818c90ae746c43dbb2896f4a87862ad/MobConnect-3.2.4/AndroidManifest.xml:12:13-36
+112            android:process=":mobservice" >
+112-->[com.mob:MobConnect:3.2.4] /Users/percylu/.gradle/caches/transforms-2/files-2.1/a818c90ae746c43dbb2896f4a87862ad/MobConnect-3.2.4/AndroidManifest.xml:13:13-42
+113            <intent-filter>
+113-->[com.mob:MobConnect:3.2.4] /Users/percylu/.gradle/caches/transforms-2/files-2.1/a818c90ae746c43dbb2896f4a87862ad/MobConnect-3.2.4/AndroidManifest.xml:14:13-16:29
+114                <action android:name="com.mob.intent.MOB_SERVICE" />
+114-->[com.mob:MobConnect:3.2.4] /Users/percylu/.gradle/caches/transforms-2/files-2.1/a818c90ae746c43dbb2896f4a87862ad/MobConnect-3.2.4/AndroidManifest.xml:15:17-69
+114-->[com.mob:MobConnect:3.2.4] /Users/percylu/.gradle/caches/transforms-2/files-2.1/a818c90ae746c43dbb2896f4a87862ad/MobConnect-3.2.4/AndroidManifest.xml:15:25-66
+115            </intent-filter>
+116        </service>
+117    </application>
+118
+119</manifest>

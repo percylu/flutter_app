@@ -57,7 +57,8 @@ class _DeviceWifiState extends State<DeviceWifi> {
             Icons.close,
             color: Colors.black,
           ),
-          onPressed: () {
+          onPressed: () async{
+            obj = await HanfengSmartlink.stopLink;
             Navigator.pop(context);
           },
         ),

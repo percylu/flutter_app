@@ -153,7 +153,7 @@ class _MobileRegisterState extends State<MobileRegister> {
                       size: 36,
                     ),
                     onPressed: (_seconds == 0)?() async{
-                      ResultData response=await MiaoApi.getVerifyCode(userController.text);
+                      ResultData response=await MiaoApi.getCode(userController.text);
                       if(response != null && response.success){
                         _startTimer();
                         setState(() {

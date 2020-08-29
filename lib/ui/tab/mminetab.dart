@@ -9,13 +9,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/api/MiaoApi.dart';
 import 'package:flutter_app/entity/login_entity.dart';
 import 'package:flutter_app/generated/json/base/json_convert_content.dart';
-import 'package:flutter_app/res/assets.dart';
+import 'package:flutter_app/ui/editmine.dart';
 import 'package:flutter_app/utility/Config.dart';
 import 'package:flutter_app/utility/ResultData.dart';
 import 'package:flutter_app/utility/SpUtils.dart';
 import 'package:flutter_app/widget/htmlWidget.dart';
 import 'package:flutter_app/widget/messagedialog.dart';
-import 'package:flutter_app/widget/picandtextbutton.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MiaoMine extends StatefulWidget {
@@ -43,8 +42,9 @@ class MiaoMineTabView extends State<MiaoMine> {
         width: 250,
         height: 445,
         allowFontScaling: true); //flutter_screenuitl >= 1.2
-    return Container(
-      color: Colors.grey.shade100,
+    return MediaQuery.removePadding(
+      context: context,
+      removeTop: true,
 //      margin: EdgeInsets.only(
 //          //top: ScreenUtil().setHeight(11.33),
 //          left: ScreenUtil().setWidth(6.67),
@@ -53,6 +53,16 @@ class MiaoMineTabView extends State<MiaoMine> {
         //mainAxisAlignment: MainAxisAlignment.start,
         //crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          Container(
+            color: Colors.white,
+            alignment: Alignment.center,
+            padding:EdgeInsets.only(top:ScreenUtil().setHeight(20),bottom:ScreenUtil().setHeight(10)),
+            child:Text("个人中心",style: TextStyle(fontSize: ScreenUtil().setSp(13),fontWeight: FontWeight.w500),)
+          ),
+          Container(
+            height: 1,
+            color: Colors.grey.shade100,
+          ),
           Container(
             color: Colors.white,
             padding: EdgeInsets.only(
@@ -74,7 +84,7 @@ class MiaoMineTabView extends State<MiaoMine> {
                       ClipOval(
                         child: CachedNetworkImage(
                           height: ScreenUtil().setWidth(49.33),
-                          width: ScreenUtil().setHeight(44.33),
+                          width: ScreenUtil().setWidth(49.33),
                           imageUrl: "${_avatar}",
                           placeholder: (context, url) =>
                           new CircularProgressIndicator(),
@@ -85,9 +95,15 @@ class MiaoMineTabView extends State<MiaoMine> {
                     ],
                   ),
                   onTap:(){
-                    Navigator.pushNamed(context, "editmine").then((value) async{
+                    Navigator.of(context).push(
+                        new MaterialPageRoute(builder: (_) {
+                          return new EditMine();
+                        })
+                    ).then((value) async{
                       await initData();
+
                     });
+
                   }
                 ),
 

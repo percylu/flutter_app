@@ -92,7 +92,7 @@ class HttpRequest {
     }
 
     ///超时
-    option.receiveTimeout = 15000;
+    option.receiveTimeout = 5000;
 
     Dio dio = new Dio();
     // 添加拦截器
@@ -147,7 +147,6 @@ class HttpRequest {
         var responseJson = response.data;
         if (responseJson['code']== 201 && responseJson['data']['token']!= null){
           optionParams["authorizationCode"] = responseJson['data']['token'];
-          print("token:"+optionParams["authorizationCode"]);
           await SpUtils.save(Config.TOKEN_KEY, optionParams["authorizationCode"]);
         }
       }
@@ -157,11 +156,11 @@ class HttpRequest {
       if(response.data['code']==1502){
         //后台记录是没有登录的，删除token
         SpUtils.remove(Config.TOKEN_KEY);
-
+        return ResultData(response.data, true, response.data['code'],response.data['message']);
       }
     } catch (e) {
       print(e.toString() + url);
-      return ResultData(response.data, false, response.data['code'],e.toString());
+      return ResultData(response.data, false, response.data['code'],e.toString().substring(0,20));
     }
     return new ResultData("", false, response.data['code'],response.data['message']);
   }

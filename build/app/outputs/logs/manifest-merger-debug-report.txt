@@ -1,71 +1,88 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:1:1-58:12
-INJECTED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:1:1-58:12
-INJECTED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:1:1-58:12
-INJECTED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:1:1-58:12
-MERGED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:1:1-58:12
+ADDED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:1:1-64:12
+INJECTED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:1:1-64:12
+INJECTED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:1:1-64:12
+INJECTED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:1:1-64:12
+MERGED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:1:1-64:12
 MERGED from [:video_player] /Users/percylu/flutter_app/build/video_player/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
-MERGED from [:luhenchang_plugin] /Users/percylu/flutter_app/build/luhenchang_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [:sqflite] /Users/percylu/flutter_app/build/sqflite/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
+MERGED from [:luhenchang_plugin] /Users/percylu/flutter_app/build/luhenchang_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [:wakelock] /Users/percylu/flutter_app/build/wakelock/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [:connectivity] /Users/percylu/flutter_app/build/connectivity/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-10:12
 MERGED from [:connectivity_macos] /Users/percylu/flutter_app/build/connectivity_macos/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [:image_picker] /Users/percylu/flutter_app/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-22:12
 MERGED from [:flutter_plugin_android_lifecycle] /Users/percylu/flutter_app/build/flutter_plugin_android_lifecycle/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
+MERGED from [:mobpush_plugin] /Users/percylu/flutter_app/build/mobpush_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [:url_launcher] /Users/percylu/flutter_app/build/url_launcher/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-14:12
 MERGED from [:webview_flutter] /Users/percylu/flutter_app/build/webview_flutter/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [:path_provider] /Users/percylu/flutter_app/build/path_provider/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [:shared_preferences] /Users/percylu/flutter_app/build/shared_preferences/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] /Users/percylu/.gradle/caches/transforms-2/files-2.1/e53f3dbecc434a816350a73eb26ed01a/constraintlayout-1.1.3/AndroidManifest.xml:2:1-11:12
-MERGED from [androidx.appcompat:appcompat:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/a37d7647168a444700eada6776a3f208/appcompat-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [org.permissionsdispatcher:permissionsdispatcher:4.3.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/a20ed33112be1e4c6510717e9474ac75/permissionsdispatcher-4.3.0/AndroidManifest.xml:2:1-9:12
-MERGED from [androidx.fragment:fragment:1.1.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/412798c5ff5129715d71e58ff213e3a7/fragment-1.1.0/AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.vectordrawable:vectordrawable-animated:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/04db46b0afaef16e8baa4753a037b9f8/vectordrawable-animated-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/e3eb8b15772ec829dcf209e8e802e713/legacy-support-core-ui-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/47b340b0c8e357b683c33bb06ca19cf3/legacy-support-core-utils-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.vectordrawable:vectordrawable:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/37ddaeb928c97c85fe76dbe94b25377c/vectordrawable-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.webkit:webkit:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/881a30e692b8873570b503d4e56b77c3/webkit-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/2b55f4dd1ddfb477bff2667016cc0a25/viewpager-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.loader:loader:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/7d95adf5b88dd1f9089b34bd4d2e8a93/loader-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.activity:activity:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/36b6b089b86a4b53f161d1de646d1e60/activity-1.0.0/AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/454541ed0d74e0d0babd214b189709ff/coordinatorlayout-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/41c88a9f96e450bd637ed756ecda85b5/drawerlayout-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/b275e0ac511ead6a0c329e93803bbcd1/slidingpanelayout-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.customview:customview:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/65668fdc6b75dc53c12b7eb5f279be35/customview-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/060334bf991aabc91fba7fe93737f90d/swiperefreshlayout-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/a2947b2bc56055381fd4cf778505ff5b/asynclayoutinflater-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.core:core:1.1.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/6b399c2363bb098ebde1725d903cbda0/core-1.1.0/AndroidManifest.xml:17:1-26:12
-MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/9e68ec229c62f3dc7a285423839a92f2/lifecycle-runtime-2.2.0/AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.savedstate:savedstate:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/0691a1a6c3d055bc7ae9d66ba6bc80fa/savedstate-1.0.0/AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/a72cc53d82cf5702357646245a6e016a/lifecycle-livedata-2.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/439f22ecfa3eb2cee779567eba299ed4/lifecycle-livedata-core-2.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/89da2d2b13f2717b13dbde907d33a117/cursoradapter-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [com.google.android.exoplayer:exoplayer-hls:2.9.6] /Users/percylu/.gradle/caches/transforms-2/files-2.1/5096781dce05bf9ea2546f7918a32bde/jetified-exoplayer-hls-2.9.6/AndroidManifest.xml:17:1-24:12
-MERGED from [com.google.android.exoplayer:exoplayer-dash:2.9.6] /Users/percylu/.gradle/caches/transforms-2/files-2.1/0d6f512b98e6968625dabe0c7a5db02c/jetified-exoplayer-dash-2.9.6/AndroidManifest.xml:17:1-24:12
-MERGED from [com.google.android.exoplayer:exoplayer-smoothstreaming:2.9.6] /Users/percylu/.gradle/caches/transforms-2/files-2.1/45dc962554a0dafa1e524889534ce08f/jetified-exoplayer-smoothstreaming-2.9.6/AndroidManifest.xml:17:1-24:12
-MERGED from [com.google.android.exoplayer:exoplayer-core:2.9.6] /Users/percylu/.gradle/caches/transforms-2/files-2.1/9d4ea42f462821145154ce3d5420fb03/jetified-exoplayer-core-2.9.6/AndroidManifest.xml:17:1-26:12
-MERGED from [androidx.arch.core:core-runtime:2.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/e5d23450977c2b96e566605cba9e8c80/core-runtime-2.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/0bf15744f5224b117e4e3c989895e24a/versionedparcelable-1.1.0/AndroidManifest.xml:17:1-27:12
-MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/1d0c7e854dcd581b455273fbcbc11e01/documentfile-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/e5eed722b2004ca64fbe6c90991e06af/localbroadcastmanager-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.print:print:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/6d7a62f88f3d54b469312a470cec53c7/print-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/73dec8f06dda83861b05ec84e654c876/lifecycle-viewmodel-2.1.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/598256249c7c77b96135e9aeda8121e5/interpolator-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [:barcode_scan] /Users/percylu/flutter_app/build/barcode_scan/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-13:12
+MERGED from [cn.sharesdk:ShareSDK:3.8.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/e2e6c9362c0b0b70a51aec3d088e21a4/ShareSDK-3.8.0/AndroidManifest.xml:2:1-11:12
+MERGED from [cn.sharesdk:OneKeyShare:3.8.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/ddec4786c29fdabad3a15f67fa96fde8/OneKeyShare-3.8.0/AndroidManifest.xml:2:1-11:12
+MERGED from [com.mob:MobGuard:1.0.8] /Users/percylu/.gradle/caches/transforms-2/files-2.1/6b8b8535a711ddc3006901208413c75a/MobGuard-1.0.8/AndroidManifest.xml:2:1-9:12
+MERGED from [com.mob:MobPush:3.2.4] /Users/percylu/.gradle/caches/transforms-2/files-2.1/3b6bf7ab9247a0da73c114fa560b0800/MobPush-3.2.4/AndroidManifest.xml:2:1-26:12
+MERGED from [com.mob:MobConnect:3.2.4] /Users/percylu/.gradle/caches/transforms-2/files-2.1/a818c90ae746c43dbb2896f4a87862ad/MobConnect-3.2.4/AndroidManifest.xml:2:1-20:12
+MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] /Users/percylu/.gradle/caches/transforms-2/files-2.1/0c5b4b23bb91f79c549fc721601a4cf9/constraintlayout-1.1.3/AndroidManifest.xml:2:1-11:12
+MERGED from [com.google.android.material:material:1.1.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/18c250a66b4312bc05772d7f6cf94bcb/material-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.appcompat:appcompat:1.1.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/ffb17b09406e7f32db99d26a553c002a/appcompat-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [org.permissionsdispatcher:permissionsdispatcher:4.3.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/704abf6076bb23bacb275587855baa1c/permissionsdispatcher-4.3.0/AndroidManifest.xml:2:1-9:12
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/ba493244ffd42ba2288e807cc92b725d/viewpager2-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [me.dm7.barcodescanner:zxing:1.9.13] /Users/percylu/.gradle/caches/transforms-2/files-2.1/b10f6e14ad280da40b30d80d38003f99/zxing-1.9.13/AndroidManifest.xml:2:1-13:12
+MERGED from [me.dm7.barcodescanner:core:1.9.13] /Users/percylu/.gradle/caches/transforms-2/files-2.1/525c73f0aefd7a7d757f0058eba25289/jetified-core-1.9.13/AndroidManifest.xml:2:1-13:12
+MERGED from [androidx.legacy:legacy-support-v4:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/3cd8108f5c8becdf9a5a6557e00c08a5/legacy-support-v4-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.fragment:fragment:1.1.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/728256458da89902bbcac3e9104a47c3/fragment-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.webkit:webkit:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/03eade4edbfa4aaae31ee2db5a620012/webkit-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/fa241b2a2003612b1bf97b43839fefec/legacy-support-core-ui-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/d0b02d88e99a35eb12afd419329cd00c/viewpager-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/4014d755f2a4b91a0327058bcae84c5c/legacy-support-core-utils-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.loader:loader:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/326fe471671948bc912bd2bb13245b11/loader-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.activity:activity:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/c4930e2a33e581bc927c3c771e955316/activity-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.appcompat:appcompat-resources:1.1.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/15edb4d8909995d24a69691b856b52b1/appcompat-resources-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/28acce9ad25f3970350222b004b7a3df/drawerlayout-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/48c92a3fbcff02c421e32a92299ec250/coordinatorlayout-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.transition:transition:1.2.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/58d6f24f246f15b8c53a9c1957ca2d6b/transition-1.2.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/72e3e71e5d9ff02c6a92ec2a72f619e4/vectordrawable-animated-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/5f59d52692c247aaf5b554b8f4bea7d5/vectordrawable-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/69b449ebaafd124d1944feb217c945da/recyclerview-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/ce9dcdd5fe142e319d37da07c7ee0e19/slidingpanelayout-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.customview:customview:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/9bb098be91d485894fddfa56db2f4daf/customview-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.media:media:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/8832cf319f8adac13c547794ae4fcdf4/media-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/58b43e546598c4c37eddf3ef6cb24ec2/swiperefreshlayout-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/cd248ae4e05b9eeba708dea671e3ca9d/asynclayoutinflater-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.core:core:1.1.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/4f6477515a4019fc4b99d61dad627e3a/core-1.1.0/AndroidManifest.xml:17:1-26:12
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/8d352b5095132c88a25fb162b8c3229c/lifecycle-runtime-2.2.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.savedstate:savedstate:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/13554602f2b82e6ceb30d194406c3efb/savedstate-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/3e9dd842ccd43e4e3b657caaf4e8248f/lifecycle-livedata-2.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/7970572c12eabd8ca4e453b98bca9aea/lifecycle-livedata-core-2.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [com.google.android.exoplayer:exoplayer-hls:2.9.6] /Users/percylu/.gradle/caches/transforms-2/files-2.1/4d3cc5d6a0f1b8d47227d19905f209a5/jetified-exoplayer-hls-2.9.6/AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.exoplayer:exoplayer-dash:2.9.6] /Users/percylu/.gradle/caches/transforms-2/files-2.1/abc91c787c8dc92d81876aa9e1d85b93/jetified-exoplayer-dash-2.9.6/AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.exoplayer:exoplayer-smoothstreaming:2.9.6] /Users/percylu/.gradle/caches/transforms-2/files-2.1/57ae95c4c1a8b65392bad055f5765ce4/jetified-exoplayer-smoothstreaming-2.9.6/AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.exoplayer:exoplayer-core:2.9.6] /Users/percylu/.gradle/caches/transforms-2/files-2.1/bd6af334cc00fc09e1db51dcd952e9c7/jetified-exoplayer-core-2.9.6/AndroidManifest.xml:17:1-26:12
+MERGED from [androidx.arch.core:core-runtime:2.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/bd7a7e4d343730d8a749a32c150c44a9/core-runtime-2.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/25e58474c691b859e94f2a9593b361e1/versionedparcelable-1.1.0/AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/c299a762f24468a4f6e58907ea033ef2/cursoradapter-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.cardview:cardview:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/ac43c0aacce572fce2fc74fd560c1b7e/cardview-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/01fda96c9f576b6341217422cba0b180/lifecycle-viewmodel-2.1.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/990c34ec351e35b3ef29250840222a48/interpolator-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/c90b52cbc4765665e012ccdcaf03a6c2/documentfile-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/2aea30f049e8f77371072bc46ac56db0/localbroadcastmanager-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.print:print:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/e04708384bde72ab7f6f7e1d31a55f6c/print-1.0.0/AndroidManifest.xml:17:1-22:12
 INJECTED from /Users/percylu/flutter_app/android/app/src/debug/AndroidManifest.xml:1:1-7:12
 INJECTED from /Users/percylu/flutter_app/android/app/src/debug/AndroidManifest.xml:1:1-7:12
 INJECTED from /Users/percylu/flutter_app/android/app/src/debug/AndroidManifest.xml:1:1-7:12
 	package
-		ADDED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:2:5-38
+		ADDED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:2:5-35
 		INJECTED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml
 		INJECTED from /Users/percylu/flutter_app/android/app/src/debug/AndroidManifest.xml
 	android:versionName
 		INJECTED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml
-		ADDED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:1:1-58:12
+		ADDED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:1:1-64:12
 		INJECTED from /Users/percylu/flutter_app/android/app/src/debug/AndroidManifest.xml
 	android:versionCode
 		INJECTED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml
-		ADDED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:1:1-58:12
+		ADDED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:1:1-64:12
 		INJECTED from /Users/percylu/flutter_app/android/app/src/debug/AndroidManifest.xml
 	xmlns:android
 		ADDED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:1:11-69
@@ -73,32 +90,44 @@ uses-permission#android.permission.INTERNET
 ADDED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:8:5-67
 MERGED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:8:5-67
 MERGED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:8:5-67
-MERGED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:54:5-66
-MERGED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:54:5-66
+MERGED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:59:5-66
+MERGED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:59:5-66
 	android:name
 		ADDED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:8:22-64
 application
-ADDED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:9:5-47:19
+ADDED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:9:5-52:19
 MERGED from [:image_picker] /Users/percylu/flutter_app/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:10:5-20:19
 MERGED from [:image_picker] /Users/percylu/flutter_app/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:10:5-20:19
 MERGED from [:url_launcher] /Users/percylu/flutter_app/build/url_launcher/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-12:19
 MERGED from [:url_launcher] /Users/percylu/flutter_app/build/url_launcher/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-12:19
-MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] /Users/percylu/.gradle/caches/transforms-2/files-2.1/e53f3dbecc434a816350a73eb26ed01a/constraintlayout-1.1.3/AndroidManifest.xml:9:5-20
-MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] /Users/percylu/.gradle/caches/transforms-2/files-2.1/e53f3dbecc434a816350a73eb26ed01a/constraintlayout-1.1.3/AndroidManifest.xml:9:5-20
-MERGED from [androidx.core:core:1.1.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/6b399c2363bb098ebde1725d903cbda0/core-1.1.0/AndroidManifest.xml:24:5-89
-MERGED from [androidx.core:core:1.1.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/6b399c2363bb098ebde1725d903cbda0/core-1.1.0/AndroidManifest.xml:24:5-89
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/0bf15744f5224b117e4e3c989895e24a/versionedparcelable-1.1.0/AndroidManifest.xml:24:5-25:19
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/0bf15744f5224b117e4e3c989895e24a/versionedparcelable-1.1.0/AndroidManifest.xml:24:5-25:19
+MERGED from [:barcode_scan] /Users/percylu/flutter_app/build/barcode_scan/intermediates/library_manifest/debug/AndroidManifest.xml:9:5-11:19
+MERGED from [:barcode_scan] /Users/percylu/flutter_app/build/barcode_scan/intermediates/library_manifest/debug/AndroidManifest.xml:9:5-11:19
+MERGED from [com.mob:MobPush:3.2.4] /Users/percylu/.gradle/caches/transforms-2/files-2.1/3b6bf7ab9247a0da73c114fa560b0800/MobPush-3.2.4/AndroidManifest.xml:9:5-24:19
+MERGED from [com.mob:MobPush:3.2.4] /Users/percylu/.gradle/caches/transforms-2/files-2.1/3b6bf7ab9247a0da73c114fa560b0800/MobPush-3.2.4/AndroidManifest.xml:9:5-24:19
+MERGED from [com.mob:MobConnect:3.2.4] /Users/percylu/.gradle/caches/transforms-2/files-2.1/a818c90ae746c43dbb2896f4a87862ad/MobConnect-3.2.4/AndroidManifest.xml:9:5-18:19
+MERGED from [com.mob:MobConnect:3.2.4] /Users/percylu/.gradle/caches/transforms-2/files-2.1/a818c90ae746c43dbb2896f4a87862ad/MobConnect-3.2.4/AndroidManifest.xml:9:5-18:19
+MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] /Users/percylu/.gradle/caches/transforms-2/files-2.1/0c5b4b23bb91f79c549fc721601a4cf9/constraintlayout-1.1.3/AndroidManifest.xml:9:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] /Users/percylu/.gradle/caches/transforms-2/files-2.1/0c5b4b23bb91f79c549fc721601a4cf9/constraintlayout-1.1.3/AndroidManifest.xml:9:5-20
+MERGED from [com.google.android.material:material:1.1.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/18c250a66b4312bc05772d7f6cf94bcb/material-1.1.0/AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.material:material:1.1.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/18c250a66b4312bc05772d7f6cf94bcb/material-1.1.0/AndroidManifest.xml:22:5-20
+MERGED from [me.dm7.barcodescanner:zxing:1.9.13] /Users/percylu/.gradle/caches/transforms-2/files-2.1/b10f6e14ad280da40b30d80d38003f99/zxing-1.9.13/AndroidManifest.xml:11:5-20
+MERGED from [me.dm7.barcodescanner:zxing:1.9.13] /Users/percylu/.gradle/caches/transforms-2/files-2.1/b10f6e14ad280da40b30d80d38003f99/zxing-1.9.13/AndroidManifest.xml:11:5-20
+MERGED from [me.dm7.barcodescanner:core:1.9.13] /Users/percylu/.gradle/caches/transforms-2/files-2.1/525c73f0aefd7a7d757f0058eba25289/jetified-core-1.9.13/AndroidManifest.xml:11:5-20
+MERGED from [me.dm7.barcodescanner:core:1.9.13] /Users/percylu/.gradle/caches/transforms-2/files-2.1/525c73f0aefd7a7d757f0058eba25289/jetified-core-1.9.13/AndroidManifest.xml:11:5-20
+MERGED from [androidx.core:core:1.1.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/4f6477515a4019fc4b99d61dad627e3a/core-1.1.0/AndroidManifest.xml:24:5-89
+MERGED from [androidx.core:core:1.1.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/4f6477515a4019fc4b99d61dad627e3a/core-1.1.0/AndroidManifest.xml:24:5-89
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/25e58474c691b859e94f2a9593b361e1/versionedparcelable-1.1.0/AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/25e58474c691b859e94f2a9593b361e1/versionedparcelable-1.1.0/AndroidManifest.xml:24:5-25:19
 	android:appComponentFactory
-		ADDED from [androidx.core:core:1.1.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/6b399c2363bb098ebde1725d903cbda0/core-1.1.0/AndroidManifest.xml:24:18-86
+		ADDED from [androidx.core:core:1.1.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/4f6477515a4019fc4b99d61dad627e3a/core-1.1.0/AndroidManifest.xml:24:18-86
 	android:label
 		ADDED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:11:9-28
 	android:icon
 		ADDED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:12:9-43
 	android:name
 		ADDED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:10:9-57
-activity#com.example.flutter_app.MainActivity
-ADDED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:13:9-41:20
+activity#com.miao.flutter_app.MainActivity
+ADDED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:13:9-44:20
 	android:launchMode
 		ADDED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:15:13-43
 	android:hardwareAccelerated
@@ -110,7 +139,7 @@ ADDED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:1
 	android:theme
 		ADDED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:16:13-47
 	android:name
-		ADDED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:14:13-41
+		ADDED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:14:13-61
 meta-data#io.flutter.embedding.android.NormalTheme
 ADDED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:24:13-27:17
 	android:resource
@@ -124,7 +153,7 @@ ADDED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:3
 	android:name
 		ADDED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:34:15-79
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:37:13-40:29
+ADDED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:37:13-43:29
 action#android.intent.action.MAIN
 ADDED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:38:17-68
 	android:name
@@ -133,56 +162,66 @@ category#android.intent.category.LAUNCHER
 ADDED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:39:17-76
 	android:name
 		ADDED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:39:27-74
+activity#com.apptreesoftware.barcodescan.BarcodeScannerActivity
+ADDED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:45:9-90
+	android:name
+		ADDED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:45:19-88
 meta-data#flutterEmbedding
-ADDED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:44:9-46:33
+ADDED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:49:9-51:33
 	android:value
-		ADDED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:46:13-30
+		ADDED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:51:13-30
 	android:name
-		ADDED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:45:13-44
+		ADDED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:50:13-44
 uses-permission#android.permission.ACCESS_WIFI_STATE
-ADDED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:48:5-75
+ADDED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:53:5-75
 MERGED from [:connectivity] /Users/percylu/flutter_app/build/connectivity/intermediates/library_manifest/debug/AndroidManifest.xml:8:5-76
 MERGED from [:connectivity] /Users/percylu/flutter_app/build/connectivity/intermediates/library_manifest/debug/AndroidManifest.xml:8:5-76
 	android:name
-		ADDED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:48:22-73
+		ADDED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:53:22-73
 uses-permission#android.permission.ACCESS_NETWORK_STATE
-ADDED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:49:5-78
+ADDED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:54:5-78
 MERGED from [:connectivity] /Users/percylu/flutter_app/build/connectivity/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-79
 MERGED from [:connectivity] /Users/percylu/flutter_app/build/connectivity/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-79
-MERGED from [com.google.android.exoplayer:exoplayer-core:2.9.6] /Users/percylu/.gradle/caches/transforms-2/files-2.1/9d4ea42f462821145154ce3d5420fb03/jetified-exoplayer-core-2.9.6/AndroidManifest.xml:24:5-79
-MERGED from [com.google.android.exoplayer:exoplayer-core:2.9.6] /Users/percylu/.gradle/caches/transforms-2/files-2.1/9d4ea42f462821145154ce3d5420fb03/jetified-exoplayer-core-2.9.6/AndroidManifest.xml:24:5-79
+MERGED from [com.google.android.exoplayer:exoplayer-core:2.9.6] /Users/percylu/.gradle/caches/transforms-2/files-2.1/bd6af334cc00fc09e1db51dcd952e9c7/jetified-exoplayer-core-2.9.6/AndroidManifest.xml:24:5-79
+MERGED from [com.google.android.exoplayer:exoplayer-core:2.9.6] /Users/percylu/.gradle/caches/transforms-2/files-2.1/bd6af334cc00fc09e1db51dcd952e9c7/jetified-exoplayer-core-2.9.6/AndroidManifest.xml:24:5-79
 	android:name
-		ADDED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:49:22-76
+		ADDED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:54:22-76
 uses-permission#android.permission.ACCESS_COARSE_LOCATION
-ADDED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:50:5-80
+ADDED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:55:5-80
 	android:name
-		ADDED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:50:22-78
+		ADDED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:55:22-78
 uses-permission#android.permission.ACCESS_FINE_LOCATION
-ADDED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:51:5-78
+ADDED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:56:5-78
 	android:name
-		ADDED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:51:22-76
+		ADDED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:56:22-76
 uses-permission#android.permission.CHANGE_WIFI_STATE
-ADDED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:52:5-75
+ADDED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:57:5-75
 	android:name
-		ADDED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:52:22-73
+		ADDED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:57:22-73
 uses-permission#android.permission.CHANGE_NETWORK_STATE
-ADDED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:53:5-78
+ADDED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:58:5-78
 	android:name
-		ADDED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:53:22-76
+		ADDED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:58:22-76
 uses-permission#android.permission.WAKE_LOCK
-ADDED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:55:5-67
+ADDED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:60:5-67
 	android:name
-		ADDED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:55:22-65
+		ADDED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:60:22-65
+uses-permission#android.permission.CAMERA
+ADDED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:61:5-65
+MERGED from [:barcode_scan] /Users/percylu/flutter_app/build/barcode_scan/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-65
+MERGED from [:barcode_scan] /Users/percylu/flutter_app/build/barcode_scan/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-65
+	android:name
+		ADDED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:61:22-62
 uses-sdk
 INJECTED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml
 INJECTED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml
 MERGED from [:video_player] /Users/percylu/flutter_app/build/video_player/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:video_player] /Users/percylu/flutter_app/build/video_player/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
-MERGED from [:luhenchang_plugin] /Users/percylu/flutter_app/build/luhenchang_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
-MERGED from [:luhenchang_plugin] /Users/percylu/flutter_app/build/luhenchang_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:sqflite] /Users/percylu/flutter_app/build/sqflite/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:sqflite] /Users/percylu/flutter_app/build/sqflite/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:luhenchang_plugin] /Users/percylu/flutter_app/build/luhenchang_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:luhenchang_plugin] /Users/percylu/flutter_app/build/luhenchang_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:wakelock] /Users/percylu/flutter_app/build/wakelock/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:wakelock] /Users/percylu/flutter_app/build/wakelock/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:connectivity] /Users/percylu/flutter_app/build/connectivity/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
@@ -193,6 +232,8 @@ MERGED from [:image_picker] /Users/percylu/flutter_app/build/image_picker/interm
 MERGED from [:image_picker] /Users/percylu/flutter_app/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:flutter_plugin_android_lifecycle] /Users/percylu/flutter_app/build/flutter_plugin_android_lifecycle/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:flutter_plugin_android_lifecycle] /Users/percylu/flutter_app/build/flutter_plugin_android_lifecycle/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:mobpush_plugin] /Users/percylu/flutter_app/build/mobpush_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:mobpush_plugin] /Users/percylu/flutter_app/build/mobpush_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:url_launcher] /Users/percylu/flutter_app/build/url_launcher/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:url_launcher] /Users/percylu/flutter_app/build/url_launcher/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:webview_flutter] /Users/percylu/flutter_app/build/webview_flutter/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
@@ -201,76 +242,108 @@ MERGED from [:path_provider] /Users/percylu/flutter_app/build/path_provider/inte
 MERGED from [:path_provider] /Users/percylu/flutter_app/build/path_provider/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:shared_preferences] /Users/percylu/flutter_app/build/shared_preferences/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:shared_preferences] /Users/percylu/flutter_app/build/shared_preferences/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
-MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] /Users/percylu/.gradle/caches/transforms-2/files-2.1/e53f3dbecc434a816350a73eb26ed01a/constraintlayout-1.1.3/AndroidManifest.xml:5:5-7:41
-MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] /Users/percylu/.gradle/caches/transforms-2/files-2.1/e53f3dbecc434a816350a73eb26ed01a/constraintlayout-1.1.3/AndroidManifest.xml:5:5-7:41
-MERGED from [androidx.appcompat:appcompat:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/a37d7647168a444700eada6776a3f208/appcompat-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.appcompat:appcompat:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/a37d7647168a444700eada6776a3f208/appcompat-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [org.permissionsdispatcher:permissionsdispatcher:4.3.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/a20ed33112be1e4c6510717e9474ac75/permissionsdispatcher-4.3.0/AndroidManifest.xml:5:5-7:41
-MERGED from [org.permissionsdispatcher:permissionsdispatcher:4.3.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/a20ed33112be1e4c6510717e9474ac75/permissionsdispatcher-4.3.0/AndroidManifest.xml:5:5-7:41
-MERGED from [androidx.fragment:fragment:1.1.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/412798c5ff5129715d71e58ff213e3a7/fragment-1.1.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.fragment:fragment:1.1.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/412798c5ff5129715d71e58ff213e3a7/fragment-1.1.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.vectordrawable:vectordrawable-animated:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/04db46b0afaef16e8baa4753a037b9f8/vectordrawable-animated-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.vectordrawable:vectordrawable-animated:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/04db46b0afaef16e8baa4753a037b9f8/vectordrawable-animated-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/e3eb8b15772ec829dcf209e8e802e713/legacy-support-core-ui-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/e3eb8b15772ec829dcf209e8e802e713/legacy-support-core-ui-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/47b340b0c8e357b683c33bb06ca19cf3/legacy-support-core-utils-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/47b340b0c8e357b683c33bb06ca19cf3/legacy-support-core-utils-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.vectordrawable:vectordrawable:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/37ddaeb928c97c85fe76dbe94b25377c/vectordrawable-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.vectordrawable:vectordrawable:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/37ddaeb928c97c85fe76dbe94b25377c/vectordrawable-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.webkit:webkit:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/881a30e692b8873570b503d4e56b77c3/webkit-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.webkit:webkit:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/881a30e692b8873570b503d4e56b77c3/webkit-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/2b55f4dd1ddfb477bff2667016cc0a25/viewpager-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/2b55f4dd1ddfb477bff2667016cc0a25/viewpager-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.loader:loader:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/7d95adf5b88dd1f9089b34bd4d2e8a93/loader-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.loader:loader:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/7d95adf5b88dd1f9089b34bd4d2e8a93/loader-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.activity:activity:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/36b6b089b86a4b53f161d1de646d1e60/activity-1.0.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.activity:activity:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/36b6b089b86a4b53f161d1de646d1e60/activity-1.0.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/454541ed0d74e0d0babd214b189709ff/coordinatorlayout-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/454541ed0d74e0d0babd214b189709ff/coordinatorlayout-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/41c88a9f96e450bd637ed756ecda85b5/drawerlayout-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/41c88a9f96e450bd637ed756ecda85b5/drawerlayout-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/b275e0ac511ead6a0c329e93803bbcd1/slidingpanelayout-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/b275e0ac511ead6a0c329e93803bbcd1/slidingpanelayout-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.customview:customview:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/65668fdc6b75dc53c12b7eb5f279be35/customview-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.customview:customview:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/65668fdc6b75dc53c12b7eb5f279be35/customview-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/060334bf991aabc91fba7fe93737f90d/swiperefreshlayout-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/060334bf991aabc91fba7fe93737f90d/swiperefreshlayout-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/a2947b2bc56055381fd4cf778505ff5b/asynclayoutinflater-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/a2947b2bc56055381fd4cf778505ff5b/asynclayoutinflater-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.core:core:1.1.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/6b399c2363bb098ebde1725d903cbda0/core-1.1.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.core:core:1.1.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/6b399c2363bb098ebde1725d903cbda0/core-1.1.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/9e68ec229c62f3dc7a285423839a92f2/lifecycle-runtime-2.2.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/9e68ec229c62f3dc7a285423839a92f2/lifecycle-runtime-2.2.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.savedstate:savedstate:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/0691a1a6c3d055bc7ae9d66ba6bc80fa/savedstate-1.0.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.savedstate:savedstate:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/0691a1a6c3d055bc7ae9d66ba6bc80fa/savedstate-1.0.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/a72cc53d82cf5702357646245a6e016a/lifecycle-livedata-2.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/a72cc53d82cf5702357646245a6e016a/lifecycle-livedata-2.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/439f22ecfa3eb2cee779567eba299ed4/lifecycle-livedata-core-2.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/439f22ecfa3eb2cee779567eba299ed4/lifecycle-livedata-core-2.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/89da2d2b13f2717b13dbde907d33a117/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/89da2d2b13f2717b13dbde907d33a117/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.exoplayer:exoplayer-hls:2.9.6] /Users/percylu/.gradle/caches/transforms-2/files-2.1/5096781dce05bf9ea2546f7918a32bde/jetified-exoplayer-hls-2.9.6/AndroidManifest.xml:20:5-22:41
-MERGED from [com.google.android.exoplayer:exoplayer-hls:2.9.6] /Users/percylu/.gradle/caches/transforms-2/files-2.1/5096781dce05bf9ea2546f7918a32bde/jetified-exoplayer-hls-2.9.6/AndroidManifest.xml:20:5-22:41
-MERGED from [com.google.android.exoplayer:exoplayer-dash:2.9.6] /Users/percylu/.gradle/caches/transforms-2/files-2.1/0d6f512b98e6968625dabe0c7a5db02c/jetified-exoplayer-dash-2.9.6/AndroidManifest.xml:20:5-22:41
-MERGED from [com.google.android.exoplayer:exoplayer-dash:2.9.6] /Users/percylu/.gradle/caches/transforms-2/files-2.1/0d6f512b98e6968625dabe0c7a5db02c/jetified-exoplayer-dash-2.9.6/AndroidManifest.xml:20:5-22:41
-MERGED from [com.google.android.exoplayer:exoplayer-smoothstreaming:2.9.6] /Users/percylu/.gradle/caches/transforms-2/files-2.1/45dc962554a0dafa1e524889534ce08f/jetified-exoplayer-smoothstreaming-2.9.6/AndroidManifest.xml:20:5-22:41
-MERGED from [com.google.android.exoplayer:exoplayer-smoothstreaming:2.9.6] /Users/percylu/.gradle/caches/transforms-2/files-2.1/45dc962554a0dafa1e524889534ce08f/jetified-exoplayer-smoothstreaming-2.9.6/AndroidManifest.xml:20:5-22:41
-MERGED from [com.google.android.exoplayer:exoplayer-core:2.9.6] /Users/percylu/.gradle/caches/transforms-2/files-2.1/9d4ea42f462821145154ce3d5420fb03/jetified-exoplayer-core-2.9.6/AndroidManifest.xml:20:5-22:41
-MERGED from [com.google.android.exoplayer:exoplayer-core:2.9.6] /Users/percylu/.gradle/caches/transforms-2/files-2.1/9d4ea42f462821145154ce3d5420fb03/jetified-exoplayer-core-2.9.6/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.arch.core:core-runtime:2.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/e5d23450977c2b96e566605cba9e8c80/core-runtime-2.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.arch.core:core-runtime:2.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/e5d23450977c2b96e566605cba9e8c80/core-runtime-2.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/0bf15744f5224b117e4e3c989895e24a/versionedparcelable-1.1.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/0bf15744f5224b117e4e3c989895e24a/versionedparcelable-1.1.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/1d0c7e854dcd581b455273fbcbc11e01/documentfile-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/1d0c7e854dcd581b455273fbcbc11e01/documentfile-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/e5eed722b2004ca64fbe6c90991e06af/localbroadcastmanager-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/e5eed722b2004ca64fbe6c90991e06af/localbroadcastmanager-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.print:print:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/6d7a62f88f3d54b469312a470cec53c7/print-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.print:print:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/6d7a62f88f3d54b469312a470cec53c7/print-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/73dec8f06dda83861b05ec84e654c876/lifecycle-viewmodel-2.1.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/73dec8f06dda83861b05ec84e654c876/lifecycle-viewmodel-2.1.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/598256249c7c77b96135e9aeda8121e5/interpolator-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/598256249c7c77b96135e9aeda8121e5/interpolator-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [:barcode_scan] /Users/percylu/flutter_app/build/barcode_scan/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:barcode_scan] /Users/percylu/flutter_app/build/barcode_scan/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [cn.sharesdk:ShareSDK:3.8.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/e2e6c9362c0b0b70a51aec3d088e21a4/ShareSDK-3.8.0/AndroidManifest.xml:7:5-9:41
+MERGED from [cn.sharesdk:ShareSDK:3.8.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/e2e6c9362c0b0b70a51aec3d088e21a4/ShareSDK-3.8.0/AndroidManifest.xml:7:5-9:41
+MERGED from [cn.sharesdk:OneKeyShare:3.8.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/ddec4786c29fdabad3a15f67fa96fde8/OneKeyShare-3.8.0/AndroidManifest.xml:7:5-9:41
+MERGED from [cn.sharesdk:OneKeyShare:3.8.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/ddec4786c29fdabad3a15f67fa96fde8/OneKeyShare-3.8.0/AndroidManifest.xml:7:5-9:41
+MERGED from [com.mob:MobGuard:1.0.8] /Users/percylu/.gradle/caches/transforms-2/files-2.1/6b8b8535a711ddc3006901208413c75a/MobGuard-1.0.8/AndroidManifest.xml:5:5-7:41
+MERGED from [com.mob:MobGuard:1.0.8] /Users/percylu/.gradle/caches/transforms-2/files-2.1/6b8b8535a711ddc3006901208413c75a/MobGuard-1.0.8/AndroidManifest.xml:5:5-7:41
+MERGED from [com.mob:MobPush:3.2.4] /Users/percylu/.gradle/caches/transforms-2/files-2.1/3b6bf7ab9247a0da73c114fa560b0800/MobPush-3.2.4/AndroidManifest.xml:5:5-7:41
+MERGED from [com.mob:MobPush:3.2.4] /Users/percylu/.gradle/caches/transforms-2/files-2.1/3b6bf7ab9247a0da73c114fa560b0800/MobPush-3.2.4/AndroidManifest.xml:5:5-7:41
+MERGED from [com.mob:MobConnect:3.2.4] /Users/percylu/.gradle/caches/transforms-2/files-2.1/a818c90ae746c43dbb2896f4a87862ad/MobConnect-3.2.4/AndroidManifest.xml:5:5-7:41
+MERGED from [com.mob:MobConnect:3.2.4] /Users/percylu/.gradle/caches/transforms-2/files-2.1/a818c90ae746c43dbb2896f4a87862ad/MobConnect-3.2.4/AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] /Users/percylu/.gradle/caches/transforms-2/files-2.1/0c5b4b23bb91f79c549fc721601a4cf9/constraintlayout-1.1.3/AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] /Users/percylu/.gradle/caches/transforms-2/files-2.1/0c5b4b23bb91f79c549fc721601a4cf9/constraintlayout-1.1.3/AndroidManifest.xml:5:5-7:41
+MERGED from [com.google.android.material:material:1.1.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/18c250a66b4312bc05772d7f6cf94bcb/material-1.1.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.material:material:1.1.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/18c250a66b4312bc05772d7f6cf94bcb/material-1.1.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.appcompat:appcompat:1.1.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/ffb17b09406e7f32db99d26a553c002a/appcompat-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat:1.1.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/ffb17b09406e7f32db99d26a553c002a/appcompat-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [org.permissionsdispatcher:permissionsdispatcher:4.3.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/704abf6076bb23bacb275587855baa1c/permissionsdispatcher-4.3.0/AndroidManifest.xml:5:5-7:41
+MERGED from [org.permissionsdispatcher:permissionsdispatcher:4.3.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/704abf6076bb23bacb275587855baa1c/permissionsdispatcher-4.3.0/AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/ba493244ffd42ba2288e807cc92b725d/viewpager2-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/ba493244ffd42ba2288e807cc92b725d/viewpager2-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [me.dm7.barcodescanner:zxing:1.9.13] /Users/percylu/.gradle/caches/transforms-2/files-2.1/b10f6e14ad280da40b30d80d38003f99/zxing-1.9.13/AndroidManifest.xml:7:5-9:41
+MERGED from [me.dm7.barcodescanner:zxing:1.9.13] /Users/percylu/.gradle/caches/transforms-2/files-2.1/b10f6e14ad280da40b30d80d38003f99/zxing-1.9.13/AndroidManifest.xml:7:5-9:41
+MERGED from [me.dm7.barcodescanner:core:1.9.13] /Users/percylu/.gradle/caches/transforms-2/files-2.1/525c73f0aefd7a7d757f0058eba25289/jetified-core-1.9.13/AndroidManifest.xml:7:5-9:41
+MERGED from [me.dm7.barcodescanner:core:1.9.13] /Users/percylu/.gradle/caches/transforms-2/files-2.1/525c73f0aefd7a7d757f0058eba25289/jetified-core-1.9.13/AndroidManifest.xml:7:5-9:41
+MERGED from [androidx.legacy:legacy-support-v4:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/3cd8108f5c8becdf9a5a6557e00c08a5/legacy-support-v4-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-v4:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/3cd8108f5c8becdf9a5a6557e00c08a5/legacy-support-v4-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.fragment:fragment:1.1.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/728256458da89902bbcac3e9104a47c3/fragment-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.1.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/728256458da89902bbcac3e9104a47c3/fragment-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.webkit:webkit:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/03eade4edbfa4aaae31ee2db5a620012/webkit-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.webkit:webkit:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/03eade4edbfa4aaae31ee2db5a620012/webkit-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/fa241b2a2003612b1bf97b43839fefec/legacy-support-core-ui-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/fa241b2a2003612b1bf97b43839fefec/legacy-support-core-ui-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/d0b02d88e99a35eb12afd419329cd00c/viewpager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/d0b02d88e99a35eb12afd419329cd00c/viewpager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/4014d755f2a4b91a0327058bcae84c5c/legacy-support-core-utils-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/4014d755f2a4b91a0327058bcae84c5c/legacy-support-core-utils-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/326fe471671948bc912bd2bb13245b11/loader-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/326fe471671948bc912bd2bb13245b11/loader-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/c4930e2a33e581bc927c3c771e955316/activity-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/c4930e2a33e581bc927c3c771e955316/activity-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat-resources:1.1.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/15edb4d8909995d24a69691b856b52b1/appcompat-resources-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat-resources:1.1.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/15edb4d8909995d24a69691b856b52b1/appcompat-resources-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/28acce9ad25f3970350222b004b7a3df/drawerlayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/28acce9ad25f3970350222b004b7a3df/drawerlayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/48c92a3fbcff02c421e32a92299ec250/coordinatorlayout-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/48c92a3fbcff02c421e32a92299ec250/coordinatorlayout-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.transition:transition:1.2.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/58d6f24f246f15b8c53a9c1957ca2d6b/transition-1.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.transition:transition:1.2.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/58d6f24f246f15b8c53a9c1957ca2d6b/transition-1.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/72e3e71e5d9ff02c6a92ec2a72f619e4/vectordrawable-animated-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/72e3e71e5d9ff02c6a92ec2a72f619e4/vectordrawable-animated-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/5f59d52692c247aaf5b554b8f4bea7d5/vectordrawable-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/5f59d52692c247aaf5b554b8f4bea7d5/vectordrawable-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/69b449ebaafd124d1944feb217c945da/recyclerview-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/69b449ebaafd124d1944feb217c945da/recyclerview-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/ce9dcdd5fe142e319d37da07c7ee0e19/slidingpanelayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/ce9dcdd5fe142e319d37da07c7ee0e19/slidingpanelayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/9bb098be91d485894fddfa56db2f4daf/customview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/9bb098be91d485894fddfa56db2f4daf/customview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.media:media:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/8832cf319f8adac13c547794ae4fcdf4/media-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.media:media:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/8832cf319f8adac13c547794ae4fcdf4/media-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/58b43e546598c4c37eddf3ef6cb24ec2/swiperefreshlayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/58b43e546598c4c37eddf3ef6cb24ec2/swiperefreshlayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/cd248ae4e05b9eeba708dea671e3ca9d/asynclayoutinflater-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/cd248ae4e05b9eeba708dea671e3ca9d/asynclayoutinflater-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.1.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/4f6477515a4019fc4b99d61dad627e3a/core-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core:1.1.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/4f6477515a4019fc4b99d61dad627e3a/core-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/8d352b5095132c88a25fb162b8c3229c/lifecycle-runtime-2.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/8d352b5095132c88a25fb162b8c3229c/lifecycle-runtime-2.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/13554602f2b82e6ceb30d194406c3efb/savedstate-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/13554602f2b82e6ceb30d194406c3efb/savedstate-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/3e9dd842ccd43e4e3b657caaf4e8248f/lifecycle-livedata-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/3e9dd842ccd43e4e3b657caaf4e8248f/lifecycle-livedata-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/7970572c12eabd8ca4e453b98bca9aea/lifecycle-livedata-core-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/7970572c12eabd8ca4e453b98bca9aea/lifecycle-livedata-core-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.exoplayer:exoplayer-hls:2.9.6] /Users/percylu/.gradle/caches/transforms-2/files-2.1/4d3cc5d6a0f1b8d47227d19905f209a5/jetified-exoplayer-hls-2.9.6/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-hls:2.9.6] /Users/percylu/.gradle/caches/transforms-2/files-2.1/4d3cc5d6a0f1b8d47227d19905f209a5/jetified-exoplayer-hls-2.9.6/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-dash:2.9.6] /Users/percylu/.gradle/caches/transforms-2/files-2.1/abc91c787c8dc92d81876aa9e1d85b93/jetified-exoplayer-dash-2.9.6/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-dash:2.9.6] /Users/percylu/.gradle/caches/transforms-2/files-2.1/abc91c787c8dc92d81876aa9e1d85b93/jetified-exoplayer-dash-2.9.6/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-smoothstreaming:2.9.6] /Users/percylu/.gradle/caches/transforms-2/files-2.1/57ae95c4c1a8b65392bad055f5765ce4/jetified-exoplayer-smoothstreaming-2.9.6/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-smoothstreaming:2.9.6] /Users/percylu/.gradle/caches/transforms-2/files-2.1/57ae95c4c1a8b65392bad055f5765ce4/jetified-exoplayer-smoothstreaming-2.9.6/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-core:2.9.6] /Users/percylu/.gradle/caches/transforms-2/files-2.1/bd6af334cc00fc09e1db51dcd952e9c7/jetified-exoplayer-core-2.9.6/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-core:2.9.6] /Users/percylu/.gradle/caches/transforms-2/files-2.1/bd6af334cc00fc09e1db51dcd952e9c7/jetified-exoplayer-core-2.9.6/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.arch.core:core-runtime:2.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/bd7a7e4d343730d8a749a32c150c44a9/core-runtime-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/bd7a7e4d343730d8a749a32c150c44a9/core-runtime-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/25e58474c691b859e94f2a9593b361e1/versionedparcelable-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/25e58474c691b859e94f2a9593b361e1/versionedparcelable-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/c299a762f24468a4f6e58907ea033ef2/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/c299a762f24468a4f6e58907ea033ef2/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cardview:cardview:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/ac43c0aacce572fce2fc74fd560c1b7e/cardview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cardview:cardview:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/ac43c0aacce572fce2fc74fd560c1b7e/cardview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/01fda96c9f576b6341217422cba0b180/lifecycle-viewmodel-2.1.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/01fda96c9f576b6341217422cba0b180/lifecycle-viewmodel-2.1.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/990c34ec351e35b3ef29250840222a48/interpolator-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/990c34ec351e35b3ef29250840222a48/interpolator-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/c90b52cbc4765665e012ccdcaf03a6c2/documentfile-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/c90b52cbc4765665e012ccdcaf03a6c2/documentfile-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/2aea30f049e8f77371072bc46ac56db0/localbroadcastmanager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/2aea30f049e8f77371072bc46ac56db0/localbroadcastmanager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/e04708384bde72ab7f6f7e1d31a55f6c/print-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] /Users/percylu/.gradle/caches/transforms-2/files-2.1/e04708384bde72ab7f6f7e1d31a55f6c/print-1.0.0/AndroidManifest.xml:20:5-44
 INJECTED from /Users/percylu/flutter_app/android/app/src/debug/AndroidManifest.xml
 INJECTED from /Users/percylu/flutter_app/android/app/src/debug/AndroidManifest.xml
 	android:targetSdkVersion
@@ -311,3 +384,45 @@ ADDED from [:url_launcher] /Users/percylu/flutter_app/build/url_launcher/interme
 		ADDED from [:url_launcher] /Users/percylu/flutter_app/build/url_launcher/intermediates/library_manifest/debug/AndroidManifest.xml:11:13-71
 	android:name
 		ADDED from [:url_launcher] /Users/percylu/flutter_app/build/url_launcher/intermediates/library_manifest/debug/AndroidManifest.xml:9:13-74
+activity#de.mintware.barcode_scan.BarcodeScannerActivity
+ADDED from [:barcode_scan] /Users/percylu/flutter_app/build/barcode_scan/intermediates/library_manifest/debug/AndroidManifest.xml:10:9-84
+	android:name
+		ADDED from [:barcode_scan] /Users/percylu/flutter_app/build/barcode_scan/intermediates/library_manifest/debug/AndroidManifest.xml:10:19-81
+service#com.mob.pushsdk.plugins.fcm.FCMFirebaseInstanceIdService
+ADDED from [com.mob:MobPush:3.2.4] /Users/percylu/.gradle/caches/transforms-2/files-2.1/3b6bf7ab9247a0da73c114fa560b0800/MobPush-3.2.4/AndroidManifest.xml:10:9-16:19
+	android:exported
+		ADDED from [com.mob:MobPush:3.2.4] /Users/percylu/.gradle/caches/transforms-2/files-2.1/3b6bf7ab9247a0da73c114fa560b0800/MobPush-3.2.4/AndroidManifest.xml:12:13-36
+	android:name
+		ADDED from [com.mob:MobPush:3.2.4] /Users/percylu/.gradle/caches/transforms-2/files-2.1/3b6bf7ab9247a0da73c114fa560b0800/MobPush-3.2.4/AndroidManifest.xml:11:13-84
+intent-filter#action:name:com.google.firebase.INSTANCE_ID_EVENT
+ADDED from [com.mob:MobPush:3.2.4] /Users/percylu/.gradle/caches/transforms-2/files-2.1/3b6bf7ab9247a0da73c114fa560b0800/MobPush-3.2.4/AndroidManifest.xml:13:13-15:29
+action#com.google.firebase.INSTANCE_ID_EVENT
+ADDED from [com.mob:MobPush:3.2.4] /Users/percylu/.gradle/caches/transforms-2/files-2.1/3b6bf7ab9247a0da73c114fa560b0800/MobPush-3.2.4/AndroidManifest.xml:14:17-80
+	android:name
+		ADDED from [com.mob:MobPush:3.2.4] /Users/percylu/.gradle/caches/transforms-2/files-2.1/3b6bf7ab9247a0da73c114fa560b0800/MobPush-3.2.4/AndroidManifest.xml:14:25-77
+service#com.mob.pushsdk.plugins.huawei.HuaweiPushService
+ADDED from [com.mob:MobPush:3.2.4] /Users/percylu/.gradle/caches/transforms-2/files-2.1/3b6bf7ab9247a0da73c114fa560b0800/MobPush-3.2.4/AndroidManifest.xml:17:9-23:19
+	android:exported
+		ADDED from [com.mob:MobPush:3.2.4] /Users/percylu/.gradle/caches/transforms-2/files-2.1/3b6bf7ab9247a0da73c114fa560b0800/MobPush-3.2.4/AndroidManifest.xml:19:13-37
+	android:name
+		ADDED from [com.mob:MobPush:3.2.4] /Users/percylu/.gradle/caches/transforms-2/files-2.1/3b6bf7ab9247a0da73c114fa560b0800/MobPush-3.2.4/AndroidManifest.xml:18:13-76
+intent-filter#action:name:com.huawei.push.action.MESSAGING_EVENT
+ADDED from [com.mob:MobPush:3.2.4] /Users/percylu/.gradle/caches/transforms-2/files-2.1/3b6bf7ab9247a0da73c114fa560b0800/MobPush-3.2.4/AndroidManifest.xml:20:13-22:29
+action#com.huawei.push.action.MESSAGING_EVENT
+ADDED from [com.mob:MobPush:3.2.4] /Users/percylu/.gradle/caches/transforms-2/files-2.1/3b6bf7ab9247a0da73c114fa560b0800/MobPush-3.2.4/AndroidManifest.xml:21:17-81
+	android:name
+		ADDED from [com.mob:MobPush:3.2.4] /Users/percylu/.gradle/caches/transforms-2/files-2.1/3b6bf7ab9247a0da73c114fa560b0800/MobPush-3.2.4/AndroidManifest.xml:21:25-78
+service#com.mob.socketservice.MobService
+ADDED from [com.mob:MobConnect:3.2.4] /Users/percylu/.gradle/caches/transforms-2/files-2.1/a818c90ae746c43dbb2896f4a87862ad/MobConnect-3.2.4/AndroidManifest.xml:10:9-17:19
+	android:process
+		ADDED from [com.mob:MobConnect:3.2.4] /Users/percylu/.gradle/caches/transforms-2/files-2.1/a818c90ae746c43dbb2896f4a87862ad/MobConnect-3.2.4/AndroidManifest.xml:13:13-42
+	android:exported
+		ADDED from [com.mob:MobConnect:3.2.4] /Users/percylu/.gradle/caches/transforms-2/files-2.1/a818c90ae746c43dbb2896f4a87862ad/MobConnect-3.2.4/AndroidManifest.xml:12:13-36
+	android:name
+		ADDED from [com.mob:MobConnect:3.2.4] /Users/percylu/.gradle/caches/transforms-2/files-2.1/a818c90ae746c43dbb2896f4a87862ad/MobConnect-3.2.4/AndroidManifest.xml:11:13-60
+intent-filter#action:name:com.mob.intent.MOB_SERVICE
+ADDED from [com.mob:MobConnect:3.2.4] /Users/percylu/.gradle/caches/transforms-2/files-2.1/a818c90ae746c43dbb2896f4a87862ad/MobConnect-3.2.4/AndroidManifest.xml:14:13-16:29
+action#com.mob.intent.MOB_SERVICE
+ADDED from [com.mob:MobConnect:3.2.4] /Users/percylu/.gradle/caches/transforms-2/files-2.1/a818c90ae746c43dbb2896f4a87862ad/MobConnect-3.2.4/AndroidManifest.xml:15:17-69
+	android:name
+		ADDED from [com.mob:MobConnect:3.2.4] /Users/percylu/.gradle/caches/transforms-2/files-2.1/a818c90ae746c43dbb2896f4a87862ad/MobConnect-3.2.4/AndroidManifest.xml:15:25-66

@@ -6,19 +6,22 @@ import 'package:cached_network_image/cached_network_image.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_app/model/miaoBean.dart';
+import 'package:flutter_app/utility/SpUtils.dart';
 import 'package:flutter_app/widget/daychartwidget.dart';
 import 'package:flutter_app/widget/monthchartwidget.dart';
 import 'package:flutter_app/widget/weekchartwidget.dart';
 import 'package:flutter_screenutil/screenutil.dart';
 
-class PetData extends StatefulWidget {
+class PetDataPage extends StatefulWidget {
   final petId;
-  PetData({this.petId});
+  final img;
+  final name;
+  PetDataPage({this.petId,this.img,this.name});
   @override
   _PetDataState createState() => _PetDataState();
 }
 
-class _PetDataState extends State<PetData>
+class _PetDataState extends State<PetDataPage>
     with SingleTickerProviderStateMixin {
   var index = 0;
   var _kg = 20;
@@ -68,7 +71,7 @@ class _PetDataState extends State<PetData>
           margin: EdgeInsets.only(
               left: ScreenUtil().setWidth(60),
               right: ScreenUtil().setWidth(60),
-              top: ScreenUtil().setHeight(60)),
+              top: ScreenUtil().setHeight(30)),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -78,7 +81,7 @@ class _PetDataState extends State<PetData>
                 child: ClipRRect(
                     borderRadius: BorderRadius.circular(100),
                     child: CachedNetworkImage(
-                      imageUrl: items.data[index].imgUrl,
+                      imageUrl: SpUtils.URL+widget.img,
                       width: ScreenUtil().setWidth(200),
                       height: ScreenUtil().setWidth(200),
                       placeholder: (context, url) =>
@@ -88,11 +91,11 @@ class _PetDataState extends State<PetData>
                       fit: BoxFit.fill,
                     )),
               ),
-              Text(items.data[widget.petId].name,style: TextStyle(fontSize: ScreenUtil().setSp(40),
+              Text(widget.name,style: TextStyle(fontSize: ScreenUtil().setSp(40),
                 fontWeight: FontWeight.w700
               ),),
               Container(
-                margin: EdgeInsets.only(top:ScreenUtil().setHeight(46.01)),
+                margin: EdgeInsets.only(top:ScreenUtil().setHeight(16.01)),
                 width: ScreenUtil().setWidth(423),
                 height: ScreenUtil().setHeight(77.1),
                 decoration: BoxDecoration(
@@ -168,6 +171,7 @@ class _PetDataState extends State<PetData>
   }
 
   initData() async{
+    index=widget.petId;
     items = await miaoBean.fromJson({
       "code": 0,
       "count": 3,

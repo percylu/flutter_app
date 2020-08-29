@@ -15,7 +15,8 @@ import 'package:percent_indicator/linear_percent_indicator.dart';
 
 class DeviceDetail extends StatefulWidget {
   final String deviceId;
-  DeviceDetail({ Key key,  this.deviceId }) : super(key: key);
+  final String deviceType;
+  DeviceDetail({ Key key,  this.deviceId,this.deviceType }) : super(key: key);
   @override
   _DeviceDetailState createState() => _DeviceDetailState();
 
@@ -166,26 +167,24 @@ class _DeviceDetailState extends State<DeviceDetail> {
                 ),
               ),
               Container(
-                alignment: Alignment.center,
+                alignment: Alignment.centerLeft,
                 width: ScreenUtil().setWidth(261),
                 height: ScreenUtil().setHeight(50),
-                padding: EdgeInsets.all(2),
+                //padding: EdgeInsets.only(left:ScreenUtil().setWidth(5),right: ScreenUtil().setWidth(5)),
                 margin: EdgeInsets.only(
                     top: ScreenUtil().setHeight(10),
                     left: ScreenUtil().setWidth(180),
                     right: ScreenUtil().setWidth(180)),
                 decoration: BoxDecoration(
-//                  image: DecorationImage(
-//                      image: AssetImage("assets/bg_progress_bar.png"),
-//                      fit: BoxFit.fill
-//                  ),
                   color: Colors.white,
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(ScreenUtil().setWidth(28)),
                   border: Border.all(color: Colors.grey, width: 1.0),
+
                 ),
                 child: LinearPercentIndicator(
                   //0~1的浮点数，用来表示进度多少;如果 value 为 null 或空，则显示一个动画，否则显示一个定值
-                  alignment: MainAxisAlignment.center,
+                  alignment: MainAxisAlignment.start,
+                  padding:EdgeInsets.symmetric(horizontal:ScreenUtil().setWidth(28)),
                   percent: _percent,
                   // width:ScreenUtil().setWidth(249),
                   lineHeight: ScreenUtil().setHeight(46),
@@ -366,7 +365,7 @@ class _DeviceDetailState extends State<DeviceDetail> {
               barrierDismissible: false,
               builder: (BuildContext context) {
                 return new     MessageDialog(
-                  title:"准备停止一键铲💩", message:"型号A-2", negativeText:"确认停止",
+                  title:"准备停止一键铲💩", message:widget.deviceType, negativeText:"确认停止",
                   onCloseEvent: (){
                     Navigator.pop(context);
                   },
@@ -384,7 +383,7 @@ class _DeviceDetailState extends State<DeviceDetail> {
               barrierDismissible: false,
               builder: (BuildContext context) {
                 return new     MessageDialog(
-                  title:"准备启动一键铲💩", message:"型号A-2", negativeText:"确认启动",
+                  title:"准备启动一键铲💩", message:widget.deviceType, negativeText:"确认启动",
                   onCloseEvent: (){
                     Navigator.pop(context);
                   },
@@ -405,7 +404,7 @@ class _DeviceDetailState extends State<DeviceDetail> {
               barrierDismissible: false,
               builder: (BuildContext context) {
                 return new     MessageDialog(
-                  title:"准备停止一键清砂", message:"型号A-2", negativeText:"确认停止",
+                  title:"准备停止一键清砂", message:widget.deviceType, negativeText:"确认停止",
                   onCloseEvent: (){
                     Navigator.pop(context);
                   },
@@ -423,7 +422,7 @@ class _DeviceDetailState extends State<DeviceDetail> {
               barrierDismissible: false,
               builder: (BuildContext context) {
                 return new     MessageDialog(
-                  title:"准备启动一键清砂", message:"型号A-2", negativeText:"确认启动",
+                  title:"准备启动一键清砂", message:widget.deviceType, negativeText:"确认启动",
                   onCloseEvent: (){
                     Navigator.pop(context);
                   },
@@ -474,6 +473,13 @@ class _DeviceDetailState extends State<DeviceDetail> {
         //设备状态
         _network="已连接";
         if(json['sand']=="1"||json['excreta']=="1"){
+          if(json['excreta']=="1"){
+            index=1;
+          }
+
+          if(json['sand']=="1"){
+            index=2;
+          }
           _workStatus="工作中";
         }else{
           _workStatus="空闲中";
@@ -520,19 +526,17 @@ class _DeviceDetailState extends State<DeviceDetail> {
             print(json.values.first);
             break;
           case "sand":
-            index==2?index=0:index;
             if(json.values.first=="1ok"){
 
             }else{
-
+              index==2?index=0:index;
             }
             break;
           case "excreta":
-            index==1?index=0:index;
             if(json.values.first=="1ok"){
 
             }else{
-
+              index==1?index=0:index;
             }
             break;
           case "shutdown":
