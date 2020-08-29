@@ -192,9 +192,15 @@ class _HomePageState extends State<HomePage>{
   }
 
   void initMob() {
-    MobpushPlugin.updatePrivacyPermissionStatus(true);
-    MobpushPlugin.setClickNotificationToLaunchMainActivity(true);
-    MobpushPlugin.setAppForegroundHiddenNotification(true);
+    //MobpushPlugin.updatePrivacyPermissionStatus(true);
+    //MobpushPlugin.setClickNotificationToLaunchMainActivity(true);
+    //MobpushPlugin.setAppForegroundHiddenNotification(true);
+    //上传隐私协议许可
+    Future<bool> abc =  MobpushPlugin.updatePrivacyPermissionStatus(true);
+
+    abc.then((value) => {
+      print("aaaaaaaaaaaaa"+value.toString())
+    });
     if (Platform.isIOS) {
       MobpushPlugin.setCustomNotification();
       MobpushPlugin.setAPNsForProduction(false);

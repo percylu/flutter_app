@@ -1,4 +1,4 @@
-#Sat Aug 29 02:11:25 CST 2020
+#Sat Aug 29 13:05:21 CST 2020
 base.2=/Users/percylu/flutter_app/build/app/intermediates/dex/debug/mergeLibDexDebug/out/classes_0.dex
 base.1=/Users/percylu/flutter_app/build/app/intermediates/dex/debug/mergeProjectDexDebug/out/classes.dex
 base.0=/Users/percylu/flutter_app/build/app/intermediates/dex/debug/mergeExtDexDebug/out/classes.dex

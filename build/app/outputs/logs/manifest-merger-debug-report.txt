@@ -129,7 +129,7 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /Users/perc
 activity#com.miao.flutter_app.MainActivity
 ADDED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:13:9-44:20
 	android:launchMode
-		ADDED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:15:13-43
+		ADDED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:15:13-44
 	android:hardwareAccelerated
 		ADDED from /Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:18:13-47
 	android:windowSoftInputMode

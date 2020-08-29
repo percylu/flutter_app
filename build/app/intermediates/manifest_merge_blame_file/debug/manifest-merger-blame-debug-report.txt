@@ -64,8 +64,8 @@
 34-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:17:13-163
 35            android:hardwareAccelerated="true"
 35-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:18:13-47
-36            android:launchMode="singleTop"
-36-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:15:13-43
+36            android:launchMode="singleTask"
+36-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:15:13-44
 37            android:theme="@style/LaunchTheme"
 37-->/Users/percylu/flutter_app/android/app/src/main/AndroidManifest.xml:16:13-47
 38            android:windowSoftInputMode="adjustResize" >
