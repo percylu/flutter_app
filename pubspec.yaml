@@ -50,6 +50,7 @@ dependencies:
   flutter_widget_from_html: ^0.4.3
   barcode_scan: ^3.0.1
   mobpush_plugin:
+  badges: ^1.1.1
   #flutter_date_pickers: ^0.1.6
  # sharesdk_plugin:
 dev_dependencies:
