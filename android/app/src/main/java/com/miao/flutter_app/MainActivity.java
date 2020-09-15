@@ -32,11 +32,7 @@ import permissions.dispatcher.RuntimePermissions;
 import android.provider.Settings;
 import android.widget.Toast;
 
-import com.mob.pushsdk.MobPush;
-import com.mob.pushsdk.MobPushCustomMessage;
-import com.mob.pushsdk.MobPushNotifyMessage;
-import com.mob.pushsdk.MobPushReceiver;
-import com.mob.pushsdk.MobPushUtils;
+
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -55,40 +51,6 @@ public class MainActivity extends FlutterActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // GeneratedPluginRegistrant.registerWith(getFlutterEngine());
-        MobPush.addPushReceiver(new MobPushReceiver() {
-           
-            @Override
-            public void onCustomMessageReceive(Context context, MobPushCustomMessage message) {
-//接收自定义消息
-                Toast.makeText(context, "接收到自定义消息:" + message.getContent(), Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onNotifyMessageReceive(Context context, MobPushNotifyMessage message) {
-//接收通知消息
-                Toast.makeText(context, "接收到通知消息:" + message.getTitle() + "\n内容为" + message.getContent() + "  \n参数为：" + message.getExtrasMap().toString(), Toast.LENGTH_SHORT).show();
-
-            }
-
-            @Override
-            public void onNotifyMessageOpenedReceive(Context context, MobPushNotifyMessage message) {
-//接收通知消息被点击事件
-                Toast.makeText(context, "接收通知消息被点击事件:" + message.getTitle() + " " + message.getContent(), Toast.LENGTH_SHORT).show();
-
-            }
-
-            @Override
-            public void onTagsCallback(Context context, String[] tags, int operation, int errorCode) {
-//接收tags的增改删查操作
-            }
-
-            @Override
-            public void onAliasCallback(Context context, String alias, int operation, int errorCode) {
-//接收alias的增改删查操作
-            }
-        });
-        getPushPar(getIntent());
-
         new MethodChannel(getFlutterEngine().getDartExecutor().getBinaryMessenger(), CHANNEL).setMethodCallHandler(
                 new MethodChannel.MethodCallHandler() {
                     @Override
@@ -166,20 +128,7 @@ public class MainActivity extends FlutterActivity {
                 });
 
     }
-    @Override
-    protected void onNewIntent(Intent intent) {
-        super.onNewIntent(intent);
-        getPushPar(intent);
-    }
 
-    private void getPushPar(Intent intent) {
-        JSONArray jsonbj = MobPushUtils.parseMainPluginPushIntent(intent);
-        if (jsonbj != null) {
-            System.out.println("-------------jsonpushdata打印查看：" + jsonbj);
-            Toast.makeText(this, "-------------jsonpushdata打印查看：" + jsonbj, Toast.LENGTH_SHORT).show();
-
-        }
-    }
     @NeedsPermission({"android.permission.ACCESS_WIFI_STATE", "android.permission.ACCESS_NETWORK_STATE", "android.permission.ACCESS_COARSE_LOCATION",
             "android.permission.ACCESS_FINE_LOCATION", "android.permission.CHANGE_WIFI_STATE", "android.permission.CHANGE_NETWORK_STATE",
             "android.permission.INTERNET", "android.permission.WAKE_LOCK"})

@@ -24,7 +24,6 @@ if (flutterVersionName == null) {
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
-apply plugin: 'com.mob.sdk'
 
 def keystorePropertiesFile=rootProject.file('key.properties')
 def keystoreProperties = new Properties()
@@ -60,32 +59,26 @@ android {
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId "com.miao.flutter_app"
-        minSdkVersion 21
-        targetSdkVersion 26
+        ndk {
+            //选择要添加的对应 cpu 类型的 .so 库。
+            abiFilters 'armeabi', 'armeabi-v7a', 'x86', 'x86_64', 'mips', 'mips64', 'arm64-v8a'
+        }
+
+        minSdkVersion 18
+        targetSdkVersion 28
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+        manifestPlaceholders = [
+                JPUSH_PKGNAME : "com.miao.flutter_app",
+                JPUSH_APPKEY : "979597f2608ac5ec9047909b", // NOTE: JPush 上注册的包名对应的 Appkey.
+                JPUSH_CHANNEL : "developer-default", //暂时填写默认值即可.
+        ]
     }
+
 
 }
 //apply plugin: 'com.mob.sdk'
 
-MobSDK {
-    appKey "30789f8a664c2"
-    appSecret "b9ad967223f5011a3da6713747049861"
-    ShareSDK {
-        loopShare false
-        devInfo {
-            WechatMoments {
-                appId "wx4868b35061f87885"
-                appSecret "64020361b8ec4c99936c0e3999a9f249"
-            }
-        }
-    }
-    MobPush {
-
-    }
-
-}
 flutter {
     source '../..'
 }

@@ -1,3 +1,13 @@
 /.idea/
 /build/
 /gen/
+pubspec.lock
+.dart_tool/package_config.json
+.dart_tool/flutter_build/38774399b37dd5d5eb37b511909ebf60/.filecache
+.dart_tool/flutter_build/38774399b37dd5d5eb37b511909ebf60/app.dill
+.dart_tool/flutter_build/38774399b37dd5d5eb37b511909ebf60/debug_android_application.stamp
+.dart_tool/flutter_build/38774399b37dd5d5eb37b511909ebf60/flutter_assets.d
+.dart_tool/flutter_build/38774399b37dd5d5eb37b511909ebf60/gen_localizations.stamp
+.dart_tool/flutter_build/38774399b37dd5d5eb37b511909ebf60/kernel_snapshot.d
+.dart_tool/flutter_build/38774399b37dd5d5eb37b511909ebf60/kernel_snapshot.stamp
+.dart_tool/flutter_build/38774399b37dd5d5eb37b511909ebf60/outputs.json

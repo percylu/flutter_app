@@ -4,16 +4,6 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:flutter_app/api/MiaoApi.dart';
-import 'package:flutter_app/entity/device_entity.dart';
-import 'package:flutter_app/entity/login_entity.dart';
-import 'package:flutter_app/generated/json/base/json_convert_content.dart';
-import 'package:flutter_app/ui/devicedetail.dart';
-import 'package:flutter_app/utility/Config.dart';
-import 'package:flutter_app/utility/ResultData.dart';
-import 'package:flutter_app/utility/SpUtils.dart';
-import 'package:flutter_app/widget/devicelistwidgit.dart';
-import 'package:flutter_app/widget/messagedialog.dart';
 import 'package:flutter_screenutil/screenutil.dart';
 
 
@@ -49,7 +39,7 @@ class _MessageListState extends State<MessageList> {
         ),
         backgroundColor: Colors.white,
         title: Text(
-          "消息通知",
+          "通知",
           style: TextStyle(color: Colors.black, fontWeight: FontWeight.w700),
         ),
       ),
