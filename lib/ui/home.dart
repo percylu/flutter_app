@@ -26,6 +26,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'dart:io';
 import 'package:jpush_flutter/jpush_flutter.dart';
 
+import 'draws.dart';
+
 class HomePage extends StatefulWidget {
   HomePage({this.index});
   final int index;

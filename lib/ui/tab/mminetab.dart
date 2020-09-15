@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/api/MiaoApi.dart';
 import 'package:flutter_app/entity/login_entity.dart';
 import 'package:flutter_app/generated/json/base/json_convert_content.dart';
+import 'package:flutter_app/ui/draws.dart';
 import 'package:flutter_app/ui/editmine.dart';
 import 'package:flutter_app/utility/Config.dart';
 import 'package:flutter_app/utility/ResultData.dart';
@@ -16,19 +17,26 @@ import 'package:flutter_app/utility/SpUtils.dart';
 import 'package:flutter_app/widget/htmlWidget.dart';
 import 'package:flutter_app/widget/messagedialog.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_swiper/flutter_swiper.dart';
+
+import '../home.dart';
 
 class MiaoMine extends StatefulWidget {
   final reslut;
+
   MiaoMine({this.reslut});
+
   @override
   MiaoMineTabView createState() => MiaoMineTabView();
-
 }
 
 class MiaoMineTabView extends State<MiaoMine> {
   var _name = "";
   var _avatar = "";
-
+  var example = [
+    "https://pic.ibaotu.com/01/21/11/18p888piC2RW1.jpg-0.jpg!ww7002",
+    "https://pic.ibaotu.com/01/21/11/18p888piC2RW1.jpg-0.jpg!ww7002"
+  ];
 
   @override
   void initState() {
@@ -42,287 +50,207 @@ class MiaoMineTabView extends State<MiaoMine> {
         width: 250,
         height: 445,
         allowFontScaling: true); //flutter_screenuitl >= 1.2
-    return MediaQuery.removePadding(
-      context: context,
-      removeTop: true,
+
 //      margin: EdgeInsets.only(
 //          //top: ScreenUtil().setHeight(11.33),
 //          left: ScreenUtil().setWidth(6.67),
 //          right: ScreenUtil().setWidth(6.67)),
-      child: ListView(
-        //mainAxisAlignment: MainAxisAlignment.start,
-        //crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            color: Colors.white,
-            alignment: Alignment.center,
-            padding:EdgeInsets.only(top:ScreenUtil().setHeight(20),bottom:ScreenUtil().setHeight(10)),
-            child:Text("个人中心",style: TextStyle(fontSize: ScreenUtil().setSp(13),fontWeight: FontWeight.w500),)
-          ),
-          Container(
-            height: 1,
-            color: Colors.grey.shade100,
-          ),
-          Container(
-            color: Colors.white,
-            padding: EdgeInsets.only(
-                top: ScreenUtil().setHeight(8.67),
-                bottom: ScreenUtil().setHeight(8.67)),
-            child:
-                GestureDetector(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text("${_name}  >",
-                          style: TextStyle(
-                              fontSize: ScreenUtil().setSp(16),
-                              fontWeight: FontWeight.w700)),
-                      SizedBox(
-                        width: ScreenUtil().setWidth(67.33),
-                      ),
-                      ClipOval(
-                        child: CachedNetworkImage(
-                          height: ScreenUtil().setWidth(49.33),
-                          width: ScreenUtil().setWidth(49.33),
-                          imageUrl: "${_avatar}",
-                          placeholder: (context, url) =>
-                          new CircularProgressIndicator(),
-                          errorWidget: (context, url, error) => new Icon(Icons.error),
-                          fit: BoxFit.fill,
-                        ),
-                      ),
-                    ],
-                  ),
-                  onTap:(){
-                    Navigator.of(context).push(
-                        new MaterialPageRoute(builder: (_) {
-                          return new EditMine();
-                        })
-                    ).then((value) async{
-                      await initData();
-
-                    });
-
-                  }
-                ),
-
-          ),
-          GestureDetector(
-              child: Container(
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10)
-                ),
-                margin: EdgeInsets.only(top: ScreenUtil().setHeight(7),
-                    left:ScreenUtil().setWidth(8),
-                    right:ScreenUtil().setWidth(8)
-                ),
-            padding: EdgeInsets.only(
-                top: ScreenUtil().setHeight(10.67),
-                bottom: ScreenUtil().setHeight(10.67)),
-            alignment: Alignment.center,
-            child: Text("消息通知",
-                style: TextStyle(
-                    fontSize: ScreenUtil().setSp(10),
-                    fontWeight: FontWeight.w700,
-                    color: Color(0xFF666666))),
-          ),
-            onTap: (){
-
-            },
-          ),
-          GestureDetector(
-            child: Container(
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10)
-              ),
-              margin: EdgeInsets.only(top: ScreenUtil().setHeight(7),
-                  left:ScreenUtil().setWidth(8),
-                  right:ScreenUtil().setWidth(8)
-              ),
-
-              padding: EdgeInsets.only(
-                  top: ScreenUtil().setHeight(10.67),
-                  bottom: ScreenUtil().setHeight(10.67)),
-              alignment: Alignment.center,
-              child: Text("通用设置",
-                  style: TextStyle(
-                      fontSize: ScreenUtil().setSp(10),
-                      fontWeight: FontWeight.w700,
-                      color: Color(0xFF666666))),
+    return Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          elevation: 0.5,
+          leading: IconButton(
+            icon: Image.asset(
+              "assets/mine/ic_service@3x.png",
+              width: ScreenUtil().setWidth(16.37),
+              height: ScreenUtil().setHeight(13.67),
             ),
-            onTap: (){
-              Navigator.pushNamed(context, "commonsetting");
-            },
+            onPressed: () {},
           ),
-          GestureDetector(
-            child: Container(
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10)
-              ),
-              margin: EdgeInsets.only(top: ScreenUtil().setHeight(7),
-                  left:ScreenUtil().setWidth(8),
-                  right:ScreenUtil().setWidth(8)
-              ),
-              padding: EdgeInsets.only(
-                  top: ScreenUtil().setHeight(10.67),
-                  bottom: ScreenUtil().setHeight(10.67)),
-              alignment: Alignment.center,
-              child: Text("关于我们",
+          backgroundColor: Colors.white,
+          actions: [
+            FlatButton(
+                child: Text(
+                  "喵",
                   style: TextStyle(
-                      fontSize: ScreenUtil().setSp(10),
-                      fontWeight: FontWeight.w700,
-                      color: Color(0xFF666666))),
-            ),
-            onTap: (){
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (content){
-                    return CustomerHtml(title:"关于我们");
+                      fontWeight: FontWeight.w800,
+                      fontSize: ScreenUtil().setSp(13.33)),
+                ),
+                onPressed: () {
+                  //Navigator.pop(context);
+                  Navigator.of(context)
+                      .push(new MaterialPageRoute(builder: (_) {
+                    return new HomePage(index: 1);
                   }));
-              },
-          ),
-          GestureDetector(
+                }),
+          ],
+        ),
+        backgroundColor: Colors.white,
+        drawer: Drawers(),
+        body: WillPopScope(
             child: Container(
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10)
-              ),
-              margin: EdgeInsets.only(top: ScreenUtil().setHeight(7),
-                  left:ScreenUtil().setWidth(8),
-                  right:ScreenUtil().setWidth(8)
-              ),
-              padding: EdgeInsets.only(
-                  top: ScreenUtil().setHeight(10.67),
-                  bottom: ScreenUtil().setHeight(10.67)),
-              alignment: Alignment.center,
-              child: Text("帮助中心",
-                  style: TextStyle(
-                      fontSize: ScreenUtil().setSp(10),
-                      fontWeight: FontWeight.w700,
-                      color: Color(0xFF666666))),
-            ),
-            onTap: (){
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (content){
-                return CustomerHtml(title:"帮助中心");
-              }));
-            },
-          ),
-          GestureDetector(
-            child: Container(
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10)
-              ),
-              margin: EdgeInsets.only(top: ScreenUtil().setHeight(7),
-                  left:ScreenUtil().setWidth(8),
-                  right:ScreenUtil().setWidth(8)
-              ),
-              padding: EdgeInsets.only(
-                  top: ScreenUtil().setHeight(10.67),
-                  bottom: ScreenUtil().setHeight(10.67)),
-              alignment: Alignment.center,
-              child: Text("检查更新",
-                  style: TextStyle(
-                      fontSize: ScreenUtil().setSp(10),
-                      fontWeight: FontWeight.w700,
-                      color: Color(0xFF666666))),
-            ),
-            onTap: (){
-              _showUpdate();
-            },
-          ),
-          GestureDetector(
-            child: Container(
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10)
-              ),
-              margin: EdgeInsets.only(top: ScreenUtil().setHeight(7),
-                  left:ScreenUtil().setWidth(8),
-                  right:ScreenUtil().setWidth(8)
-              ),
-              padding: EdgeInsets.only(
-                  top: ScreenUtil().setHeight(10.67),
-                  bottom: ScreenUtil().setHeight(10.67)),
-              alignment: Alignment.center,
-              child: Text("退出登录",
-                  style: TextStyle(
-                      fontSize: ScreenUtil().setSp(10),
-                      fontWeight: FontWeight.w700,
-                      color: Color(0xFFF28282))),
-            ),
-            onTap: () {
-              _showQuit();
-            },
-          ),
-
-
-        ],
-      ),
-    );
+                child: Column(
+              children: [
+                Container(
+                    height: ScreenUtil().setHeight(150),
+                    child: Stack(
+                      children: [
+                        Image(image: AssetImage("assets/mine/edit_bg@3x.png")),
+                        Positioned(
+                          left: ScreenUtil().setWidth(16),
+                          top: ScreenUtil().setHeight(77),
+                          child: ClipOval(
+                            child: CachedNetworkImage(
+                              height: ScreenUtil().setWidth(53.33),
+                              width: ScreenUtil().setWidth(53.33),
+                              imageUrl: "${_avatar}",
+                              placeholder: (context, url) =>
+                                  new CircularProgressIndicator(),
+                              errorWidget: (context, url, error) =>
+                                  new Icon(Icons.error),
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                            left: ScreenUtil().setWidth(23),
+                            top: ScreenUtil().setHeight(125),
+                            child: Text(
+                              _name,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: ScreenUtil().setSp(13.33),
+                                  color: Color(0xFF252623)),
+                            )),
+                        Positioned(
+                            left: ScreenUtil().setWidth(100),
+                            top: ScreenUtil().setHeight(115),
+                            child: Row(
+                              children: [
+                                Column(
+                                  children: [
+                                    Text(
+                                      "关注",
+                                      style: TextStyle(
+                                          color: Color(0xFF4A3D3D),
+                                          fontWeight: FontWeight.w600),
+                                    ),
+                                    SizedBox(
+                                      height: ScreenUtil().setHeight(5),
+                                    ),
+                                    Text(
+                                      "20",
+                                      style: TextStyle(
+                                          color: Color(0xFF4A3D3D),
+                                          fontWeight: FontWeight.w600),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  width: ScreenUtil().setWidth(25),
+                                ),
+                                Column(
+                                  children: [
+                                    Text(
+                                      "粉丝",
+                                      style: TextStyle(
+                                          color: Color(0xFF4A3D3D),
+                                          fontWeight: FontWeight.w600),
+                                    ),
+                                    SizedBox(
+                                      height: ScreenUtil().setHeight(5),
+                                    ),
+                                    Text(
+                                      "7",
+                                      style: TextStyle(
+                                          color: Color(0xFF4A3D3D),
+                                          fontWeight: FontWeight.w600),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  width: ScreenUtil().setWidth(25),
+                                ),
+                                Column(
+                                  children: [
+                                    Text(
+                                      "动态",
+                                      style: TextStyle(
+                                          color: Color(0xFF4A3D3D),
+                                          fontWeight: FontWeight.w600),
+                                    ),
+                                    SizedBox(
+                                      height: ScreenUtil().setHeight(5),
+                                    ),
+                                    Text(
+                                      "20",
+                                      style: TextStyle(
+                                          color: Color(0xFF4A3D3D),
+                                          fontWeight: FontWeight.w600),
+                                    ),
+                                  ],
+                                )
+                              ],
+                            ))
+                      ],
+                    )),
+                Container(
+                  // 控件高度
+                  padding: EdgeInsets.all(0),
+                  constraints: new BoxConstraints.expand(
+                    height: ScreenUtil().setHeight(218.6),
+                  ),
+                  decoration: BoxDecoration(
+                      image: new DecorationImage(
+                    image: new AssetImage("assets/mine/bg_content@3x.png"),
+                    centerSlice: new Rect.fromLTRB(
+                        0,
+                        0,
+                        ScreenUtil().setWidth(250),
+                        ScreenUtil().setHeight(445)),
+                  )),
+                  child: Swiper(
+                    outer: false,
+                    viewportFraction: 0.5,
+                    scale: 0.1,
+                    onTap: (i) {},
+                    onIndexChanged: (i) {
+                      setState(() {});
+                    },
+                    itemBuilder: (c, i) {
+                      return ClipRRect(
+                        borderRadius: BorderRadius.circular(20),
+                        child: CachedNetworkImage(
+                          width: ScreenUtil().setWidth(114.67),
+                          height: ScreenUtil().setWidth(114.67),
+                          imageUrl: example[i],
+                          placeholder: (context, url) =>
+                              new CircularProgressIndicator(),
+                          errorWidget: (context, url, error) =>
+                              new Icon(Icons.error),
+                          fit: BoxFit.cover,
+                        ),
+                      );
+                    },
+                    itemCount: 2,
+                    autoplay: false,
+                  ),
+                )
+              ],
+            )),
+            onWillPop: () async {
+              return false;
+            }));
   }
-  _showQuit(){
-    showDialog<Null>(
-        context: context,
-        barrierDismissible: false,
-        builder: (BuildContext context) {
-          return new     MessageDialog(
-            title:"正在退出登录?", message:"退出后无法使用完整功能", negativeText:"立即退出",
-            onCloseEvent: (){
-              Navigator.pop(context);
-            },
-            onConfirmEvent: () async{
-              try{
-              ResultData response =   await MiaoApi.logout();
-                  if(response!=null){
-                    print("-----logout-------");
-                    Navigator.pushNamedAndRemoveUntil(context, "home", (route) => false);
-                  }
 
-
-              }catch(e){
-                Navigator.pushNamedAndRemoveUntil(context, "home", (route) => false);
-              }
-
-            },
-          );
-
-        });
-  }
-
-  _showUpdate(){
-    showDialog<Null>(
-        context: context,
-        barrierDismissible: false,
-        builder: (BuildContext context) {
-          return new     MessageDialog(
-            title:"当前已是最新版本", message:"版本号V1.9.1", negativeText:"返回",
-            onCloseEvent: (){
-              Navigator.pop(context);
-            },
-            onConfirmEvent: () {
-              Navigator.pop(context);
-            },
-          );
-
-        });
-  }
-  void initData() async{
-
-      var data =await SpUtils.getObjact(Config.USER);
-      LoginEntity user =JsonConvert.fromJsonAsT(data);
-      print("-----------------");
-      setState(() {
-        _name = user.data.user.name;
-        _avatar = SpUtils.URL+user.data.user.avatar;
-        print("--------+++++++++"+_name);
-      });
-
-
-
+  void initData() async {
+    var data = await SpUtils.getObjact(Config.USER);
+    LoginEntity user = JsonConvert.fromJsonAsT(data);
+    print("-----------------");
+    setState(() {
+      _name = user.data.user.name;
+      _avatar = SpUtils.URL + user.data.user.avatar;
+      print("--------+++++++++" + _name);
+    });
   }
 }
