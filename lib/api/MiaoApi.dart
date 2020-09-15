@@ -167,4 +167,9 @@ class MiaoApi{
     ResultData response =await HttpRequest.post(Address.petAdd, pet.toJson());
     return response;
   }
+
+  static checkThird(String userId,String jPush,String mobId) async{
+    ResultData response =await HttpRequest.post(Address.checkThird,{"userId":userId,"jpushRegId":jPush,"mobRegId":mobId} );
+    return response;
+  }
 }

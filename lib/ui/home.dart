@@ -8,6 +8,9 @@ import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_app/api/MiaoApi.dart';
+import 'package:flutter_app/entity/login_entity.dart';
+import 'package:flutter_app/generated/json/base/json_convert_content.dart';
 import 'package:flutter_app/ui/messagelist.dart';
 
 import 'package:flutter_app/ui/tab/mhometab.dart';
@@ -15,13 +18,14 @@ import 'package:flutter_app/ui/tab/mlogintab.dart';
 import 'package:flutter_app/ui/tab/mmiaotab.dart';
 import 'package:flutter_app/ui/tab/mminetab.dart';
 import 'package:flutter_app/utility/Config.dart';
+import 'package:flutter_app/utility/ResultData.dart';
 import 'package:flutter_app/utility/SpUtils.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mobpush_plugin/mobpush_custom_message.dart';
-import 'package:mobpush_plugin/mobpush_notify_message.dart';
-import 'package:mobpush_plugin/mobpush_plugin.dart';
+
 import 'dart:io';
+import 'package:jpush_flutter/jpush_flutter.dart';
+
 class HomePage extends StatefulWidget {
   HomePage({this.index});
   final int index;
@@ -30,34 +34,66 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage>{
+  LoginEntity user;
   static int _pageIndex = 0;
   List<Widget> _children = [];
   List<Widget> _appBars = [];
   bool islogin = true;
-
+  String _sdkVersion = 'Unknown';
+  String _registrationId = 'Unknown';
   //适配刘海屏顶部安全区域，@https://coding.imooc.com/learn/list/321.html
   double paddingTop = 0;
   TextEditingController _inputController = TextEditingController();
 
+  JPush jpush = new JPush();
 
   @override
   void initState() {
     super.initState();
-    initMob();
     _pageIndex=widget.index;
     initData();
+    jpush.setup(appKey: '979597f2608ac5ec9047909b' ,channel: 'developer-default');
+    jpush.getRegistrationID().then((rid) async{
+      ResultData response = await MiaoApi.checkThird(user.data.user.userId, rid, null);
+      if(response.code==1502){
+        islogin=false;
+        setState(() {
+
+        });
+      }
+    });
+
+    jpush.addEventHandler(
+      // 接收通知回调方法。
+      onReceiveNotification: (Map<String, dynamic> message) async {
+        print("flutter onReceiveNotification: $message");
+      },
+      // 点击通知回调方法。
+      onOpenNotification: (Map<String, dynamic> message) async {
+        if(islogin){
+          jpush.clearAllNotifications();
+          Navigator.of(context)
+              .push(new MaterialPageRoute(builder: (_) {
+            return new MessageList();
+          }));
+
+        }
+        print("flutter onOpenNotification: $message");
+      },
+      // 接收自定义消息回调方法。
+      onReceiveMessage: (Map<String, dynamic> message) async {
+        print("flutter onReceiveMessage: $message");
+      },
+    );
     _statusBar();
-    ScreenUtil.init(width: 750,
-        height: 1334,
-        allowFontScaling: true); //flutter_screenuitl >= 1.2
     _children.add(MiaoHomeTabView());
     _children.add(MiaoMain());
     _children.add(MiaoMine());
     _appBars.add(null);
     _appBars.add(null);
-   // _appBars.add(null);
-
     _appBars.add(null);
+
+
   }
 
   ///状态栏样式-沉浸式状态栏
@@ -77,6 +113,8 @@ class _HomePageState extends State<HomePage>{
 
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(width: 750, height: 1335, allowFontScaling: true);
+
     return Theme(
       data: ThemeData(
         primaryColor: Colors.white,
@@ -88,8 +126,6 @@ class _HomePageState extends State<HomePage>{
         IndexedStack(index:_pageIndex,
         children: _children,
         ):MiaoLogin(),
-        //appBar: _appBars[_pageIndex],
-        //body: _children[_pageIndex],
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             setState(() {
@@ -124,21 +160,6 @@ class _HomePageState extends State<HomePage>{
     );
   }
 
-
-  Widget _buildAppBarOne(String title) {
-    return AppBar(
-      elevation: 0.5,
-      automaticallyImplyLeading: true,
-      centerTitle: true,
-      title: Text(title, style: TextStyle(color: Colors.black)),
-    );
-  }
-  Widget _buildAppBarTwo() {
-    return AppBar(
-      elevation: 0,
-      toolbarOpacity:1,
-    );
-  }
 
   BottomNavigationBar _buildBottomNavigationBar() {
     return BottomNavigationBar(
@@ -176,11 +197,10 @@ class _HomePageState extends State<HomePage>{
   }
 
   void initData() async{
-    print("------------login-------------");
     var res= await SpUtils.get(Config.TOKEN_KEY);
-
-      print(res);
-      setState(() {
+    var data = await SpUtils.getObjact(Config.USER);
+    user = JsonConvert.fromJsonAsT(data);
+    setState(() {
         if(res==null){
           islogin=false;
         }else{
@@ -190,82 +210,6 @@ class _HomePageState extends State<HomePage>{
 
 
   }
-
-  void initMob() {
-    //MobpushPlugin.updatePrivacyPermissionStatus(true);
-    //MobpushPlugin.setClickNotificationToLaunchMainActivity(true);
-    //MobpushPlugin.setAppForegroundHiddenNotification(true);
-    //上传隐私协议许可
-    Future<bool> abc =  MobpushPlugin.updatePrivacyPermissionStatus(true);
-
-    abc.then((value) => {
-      print("aaaaaaaaaaaaa"+value.toString())
-    });
-    if (Platform.isIOS) {
-      MobpushPlugin.setCustomNotification();
-      MobpushPlugin.setAPNsForProduction(false);
-    }else{
-      MobpushPlugin.setClickNotificationToLaunchMainActivity(false);
-    }
-
-    MobpushPlugin.addPushReceiver(_onEvent, _onError);
-
-    // WidgetsBinding.instance.addPostFrameCallback((time) {
-    //   // print("----addPostFrameCallback--route=${widget?.route}");
-    //   // switch (widget?.route ?? "") {
-    //   //   case "msg":
-    //     //link://com.mob.mobpush.demo2
-    //       Navigator.push(
-    //           context, MaterialPageRoute(builder: (_) => MessageList()));
-    //     //   break;
-    //     // default:
-    //   // }
-    // });
-  }
-
-  _onEvent(Object event) {
-    print(">>>>>>>>>>>onEvent:${event.toString()}");
-    setState(() {
-      Map<String, dynamic> eventMap = json.decode(event);
-      Map<String, dynamic> result = eventMap['result'];
-      int action = eventMap['action'];
-      print(eventMap['action']);
-      switch (action) {
-        case 0:
-          MobPushCustomMessage message =
-          new MobPushCustomMessage.fromJson(result);
-          showDialog(
-              context: context,
-              child: AlertDialog(
-                content: Text(message.content),
-                actions: <Widget>[
-                  FlatButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: Text("确定"),
-                  )
-                ],
-              ));
-          break;
-        case 1:
-          MobPushNotifyMessage message =
-          new MobPushNotifyMessage.fromJson(result);
-          break;
-        case 2:
-          MobPushNotifyMessage message =
-          new MobPushNotifyMessage.fromJson(result);
-          Navigator.push(
-              context, MaterialPageRoute(builder: (_) => MessageList()));
-          break;
-      }
-    });
-  }
-
-  _onError(Object event) {
-    print(">>>>>>>>>>onError:${event.toString()}");
-  }
-
 
 
 }

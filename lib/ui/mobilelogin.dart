@@ -9,6 +9,7 @@ import 'package:flutter_app/utility/Config.dart';
 import 'package:flutter_app/utility/ResultData.dart';
 import 'package:flutter_app/utility/SpUtils.dart';
 import 'package:flutter_app/widget/messagedialog.dart';
+import 'package:jpush_flutter/jpush_flutter.dart';
 
 class MobileLogin extends StatefulWidget {
   @override
@@ -142,6 +143,7 @@ class _MobileLoginState extends State<MobileLogin> {
                         padding: EdgeInsets.symmetric(vertical: 16.0),
                         color: new Color(0xFFF28282),
                         onPressed: ()  async{
+
                           ResultData response = await MiaoApi.login(userController.text,passwordController.text);
                           print(response);
                           if(response.code==200){

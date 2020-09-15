@@ -24,6 +24,7 @@ class Address{
   static const petType="type/queryList";
   static const petUpdate="pet/update";
   static const petAdd="pet/add";
+  static const checkThird="third/checkJpush";
 
 
 

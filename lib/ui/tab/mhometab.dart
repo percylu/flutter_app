@@ -39,6 +39,7 @@ class _MiaoHomeTabView extends State<MiaoHomeTabView> {
     super.initState();
     //_futureBuilderFuture = initData(context);
     var context=this.context;
+
     initData(context);
   }
 
