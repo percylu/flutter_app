@@ -200,15 +200,17 @@ class _HomePageState extends State<HomePage>{
 
   void initData() async{
     var res= await SpUtils.get(Config.TOKEN_KEY);
+    setState(() {
+      if(res==null){
+        islogin=false;
+        return;
+      }else{
+        islogin=true;
+      }
+    });
     var data = await SpUtils.getObjact(Config.USER);
     user = JsonConvert.fromJsonAsT(data);
-    setState(() {
-        if(res==null){
-          islogin=false;
-        }else{
-          islogin=true;
-        }
-      });
+
 
 
   }

@@ -30,30 +30,30 @@ class _DrawersState extends State<Drawers> {
   Widget build(BuildContext context) {
     ScreenUtil.init(width: 250, height: 445, allowFontScaling: true);
     return Drawer(
-      child: Column(
+      child: ListView(
         children: [
           Container(
+            height: ScreenUtil().setHeight(330),
             alignment: Alignment.center,
             padding: EdgeInsets.only(
               left: ScreenUtil().setWidth(60),
               right: ScreenUtil().setWidth(60),
-              top: ScreenUtil().setHeight(30),
+              top: ScreenUtil().setHeight(15),
             ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
+            child: ListView(
+
               children: <Widget>[
                 GestureDetector(
                   onTap: () {
                     Navigator.of(context).pop(); //隐藏侧边栏
                   },
                   child: Image.asset("assets/img_logo.png",
-                      width: ScreenUtil().setWidth(72.67),
-                      height: ScreenUtil().setHeight(76.67)),
+                      width: ScreenUtil().setWidth(52.67),
+                      height: ScreenUtil().setHeight(56.67)),
                 ),
 
                 SizedBox(
-                  height: ScreenUtil().setHeight(20),
+                  height: ScreenUtil().setHeight(15),
                 ),
 
                 ListTile(
@@ -199,7 +199,7 @@ class _DrawersState extends State<Drawers> {
             ),
           ),
           SizedBox(
-            height: ScreenUtil().setHeight(30),
+            height: ScreenUtil().setHeight(20),
           ),
           Container(
               alignment: Alignment.bottomLeft,
