@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:connectivity/connectivity.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
 
 import 'dart:collection';
@@ -150,8 +150,8 @@ class HttpRequest {
           await SpUtils.save(Config.TOKEN_KEY, optionParams["authorizationCode"]);
         }
       }
-      if (response.data['code'] == 200 || response.data['code'] == 201) {
-        return ResultData(response.data, true, Code.SUCCESS,"");
+      if (response.data['code'] == 200 || response.data['code'] == 201||response.data['code'] ==202) {
+        return ResultData(response.data, true, response.data['code'],"");
       }
       if(response.data['code']==1502){
         //后台记录是没有登录的，删除token

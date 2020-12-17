@@ -24,10 +24,11 @@ class _CustomerHtml extends State<CustomerHtml>{
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(
-        width: 750,
-        height: 1335,
+        width: 250,
+        height: 445,
         allowFontScaling: true);
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         centerTitle: true,
         elevation: 0.5,

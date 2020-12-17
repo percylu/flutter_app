@@ -1,9 +1,12 @@
 class Address{
   static const login= "user/login";
+  static const thirdauth= "user/thirdauth";
   static const register= "user/add";
   static const logout= "user/logout";
   static const codeVerify= "user/codeVerify";
   static const getCode= "user/verifyCode";
+  static const getAuthCode= "user/getAuthCode";
+  static const codeAuthVerify= "user/codeAuthVerify";
   static const banner = "banner/queryList";
   static const personal = "user/queryDetail";
   static const uploads = "system/uploads";
@@ -25,7 +28,8 @@ class Address{
   static const petUpdate="pet/update";
   static const petAdd="pet/add";
   static const checkThird="third/checkJpush";
-
+  static const producDetail="product/queryDetail";
+  static const productQueryListPage="product/queryListPage";
 
 
 

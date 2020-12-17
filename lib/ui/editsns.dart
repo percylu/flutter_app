@@ -5,6 +5,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_app/api/MiaoApi.dart';
+import 'package:flutter_app/ui/indexsns.dart';
 import 'package:flutter_app/utility/ResultData.dart';
 import 'package:flutter_luban/flutter_luban.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -12,6 +13,7 @@ import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 
 class EditSns extends StatelessWidget {
+  final ImagePicker _picker = ImagePicker();
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(width: 250, height: 445, allowFontScaling: true);
@@ -52,7 +54,12 @@ class EditSns extends StatelessWidget {
                       height: ScreenUtil().setWidth(40),
                       alignment: Alignment.center,
                     ),
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.of(context)
+                          .push(new MaterialPageRoute(builder: (_) {
+                        return new IndexSns(firstPath: "");
+                      }));
+                    },
                   ),
                 ],
               ),
@@ -60,10 +67,10 @@ class EditSns extends StatelessWidget {
                 height: ScreenUtil().setHeight(30),
               ),
               GestureDetector(
-                  child: Icon(Icons.close, size: ScreenUtil().setWidth(20)),
-              onTap: (){
-                    Navigator.pop(context);
-              },
+                child: Icon(Icons.close, size: ScreenUtil().setWidth(20)),
+                onTap: () {
+                  Navigator.pop(context);
+                },
               )
             ],
           ),
@@ -72,17 +79,16 @@ class EditSns extends StatelessWidget {
 
   _showPicPicker(BuildContext context) {
     showModalBottomSheet(
-        elevation:2.0,
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20)),
+        elevation: 2.0,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         context: context,
         builder: (BuildContext context) {
           return new Container(
             margin: EdgeInsets.all(ScreenUtil().setWidth(10)),
             alignment: Alignment.center,
             padding: EdgeInsets.only(
-            left:ScreenUtil().setWidth(20),
-            right: ScreenUtil().setWidth(20),
+              left: ScreenUtil().setWidth(20),
+              right: ScreenUtil().setWidth(20),
             ),
             height: ScreenUtil().setHeight(100),
             width: MediaQuery.of(context).size.width,
@@ -91,17 +97,16 @@ class EditSns extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Container(
-                  height: ScreenUtil().setHeight(30),
-                alignment: Alignment.center
-                ,
+                    height: ScreenUtil().setHeight(30),
+                    alignment: Alignment.center,
                     child: GestureDetector(
                         child: Text("拍摄照片",
                             style: TextStyle(
                                 fontSize: ScreenUtil().setSp(10),
                                 fontWeight: FontWeight.w700)),
                         onTap: () {
-                          _takePhotos();
-                          Navigator.pop(context, true);
+                          _takePhotos(context);
+                     //     Navigator.pop(context, true);
                         })),
                 Divider(
                   height: ScreenUtil().setHeight(1),
@@ -110,17 +115,15 @@ class EditSns extends StatelessWidget {
                 //  SizedBox(height:ScreenUtil().setHeight(15) ,),
                 Container(
                   height: ScreenUtil().setHeight(30),
-
-                  alignment: Alignment.center
-                  ,
+                  alignment: Alignment.center,
                   child: GestureDetector(
                       child: Text("相册中选取照片",
                           style: TextStyle(
                               fontSize: ScreenUtil().setSp(10),
                               fontWeight: FontWeight.w700)),
                       onTap: () {
-                        _getPhotos();
-                        Navigator.pop(context, true);
+                        _getPhotos(context);
+                       // Navigator.pop(context, true);
                       }),
                 ),
                 Divider(
@@ -129,16 +132,13 @@ class EditSns extends StatelessWidget {
                 ),
                 Container(
                   height: ScreenUtil().setHeight(30),
-
-                  alignment: Alignment.center
-                  ,
+                  alignment: Alignment.center,
                   child: GestureDetector(
                       child: Text("取消选择",
                           style: TextStyle(
                               fontSize: ScreenUtil().setSp(10),
                               fontWeight: FontWeight.w700)),
                       onTap: () {
-                        _getPhotos();
                         Navigator.pop(context, true);
                       }),
                 ),
@@ -148,57 +148,65 @@ class EditSns extends StatelessWidget {
         });
   }
 
-  _takePhotos() async {
-    var image = await ImagePicker.pickImage(source: ImageSource.camera);
+  _takePhotos(BuildContext context) async {
+    final image = await _picker.getImage(source: ImageSource.camera);
     cropImage(image).then((res) {
-      _uploadImage(res);
+      Navigator.of(context).push(new MaterialPageRoute(builder: (_) {
+        return new IndexSns(firstPath: res.path);
+      }));
     });
   }
-  Future<Null> cropImage(image) async {
+  //获取相册照片
+  _getPhotos(BuildContext context) async {
+    final image = await _picker.getImage(source: ImageSource.gallery);
+    //_uploadImage(image);
+    cropImage(image).then((res) {
+      Navigator.of(context).push(new MaterialPageRoute(builder: (_) {
+        return new IndexSns(firstPath: res.path);
+      }));
+    });
+  }
+  Future<File> cropImage(image) async {
     File croppedFile = await ImageCropper.cropImage(
         sourcePath: image.path,
         aspectRatioPresets: Platform.isAndroid
             ? [
-          CropAspectRatioPreset.square,
-          CropAspectRatioPreset.ratio3x2,
-          CropAspectRatioPreset.original,
-          CropAspectRatioPreset.ratio4x3,
-          CropAspectRatioPreset.ratio16x9
-        ]
+                CropAspectRatioPreset.square,
+                CropAspectRatioPreset.ratio3x2,
+                CropAspectRatioPreset.original,
+                CropAspectRatioPreset.ratio4x3,
+                CropAspectRatioPreset.ratio16x9
+              ]
             : [
-          CropAspectRatioPreset.original,
-          CropAspectRatioPreset.square,
-          CropAspectRatioPreset.ratio3x2,
-          CropAspectRatioPreset.ratio4x3,
-          CropAspectRatioPreset.ratio5x3,
-          CropAspectRatioPreset.ratio5x4,
-          CropAspectRatioPreset.ratio7x5,
-          CropAspectRatioPreset.ratio16x9
-        ],
+                CropAspectRatioPreset.original,
+                CropAspectRatioPreset.square,
+                CropAspectRatioPreset.ratio3x2,
+                CropAspectRatioPreset.ratio4x3,
+                CropAspectRatioPreset.ratio5x3,
+                CropAspectRatioPreset.ratio5x4,
+                CropAspectRatioPreset.ratio7x5,
+                CropAspectRatioPreset.ratio16x9
+              ],
         androidUiSettings: AndroidUiSettings(
-            toolbarTitle: 'Cropper',
-            toolbarColor: Colors.deepOrange,
+            toolbarTitle: '剪辑',
+            toolbarColor: Colors.black,
+            activeControlsWidgetColor: Colors.black38,
             toolbarWidgetColor: Colors.white,
             initAspectRatio: CropAspectRatioPreset.original,
             lockAspectRatio: false),
         iosUiSettings: IOSUiSettings(
-          title: 'Cropper',
-        )
-    );
+          title: '剪辑',
+        ));
     if (croppedFile != null) {
       image = croppedFile;
       return image;
     }
   }
-  //获取相册照片
-  _getPhotos() async {
-    var image = await ImagePicker.pickImage(source: ImageSource.gallery);
-    _uploadImage(image);
-  }
+
+
 
   Future<Map<String, dynamic>> _uploadImage(File _imageDir) async {
     var fileDir = _imageDir.parent.path;
-    print("fileDir:-------" + fileDir);
     CompressObject compressObject = CompressObject(
       imageFile: _imageDir,
       path: fileDir,

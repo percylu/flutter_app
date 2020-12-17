@@ -27,6 +27,7 @@ class _MobileRegisterState extends State<MobileRegister> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         centerTitle: true,
         elevation: 0.8,
@@ -185,7 +186,7 @@ class _MobileRegisterState extends State<MobileRegister> {
                       _cancleTimer();
                       Navigator.of(context).push(MaterialPageRoute(
                           builder: (content){
-                            return SetPassword(username: userController.text);
+                            return SetPassword(username: userController.text,type:"",authuser:"");
                           }
                       ));
                       //Navigator.pushNamed(context, 'setPassword',arguments:{"username":userController.text}

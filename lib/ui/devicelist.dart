@@ -47,7 +47,8 @@ class _DeviceListState extends State<DeviceList> {
             height: 20,
           ),
           onPressed: () {
-            Navigator.pushNamed(context, "home");
+            Navigator.pop(context);
+            //Navigator.pushNamed(context, "home");
           },
         ),
         backgroundColor: Colors.white,
@@ -98,7 +99,7 @@ class _DeviceListState extends State<DeviceList> {
           child: ListView.builder(
             shrinkWrap: true,
             itemBuilder: (context, index) => _itemBuilder(context, index, item),
-            itemCount: item.data.length,
+            itemCount: item==null?0:item.data.length,
           ),
         ),
         Container(

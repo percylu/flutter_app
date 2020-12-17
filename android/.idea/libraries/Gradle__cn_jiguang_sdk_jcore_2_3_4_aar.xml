@@ -1,0 +1,16 @@
+<component name="libraryTable">
+  <library name="Gradle: cn.jiguang.sdk:jcore:2.3.4@aar">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/f0b8fd3b6a9d9129ca71ad8d823995c7/jcore-2.3.4/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/f0b8fd3b6a9d9129ca71ad8d823995c7/jcore-2.3.4/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/f0b8fd3b6a9d9129ca71ad8d823995c7/jcore-2.3.4/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/f0b8fd3b6a9d9129ca71ad8d823995c7/jcore-2.3.4/jars/libs/jcore-android-2.3.4.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/cn.jiguang.sdk/jcore/2.3.4/4642a8c71f141c86ab6b1ceb226341d17883035/jcore-2.3.4-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/cn.jiguang.sdk/jcore/2.3.4/4642a8c71f141c86ab6b1ceb226341d17883035/jcore-2.3.4-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

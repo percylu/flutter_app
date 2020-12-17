@@ -1,8 +1,8 @@
   import 'dart:collection';
-
-  //import 'package:barcode_scan/platform_wrapper.dart';
-  import 'package:barcode_scan/barcode_scan.dart';
-  import 'package:barcode_scan/platform_wrapper.dart';
+  import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+  // import 'package:barcode_scan/platform_wrapper.dart';
+  // import 'package:barcode_scan/barcode_scan.dart';
+  // import 'package:barcode_scan/platform_wrapper.dart';
   import 'package:cached_network_image/cached_network_image.dart';
   import 'package:dio/dio.dart';
   import 'package:flutter/cupertino.dart';
@@ -12,7 +12,7 @@
    * profile: https://github.com/lohanidamodar
    */
 
-  import 'package:flutter/material.dart';
+  import 'package:flutter/material.dart' hide DateUtils;
   import 'package:flutter/services.dart';
   import 'package:flutter_app/api/MiaoApi.dart';
   import 'package:flutter_app/entity/login_entity.dart';
@@ -352,8 +352,12 @@
                             width: ScreenUtil().setWidth(40.66),
                             child:
                             GestureDetector(onTap: ()async{
-                              var result = await BarcodeScanner.scan();
-                              petRFIDController.text=result.rawContent;
+                              var result  = await FlutterBarcodeScanner.scanBarcode
+                                  ("#ff6666",
+                                  "取消",
+                                  false,
+                                  ScanMode.DEFAULT);
+                              petRFIDController.text=result;
                               setState(() {
 
                               });

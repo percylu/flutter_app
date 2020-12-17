@@ -119,15 +119,11 @@ class _EditMineState extends State<EditMine> {
                           width: ScreenUtil().setWidth(67.33),
                         ),
                         ClipOval(
-                          child: CachedNetworkImage(
+                          child: Image.network(
+                            "${_avatar}",
                             height: ScreenUtil().setWidth(49.33),
                             width: ScreenUtil().setWidth(49.33),
-                            imageUrl: "${_avatar}",
-                            placeholder: (context, url) =>
-                            new CircularProgressIndicator(),
-                            errorWidget: (context, url, error) =>
-                            new Icon(Icons.error),
-                            fit: BoxFit.fill,
+                            fit: BoxFit.cover,
                           ),
                         ),
                       ],

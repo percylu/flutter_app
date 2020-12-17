@@ -1,6 +1,6 @@
 
-import 'package:barcode_scan/barcode_scan.dart';
-import 'package:barcode_scan/platform_wrapper.dart';
+// import 'package:barcode_scan/barcode_scan.dart';
+// import 'package:barcode_scan/platform_wrapper.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
@@ -9,7 +9,8 @@ import 'dart:io';
  * Author: Damodar Lohani
  * profile: https://github.com/lohanidamodar
  */
-
+//import 'package:barcode_scan/platform_wrapper.dart';
+import 'package:barcode_scan/barcode_scan.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_app/api/MiaoApi.dart';
@@ -352,9 +353,15 @@ class _EditPetState extends State<EditPet> {
                           width: ScreenUtil().setWidth(40.66),
                           child:
                           GestureDetector(onTap: ()async{
-                            var result = await BarcodeScanner.scan();
+                              var result = await BarcodeScanner.scan();
+                            //var result  = await FlutterBarcodeScanner.scanBarcode
+                            //  ("#ff6666",
+                            //    "取消",
+                            //    false,
+                            //    ScanMode.DEFAULT);
                             petRFIDController.text=result.rawContent;
-                            setState(() {
+                           // petRFIDController.text=result.rawContent;
+                             setState(() {
 
                             });
 

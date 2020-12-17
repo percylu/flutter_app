@@ -12,9 +12,14 @@
       <option name="url" value="https://repository.jboss.org/nexus/content/repositories/public/" />
     </remote-repository>
     <remote-repository>
-      <option name="id" value="BintrayJCenter9" />
-      <option name="name" value="BintrayJCenter9" />
+      <option name="id" value="BintrayJCenter15" />
+      <option name="name" value="BintrayJCenter15" />
       <option name="url" value="https://jcenter.bintray.com/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="maven5" />
+      <option name="name" value="maven5" />
+      <option name="url" value="https://www.jitpack.io" />
     </remote-repository>
     <remote-repository>
       <option name="id" value="maven2" />
@@ -27,19 +32,14 @@
       <option name="url" value="https://dl.google.com/dl/android/maven2/" />
     </remote-repository>
     <remote-repository>
-      <option name="id" value="maven5" />
-      <option name="name" value="maven5" />
-      <option name="url" value="http://mvn.mob.com/android" />
-    </remote-repository>
-    <remote-repository>
-      <option name="id" value="maven4" />
-      <option name="name" value="maven4" />
-      <option name="url" value="https://google.bintray.com/exoplayer/" />
-    </remote-repository>
-    <remote-repository>
       <option name="id" value="maven" />
       <option name="name" value="maven" />
-      <option name="url" value="http://mvn.mob.com/android/" />
+      <option name="url" value="https://storage.googleapis.com/download.flutter.io" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="maven6" />
+      <option name="name" value="maven6" />
+      <option name="url" value="https://google.bintray.com/exoplayer/" />
     </remote-repository>
   </component>
 </project>

@@ -1,20 +1,23 @@
 import 'dart:async';
+import 'dart:io';
+import 'dart:convert';
+import 'dart:typed_data';
 
 /**
  * Author: Damodar Lohani
  * profile: https://github.com/lohanidamodar
  */
-
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_app/api/MiaoApi.dart';
 import 'package:flutter_app/entity/login_entity.dart';
 import 'package:flutter_app/generated/json/base/json_convert_content.dart';
 import 'package:flutter_app/utility/Config.dart';
 import 'package:flutter_app/utility/ResultData.dart';
 import 'package:flutter_app/utility/SpUtils.dart';
-import 'package:flutter_app/utility/hangfeng_smartlink.dart';
 import 'package:flutter_app/widget/messagedialog.dart';
-import 'package:connectivity/connectivity.dart';
+import 'package:wifi/wifi.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 
 class DeviceWifi extends StatefulWidget {
   @override
@@ -34,6 +37,7 @@ class _DeviceWifiState extends State<DeviceWifi> {
   var _seconds = 0;
   LoginEntity user;
   Timer _timer;
+  final Connectivity _connectivity = Connectivity();
 
   @override
   void initState() {
@@ -57,8 +61,8 @@ class _DeviceWifiState extends State<DeviceWifi> {
             Icons.close,
             color: Colors.black,
           ),
-          onPressed: () async{
-            obj = await HanfengSmartlink.stopLink;
+          onPressed: () async {
+            // obj = await HanfengSmartlink.stopLink;
             Navigator.pop(context);
           },
         ),
@@ -184,56 +188,171 @@ class _DeviceWifiState extends State<DeviceWifi> {
     );
   }
 
-  void initPlatformState() async{
+  void initPlatformState() async {
     print(wifiController.text);
     if (wifiController.text == "" || passwordController.text == "") {
       _showWifiError("WiFi连接失败?", "请填写WI-FI名称和密码");
       return;
     }
     _startTimer();
-     obj = await HanfengSmartlink.startLink(wifiController.text, passwordController.text);
-      if (obj.toString() == '204') {
-        setState(() {
-          _seconds = 90;
-          _searchText = "Wi-Fi连接";
-        });
-        _cancleTimer();
-        _showWifiError("WiFi连接失败?", "连接超时");
-        return;
-      }
-      print(obj.toString().substring(0, 3));
-      if (obj.toString().substring(0, 3) == "404") {
-        setState(() {
-          _seconds = 90;
-          _searchText = "Wi-Fi连接";
-        });
-        _cancleTimer();
-        _showWifiError("WiFi连接失败?", obj.toString());
-        return;
-      }
-      _deviceMac = obj.toString();
-      _cancleTimer();
-      //处理配网成功；
-      print("_deviceMAc+++++++++++++++" + _deviceMac);
-      if (_deviceMac != "") {
-        Future.delayed(const Duration(milliseconds: 2000), () async{
-          print("delay......");
-          ResultData response =
-          await MiaoApi.deviceAdd(user.data.user.userId, _deviceMac);
-          if (response.code == 200) {
-            _showWifi("WiFi连接成功!", _deviceMac);
-          }
-          return;
-        });
-      }
+    //  obj = await HanfengSmartlink.startLink(wifiController.text, passwordController.text);
+    var obj = configWifi(wifiController.text, passwordController.text);
+    obj.whenComplete(() {
+      print("++++++++++++++++++++value++++++++++++++++++++");
+      //print(value);
+    });
   }
 
   initData() async {
     var data = await SpUtils.getObjact(Config.USER);
     user = JsonConvert.fromJsonAsT(data);
-
-    wifiController.text = await (Connectivity().getWifiName());
+    //wifiController.text = await Wifi.ssid;
+    //wifiController.text = await Connectivity().getWifiName();
+    try {
+      if (Platform.isIOS) {
+        LocationAuthorizationStatus status =
+            await _connectivity.getLocationServiceAuthorization();
+        if (status == LocationAuthorizationStatus.notDetermined) {
+          status = await _connectivity.requestLocationServiceAuthorization();
+        }
+        if (status == LocationAuthorizationStatus.authorizedAlways ||
+            status == LocationAuthorizationStatus.authorizedWhenInUse) {
+          wifiController.text = await _connectivity.getWifiName();
+        } else {
+          wifiController.text = await _connectivity.getWifiName();
+        }
+      } else {
+        wifiController.text = await _connectivity.getWifiName();
+      }
+    } on PlatformException catch (e) {
+      print(e.toString());
+      wifiController.text = "Failed to get Wifi Name";
+    }
+    print("++++++++++++" + wifiController.text + "++++++++++++++");
     setState(() {});
+  }
+
+  Future<bool> configWifi(String wifi, String password) async {
+    Future con = Wifi.connection("cat", "12345678");
+
+    await con.then((res) {
+      Future.delayed(new Duration(seconds: 10)).then((_) async {
+        if (res == WifiState.success) {
+          //Future BSSID =   _connectivity.getWifiBSSID();
+          var BSSID = null;
+          try {
+            if (Platform.isIOS) {
+              LocationAuthorizationStatus status =
+                  await _connectivity.getLocationServiceAuthorization();
+              if (status == LocationAuthorizationStatus.notDetermined) {
+                status =
+                    await _connectivity.requestLocationServiceAuthorization();
+              }
+              if (status == LocationAuthorizationStatus.authorizedAlways ||
+                  status == LocationAuthorizationStatus.authorizedWhenInUse) {
+                BSSID = _connectivity.getWifiBSSID();
+              } else {
+                BSSID = _connectivity.getWifiBSSID();
+              }
+            } else {
+              BSSID = _connectivity.getWifiBSSID();
+            }
+          } on PlatformException catch (e) {
+            print(e.toString());
+            BSSID = "Failed to get Wifi BSSID";
+          }
+
+          var wifiBSSID = "";
+          BSSID.then((value) async {
+            wifiBSSID = value.replaceAll(":", "");
+            print("++++++++++++++++++wifiBSSID++++++++++++++");
+            print(wifiBSSID);
+
+            Future getIP = _connectivity.getWifiIP();
+            getIP.then((ipAddress) {
+              print("getIP");
+              print(ipAddress);
+              var rawDgramSocket = RawDatagramSocket.bind(
+                  ipAddress==null?InternetAddress.loopbackIPv4:InternetAddress.tryParse(ipAddress), 65535);
+
+
+              rawDgramSocket.then((socket) {
+                socket.send(
+                    new Utf8Codec().encode(
+                        '{"port":65535,"password":"${password}","ssid":"${wifi}"}'),
+                    InternetAddress.tryParse("192.168.4.1"),
+                    1000);
+                socket.listen((event) {
+                  if (event == RawSocketEvent.read) {
+                    var recieve = socket.receive().data;
+                    var str = new Utf8Codec().decode(recieve);
+                    print(str);
+                    if (str.substring(str.length - 2) == "2}") {
+                      _deviceMac = wifiBSSID;
+                      _cancleTimer();
+                      //处理配网成功；
+                      print("_deviceMAc+++++++++++++++" + _deviceMac);
+                      if (_deviceMac != "") {
+                        Future org;
+                        if (Platform.isIOS) {
+                          org = Wifi.connection(wifi, password);
+                        } else {
+                          //org = Wifi.reconnection(wifi);
+                          org = Wifi.connection(wifi, password);
+
+                        }
+
+                        // Future org= WifiConnector.connectToWifi(ssid: wifi, password: password);
+
+                        print(wifi);
+                        org.then((value) {
+                          print("reconnect++++++++++++++");
+                          print(value);
+                          if (value == WifiState.success) {
+                            Future.delayed(const Duration(milliseconds: 2000),
+                                () async {
+                              print("delay......");
+                              ResultData response = await MiaoApi.deviceAdd(
+                                  user.data.user.userId, _deviceMac);
+                              print(response.code);
+                              if (response.code == 200) {
+                                _showWifi("WiFi连接成功!", _deviceMac);
+                              }
+                            });
+                            return true;
+                          }
+                        });
+                      }
+                    } else if (str.substring(str.length - 2) == "3}") {
+                      setState(() {
+                        _seconds = 90;
+                        _searchText = "Wi-Fi连接";
+                      });
+                      _cancleTimer();
+                      _showWifiError("WiFi连接失败?", "连接失败");
+
+                      return false;
+                    } else {
+                      setState(() {
+                        _seconds = 90;
+                        _searchText = "Wi-Fi连接";
+                      });
+                      _cancleTimer();
+                      _showWifiError("WiFi连接失败?", "连接失败");
+
+                      return false;
+                    }
+                  }
+                });
+              });
+            });
+          });
+        } else {
+          print("can not get ip");
+          return false;
+        }
+      });
+    });
   }
 
   /// 倒计时

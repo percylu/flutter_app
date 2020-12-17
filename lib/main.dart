@@ -23,13 +23,15 @@ import 'package:flutter_app/ui/startup.dart';
 import 'package:flutter_app/ui/mobilelogin.dart';
 
 import 'package:flutter_app/widget/camera.dart';
+//import 'package:amap_location/amap_location.dart';
 
 
 void main() {
 
   // 强制竖屏
   // 强制竖屏
-    runApp(new MyApp());
+  //AMapLocationClient.setApiKey("dc30acb14fa641739b19b8c3cc8a2392");
+  runApp(new MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -44,10 +46,11 @@ class MyApp extends StatelessWidget {
     MaterialApp(
       debugShowCheckedModeBanner: false,
       title: '喵小小',
+      color: Colors.white,
       theme: ThemeData(
         //scaffoldBackgroundColor: Colors.grey.shade100,
-        primarySwatch: Colors.red,
-        accentColor: Colors.indigo,
+          primaryColor:Colors.white
+        // accentColor: Colors.indigo,
       ),
       home: HomePage(index:0),
       routes: {

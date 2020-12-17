@@ -88,7 +88,7 @@ class _PetDataState extends State<PetDataPage>
                       new CircularProgressIndicator(),
                       errorWidget: (context, url, error) =>
                       new Icon(Icons.error),
-                      fit: BoxFit.fill,
+                      fit: BoxFit.cover,
                     )),
               ),
               Text(widget.name,style: TextStyle(fontSize: ScreenUtil().setSp(40),
@@ -114,7 +114,7 @@ class _PetDataState extends State<PetDataPage>
                   labelColor: Colors.black,
                   unselectedLabelColor: Colors.black,
                   indicator: BoxDecoration(
-                      color: Colors.transparent,
+                      color: Colors.black12,
                       borderRadius: BorderRadius.circular(20),
                       border: Border.all(color: Color(0xFF000000), width: 1)),
                   //indicatorSize: TabBarIndicatorSize.label,

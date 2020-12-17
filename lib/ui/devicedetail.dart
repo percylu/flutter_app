@@ -466,10 +466,11 @@ class _DeviceDetailState extends State<DeviceDetail> {
 
       final String pt = MqttPublishPayload.bytesToStringAsString(recMess.payload.message);
       print("----");
+      print(pt);
       String str=pt.replaceAll(':"', '":').replaceAll('""', '","');
       Map json=jsonDecode(str);
       int count=json.length;
-      if(count==7){
+      if(count==8){
         //设备状态
         _network="已连接";
         if(json['sand']=="1"||json['excreta']=="1"){

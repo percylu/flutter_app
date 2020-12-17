@@ -94,7 +94,7 @@ class _MiaoDetail extends State<MiaoDetail> {
 
         Positioned(
           top: ScreenUtil().setHeight(9),
-          left: ScreenUtil().setWidth(20),
+          left: ScreenUtil().setWidth(5),
           child: IconButton(
             icon: Image.asset(
               "assets/ic_back.png",
@@ -126,7 +126,7 @@ class _MiaoDetail extends State<MiaoDetail> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-              width: ScreenUtil().setWidth(110),
+              width: ScreenUtil().setWidth(120),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,

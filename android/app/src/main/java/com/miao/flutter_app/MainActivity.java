@@ -1,8 +1,5 @@
 package com.miao.flutter_app;
 
-
-
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.location.LocationManager;
@@ -21,7 +18,6 @@ import io.flutter.embedding.android.FlutterActivity;
 
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
-import io.flutter.plugins.GeneratedPluginRegistrant;
 
 
 
@@ -30,12 +26,9 @@ import permissions.dispatcher.OnNeverAskAgain;
 import permissions.dispatcher.OnPermissionDenied;
 import permissions.dispatcher.RuntimePermissions;
 import android.provider.Settings;
-import android.widget.Toast;
 
 
 
-import org.json.JSONArray;
-import org.json.JSONObject;
 @RuntimePermissions
 public class MainActivity extends FlutterActivity {
     private static final String CHANNEL = "hanfeng_smartlink";
@@ -44,7 +37,6 @@ public class MainActivity extends FlutterActivity {
     private static final String KEY_AP_PASSWORD = "ap_password";
     private static final String KEY_SSID_FORMAT = "ssid_%s";
     private ApLinker mApLinker;
-    private AlertDialog mAlertDialog;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override

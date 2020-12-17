@@ -9,17 +9,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/api/MiaoApi.dart';
 import 'package:flutter_app/utility/ResultData.dart';
 import 'package:flutter_app/widget/messagedialog.dart';
+import 'package:sharesdk_plugin/sharesdk_defines.dart';
 
 
 class SetPassword extends StatefulWidget {
   final username;
-  SetPassword({this.username});
+  final type;
+  final authuser;
+  SetPassword({this.username,this.type,this.authuser});
   @override
   _SetPasswordState createState() => _SetPasswordState();
 }
 
 class _SetPasswordState extends State<SetPassword> {
   var username="";
+  var type="";
+  var authuser="";
   var passwordController = new TextEditingController();
   var confirmpasswordController = new TextEditingController();
   var _ishide = true;
@@ -27,6 +32,8 @@ class _SetPasswordState extends State<SetPassword> {
   @override
   Widget build(BuildContext context) {
     username=widget.username;
+    type=widget.type;
+    authuser=widget.authuser;
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -144,7 +151,7 @@ class _SetPasswordState extends State<SetPassword> {
                       });
                       return;
                     }
-                   ResultData response=await MiaoApi.add(username, passwordController.text);
+                   ResultData response=await MiaoApi.add(username, passwordController.text,type,authuser);
                     if(response!=null && response.success){
                       ResultData login=await MiaoApi.login(username, passwordController.text);
                       if(login!=null && login.success){

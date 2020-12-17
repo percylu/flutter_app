@@ -24,6 +24,7 @@ class _MobileLoginState extends State<MobileLogin> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         centerTitle: true,
         elevation: 0.8,
@@ -146,7 +147,7 @@ class _MobileLoginState extends State<MobileLogin> {
 
                           ResultData response = await MiaoApi.login(userController.text,passwordController.text);
                           print(response);
-                          if(response.code==200){
+                          if(response.code==201){
                             SpUtils.save(Config.ACCOUNT, userController.text);
                             SpUtils.save(Config.PWD, passwordController.text);
                             Navigator.pushReplacementNamed(context, 'home');

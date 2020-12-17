@@ -11,23 +11,23 @@ class picAndTextButton extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(
-        width: 750,
-        height: 1334,
+        width: 350,
+        height: 445,
         allowFontScaling: true);
     return Container(
-      width: ScreenUtil().setWidth(288.99),
-      height: ScreenUtil().setWidth(86.01),
+      width: ScreenUtil().setWidth(125.33),
+      height: ScreenUtil().setWidth(30.0),
       decoration: BoxDecoration(
         color: Colors.white,
         image: DecorationImage(
             image: AssetImage(imgpath),
-            fit: BoxFit.fill
+            fit: BoxFit.cover
         ),
       ),
       alignment: Alignment.center,
       child: FlatButton(
         onPressed: this.onPress,
-        child: Text(text),
+        child: Text(text,style: TextStyle(fontFamily: 'YaHeiBold',fontSize:ScreenUtil().setSp(12),fontWeight: FontWeight.w800)),
         color: Colors.transparent,
       ),
     );

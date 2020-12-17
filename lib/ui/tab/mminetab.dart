@@ -6,17 +6,13 @@ import 'package:flutter/cupertino.dart';
  */
 
 import 'package:flutter/material.dart';
-import 'package:flutter_app/api/MiaoApi.dart';
 import 'package:flutter_app/entity/login_entity.dart';
 import 'package:flutter_app/generated/json/base/json_convert_content.dart';
+import 'package:flutter_app/ui/detailsns.dart';
 import 'package:flutter_app/ui/draws.dart';
-import 'package:flutter_app/ui/editmine.dart';
 import 'package:flutter_app/utility/Config.dart';
-import 'package:flutter_app/utility/ResultData.dart';
 import 'package:flutter_app/utility/SpUtils.dart';
 import 'package:flutter_app/utility/bubble.dart';
-import 'package:flutter_app/widget/htmlWidget.dart';
-import 'package:flutter_app/widget/messagedialog.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 
@@ -83,7 +79,7 @@ class MiaoMineTabView extends State<MiaoMine> {
                   //Navigator.pop(context);
                   Navigator.of(context)
                       .push(new MaterialPageRoute(builder: (_) {
-                    return new HomePage(index: 1);
+                    return new HomePage(index: 2);
                   }));
                 }),
           ],
@@ -274,7 +270,11 @@ class MiaoMineTabView extends State<MiaoMine> {
                               outer: false,
                               viewportFraction: 0.5,
                               scale: 1,
-                              onTap: (i) {},
+                              onTap: (i) {
+                                Navigator.of(context).push(new MaterialPageRoute(builder: (_) {
+                                  return new DetailSns();
+                                }));
+                              },
                               onIndexChanged: (i) {
                                 setState(() {});
                               },

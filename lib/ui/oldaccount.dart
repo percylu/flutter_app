@@ -33,6 +33,7 @@ class _OldAccount extends State<OldAccount> {
   Widget build(BuildContext context) {
     userController.text=widget.username;
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         centerTitle: true,
         elevation: 0.8,

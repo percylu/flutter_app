@@ -8,13 +8,14 @@ import 'package:flutter_app/utility/ResultData.dart';
 import 'package:flutter_app/utility/HttpRequest.dart';
 import 'package:flutter_app/utility/Address.dart';
 import 'package:flutter_app/utility/SpUtils.dart';
+import 'package:sharesdk_plugin/sharesdk_defines.dart';
 
 /// 登录 model
 class MiaoApi{
   // 手机号码登录
   static login(String username,String password) async{
     ResultData response = await HttpRequest.postparam(Address.login, {"username" : username,"password":password});
-    if(response.code==200){
+    if(response.code==201){
       LoginEntity user=JsonConvert.fromJsonAsT(response.data);
       print("user:-------------");
       print(user.data.user.name);
@@ -59,6 +60,14 @@ class MiaoApi{
 //    var response = await HttpRequest.get(Address.getVerifyCode, {"phone":phone});
     return response;
   }
+  // 获取验证码
+  static getAuthCode(String phone) async {
+    ResultData response = await HttpRequest.postparam(
+        Address.getAuthCode, {"username": phone});
+
+//    var response = await HttpRequest.get(Address.getVerifyCode, {"phone":phone});
+    return response;
+  }
 
   // 获取验证码
   static VerifyCode(String phone,String code) async {
@@ -66,6 +75,21 @@ class MiaoApi{
         Address.codeVerify, {"username": phone,"code":code});
     return response;
   }
+
+  // 第三方登陆账号验证
+  static codeAuthVerify(String phone,String code,String type,String authuser) async {
+    ResultData response = await HttpRequest.postparam(
+        Address.codeAuthVerify, {"username": phone,"code":code,"type":type,"authuser":authuser});
+    return response;
+  }
+
+  // 第三方登陆验证注册验证码
+  static thirdauth(String authuser,String platform) async {
+    ResultData response = await HttpRequest.postparam(
+        Address.thirdauth, {"authuser": authuser,"platform":platform});
+    return response;
+  }
+
   // 获取验证码 for change mobile
   static codeVerifyChange(String phone,String code) async {
     ResultData response = await HttpRequest.postparam(
@@ -86,9 +110,43 @@ class MiaoApi{
     return response;
   }
   // 注册用户
-  static add(String phone,String code) async {
+  static add(String phone,String code,String type,String authuser) async {
+    var qq,weixin,weibo,apple;
+    switch(type){
+      case "qq":
+        qq=authuser;
+        weixin="";
+        weibo="";
+        apple="";
+        break;
+      case "weixin":
+        qq="";
+        weixin=authuser;
+        weibo="";
+        apple="";
+        break;
+      case "weibo":
+        qq="";
+        weixin="";
+        weibo=authuser;
+        apple="";
+        break;
+      case "apple":
+        qq="";
+        weixin="";
+        weibo="";
+        apple=authuser;
+        break;
+      default:
+        qq="";
+        weixin="";
+        weibo="";
+        apple="";
+        break;
+
+    }
     ResultData response = await HttpRequest.post(
-        Address.register, {"account": phone,"password":code});
+        Address.register, {"account": phone,"password":code,"qq":qq,"weixin":weixin,"weibo":weibo,"apple":apple});
     return response;
   }
 
@@ -131,8 +189,8 @@ class MiaoApi{
     ResultData response = await HttpRequest.post(Address.setting,{"settingTitle":title});
     return response;
   }
-  static getArticle() async{
-    ResultData response = await HttpRequest.post(Address.article,{});
+  static getArticle(String articleId) async{
+    ResultData response = await HttpRequest.post(Address.article,{"articleId":articleId});
     return response;
   }
 
@@ -170,6 +228,14 @@ class MiaoApi{
 
   static checkThird(String userId,String jPush,String mobId) async{
     ResultData response =await HttpRequest.post(Address.checkThird,{"userId":userId,"jpushRegId":jPush,"mobRegId":mobId} );
+    return response;
+  }
+  static productDetail() async{
+    ResultData response =await HttpRequest.post(Address.producDetail,{"promotion":1});
+    return response;
+  }
+  static productQueryListPage(int page) async{
+    ResultData response =await HttpRequest.post(Address.productQueryListPage,{"page":page});
     return response;
   }
 }

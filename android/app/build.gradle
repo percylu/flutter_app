@@ -18,12 +18,13 @@ if (flutterVersionCode == null) {
 
 def flutterVersionName = localProperties.getProperty('flutter.versionName')
 if (flutterVersionName == null) {
-    flutterVersionName = '1.0'
+    flutterVersionName = '1.1'
 }
 
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
+apply from: '../MobSDK.gradle'
 
 def keystorePropertiesFile=rootProject.file('key.properties')
 def keystoreProperties = new Properties()
@@ -64,7 +65,7 @@ android {
             abiFilters 'armeabi', 'armeabi-v7a', 'x86', 'x86_64', 'mips', 'mips64', 'arm64-v8a'
         }
 
-        minSdkVersion 18
+        minSdkVersion 21
         targetSdkVersion 28
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
@@ -72,6 +73,7 @@ android {
                 JPUSH_PKGNAME : "com.miao.flutter_app",
                 JPUSH_APPKEY : "979597f2608ac5ec9047909b", // NOTE: JPush 上注册的包名对应的 Appkey.
                 JPUSH_CHANNEL : "developer-default", //暂时填写默认值即可.
+                AMAP_KEY : "567b4a6bd83a356db380187f8a265bbd", /// 高德地图key
         ]
     }
 
@@ -93,6 +95,7 @@ dependencies {
     implementation "org.permissionsdispatcher:permissionsdispatcher:4.3.0"
     annotationProcessor "org.permissionsdispatcher:permissionsdispatcher-processor:4.3.0"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'com.amap.api:location:latest.integration'
 
 
 }

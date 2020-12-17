@@ -10,6 +10,7 @@ import 'package:flutter_app/widget/messagedialog.dart';
 import 'package:flutter_screenutil/screenutil.dart';
 
 import 'editmine.dart';
+import 'messagelist.dart';
 
 class Drawers extends StatefulWidget {
   @override
@@ -66,7 +67,10 @@ class _DrawersState extends State<Drawers> {
                     ),
                   ),
                   onTap: () {
-                    Navigator.of(context).pop(); //隐藏侧边栏
+                    Navigator.of(context).push(new MaterialPageRoute(builder: (_) {
+                      return new MessageList();
+                    }));
+                   // Navigator.of(context).pop(); //隐藏侧边栏
                   },
                 ),
 
@@ -171,6 +175,27 @@ class _DrawersState extends State<Drawers> {
                     Navigator.of(context).pop(); //隐藏侧边栏
 
                     _showUpdate();
+                  },
+                ),
+                Divider(
+                  height: ScreenUtil().setHeight(1),
+                  color: Colors.grey,
+                ), //分割线
+                ListTile(
+                  title: new Center(
+                    child: Text(
+                      '隐私政策',
+                      style: TextStyle(
+                          fontWeight: FontWeight.w700,
+                          color: Color(0xFF4A3D3D)),
+                    ),
+                  ),
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (content){
+                          return CustomerHtml(title:"隐私政策");
+                        }
+                    ));
                   },
                 ),
                 Divider(

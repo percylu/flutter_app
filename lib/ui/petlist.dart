@@ -77,7 +77,7 @@
                 onPressed: () {
                   //Navigator.pop(context);
                   Navigator.of(context).push(new MaterialPageRoute(builder: (_) {
-                    return new HomePage(index: 1);
+                    return new HomePage(index: 2);
                   }));
                 }),
           ],

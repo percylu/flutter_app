@@ -54,6 +54,7 @@ class _StartupState extends State<Startup> {
           color: Colors.white,
           image: new DecorationImage(
             image: new AssetImage("assets/bg_startup.png"),
+            fit:BoxFit.cover
             //这里是从assets静态文件中获取的，也可以new NetworkImage(）从网络上获取
           ),
         ),
@@ -61,43 +62,45 @@ class _StartupState extends State<Startup> {
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         child: Stack(
-          children: [
-            Swiper(
-              outer: false,
-              itemBuilder: (c, i) {
-                if (swiperDataList != null) {
-                  return Column(
-                    children: [
-                      SizedBox(
-                        height: 150,
-                      ),
-                      Image.asset(
-                        swiperDataList[i],
-                        scale: 1.6,
-                      ),
-                      SizedBox(
-                        height: 180,
-                      ),
-                      Image.asset(
-                        swiperTextList[i],
-                        scale: 1.6,
-                      )
-                    ],
-                  );
-                }
-                return null;
-              },
-              pagination: new SwiperPagination(
-                  alignment: Alignment.bottomCenter,
-                  margin: EdgeInsets.all(0),
-                  builder: DotSwiperPaginationBuilder(
-                    color: Colors.white,
-                    activeColor: Colors.deepOrangeAccent.shade200,
-                  )),
-              itemCount: swiperDataList == null ? 0 : swiperDataList.length,
-              autoplay: false,
-            ),
-          ],
+         // children: [
+            // Swiper(
+            //   outer: false,
+            //   itemBuilder: (c, i) {
+            //     if (swiperDataList != null) {
+            //       return Column(
+            //         children: [
+            //           SizedBox(
+            //             height: 150,
+            //           ),
+            //           Image.asset(
+            //             swiperDataList[i],
+            //             fit: BoxFit.cover,
+            //           //  scale: 1.6,
+            //           ),
+            //           SizedBox(
+            //             height: 180,
+            //           ),
+            //           Image.asset(
+            //             swiperTextList[i],
+            //             fit: BoxFit.cover,
+            //          //   scale: 1.6,
+            //           )
+            //         ],
+            //       );
+            //     }
+            //     return null;
+            //   },
+            //   pagination: new SwiperPagination(
+            //       alignment: Alignment.bottomCenter,
+            //       margin: EdgeInsets.all(0),
+            //       builder: DotSwiperPaginationBuilder(
+            //         color: Colors.white,
+            //         activeColor: Colors.deepOrangeAccent.shade200,
+            //       )),
+            //   itemCount: swiperDataList == null ? 0 : swiperDataList.length,
+            //   autoplay: false,
+            // ),
+          // ],
         ));
   }
 }
